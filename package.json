@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "name": "@anymind-ng/api",
+  "version": "0.0.14",
+  "description": "swagger client for anymind",
+  "author": "AnyMind",
+  "keywords": [
+    "swagger-client"
+  ],
+  "ngPackage": {
+    "lib": {
+      "entryFile": "index.ts"
+    }
+  },
+  "license": "Unlicense",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "ng-packagr -p package.json",
+    "publish:lib": "npm publish ./dist",
+    "publish:lib:next": "npm publish --tag next ./dist",
+    "gen": "swagger-codegen generate -i https://api.dev.profitelo.pl/swagger/swagger.json -l typescript-angular -t typescript-angular"
+  },
+  "peerDependencies": {
+    "@angular/core": "^5.2.0",
+    "@angular/http": "^5.2.0",
+    "@angular/common": "^5.2.0",
+    "@angular/compiler": "^5.2.0",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.14"
+  },
+  "devDependencies": {
+    "@angular/common": "^5.2.0",
+    "@angular/compiler": "^5.2.0",
+    "@angular/compiler-cli": "^5.2.1",
+    "@angular/core": "^5.2.0",
+    "@angular/http": "^5.2.0",
+    "@angular/platform-browser": "^5.2.0",
+    "core-js": "^2.4.1",
+    "ng-packagr": "^2.0.0-rc.11",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^5.5.6",
+    "typescript": "~2.4.2",
+    "zone.js": "^0.8.14"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.contactis.pl/repository/npm-internal"
+  }
+}

@@ -34,9 +34,9 @@ export interface ServiceUsageEvent {
     offlineDuration?: number;
     ratePerMinute: MoneyDto;
     freeSeconds: number;
-    callFree: boolean;
     callStarted: boolean;
     callExpired: boolean;
+    callFree: boolean;
     callSignificant: boolean;
     persisted: boolean;
     callFinalized: boolean;

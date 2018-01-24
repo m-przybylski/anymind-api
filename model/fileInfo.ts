@@ -19,6 +19,7 @@ export interface FileInfo {
     size?: number;
     isUploaded: boolean;
     status: FileInfo.StatusEnum;
+    fileType: FileInfo.FileTypeEnum;
     downloadUrl?: string;
     previews: Array<string>;
     contentType: string;
@@ -31,5 +32,10 @@ export namespace FileInfo {
         NEW: 'NEW' as StatusEnum,
         ACCEPTED: 'ACCEPTED' as StatusEnum,
         REJECTED: 'REJECTED' as StatusEnum
+    }
+    export type FileTypeEnum = 'PROFILE' | 'CHAT';
+    export const FileTypeEnum = {
+        PROFILE: 'PROFILE' as FileTypeEnum,
+        CHAT: 'CHAT' as FileTypeEnum
     }
 }

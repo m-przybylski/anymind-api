@@ -20,7 +20,7 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { FileIdDto } from '../model/fileIdDto';
 import { FileInfo } from '../model/fileInfo';
-import { PostProcessOption } from '../model/postProcessOption';
+import { PostFileDetails } from '../model/postFileDetails';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -61,14 +61,14 @@ export class FilesService {
     /**
      * Create file token
      * 
-     * @param body Cropping Details
+     * @param body Cropping details and file type
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createFileTokenPath(body: PostProcessOption, observe?: 'body', reportProgress?: boolean): Observable<FileIdDto>;
-    public createFileTokenPath(body: PostProcessOption, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileIdDto>>;
-    public createFileTokenPath(body: PostProcessOption, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileIdDto>>;
-    public createFileTokenPath(body: PostProcessOption, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createFileTokenPath(body: PostFileDetails, observe?: 'body', reportProgress?: boolean): Observable<FileIdDto>;
+    public createFileTokenPath(body: PostFileDetails, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileIdDto>>;
+    public createFileTokenPath(body: PostFileDetails, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileIdDto>>;
+    public createFileTokenPath(body: PostFileDetails, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling createFileTokenPath.');
         }

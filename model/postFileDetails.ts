@@ -12,6 +12,14 @@
 import { CropDetails } from './cropDetails';
 
 
-export interface PostProcessOption {
+export interface PostFileDetails {
     croppingDetails?: CropDetails;
+    fileType: PostFileDetails.FileTypeEnum;
+}
+export namespace PostFileDetails {
+    export type FileTypeEnum = 'PROFILE' | 'CHAT';
+    export const FileTypeEnum = {
+        PROFILE: 'PROFILE' as FileTypeEnum,
+        CHAT: 'CHAT' as FileTypeEnum
+    }
 }

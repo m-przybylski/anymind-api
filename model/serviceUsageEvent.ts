@@ -40,4 +40,5 @@ export interface ServiceUsageEvent {
     callSignificant: boolean;
     persisted: boolean;
     callFinalized: boolean;
+    callStopped: boolean;
 }

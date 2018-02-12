@@ -18,7 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { FinancialOperation } from '../model/financialOperation';
+import { ClientFinancialOperation } from '../model/clientFinancialOperation';
 import { MoneyDto } from '../model/moneyDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -98,9 +98,9 @@ export class FinancesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getClientTransactionsRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<FinancialOperation>>;
-    public getClientTransactionsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<FinancialOperation>>>;
-    public getClientTransactionsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<FinancialOperation>>>;
+    public getClientTransactionsRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<ClientFinancialOperation>>;
+    public getClientTransactionsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ClientFinancialOperation>>>;
+    public getClientTransactionsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ClientFinancialOperation>>>;
     public getClientTransactionsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -117,7 +117,7 @@ export class FinancesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<FinancialOperation>>(`${this.basePath}/finances/client/transactions`,
+        return this.httpClient.get<Array<ClientFinancialOperation>>(`${this.basePath}/finances/client/transactions`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

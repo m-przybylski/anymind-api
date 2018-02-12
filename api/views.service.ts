@@ -21,7 +21,9 @@ import { Observable }                                        from 'rxjs/Observab
 import { GetActivities } from '../model/getActivities';
 import { GetActivityFilters } from '../model/getActivityFilters';
 import { GetCallDetails } from '../model/getCallDetails';
+import { GetClientCallSummary } from '../model/getClientCallSummary';
 import { GetDashboardClientExperts } from '../model/getDashboardClientExperts';
+import { GetExpertCallSummary } from '../model/getExpertCallSummary';
 import { GetExpertProfile } from '../model/getExpertProfile';
 import { GetMobileServiceDetails } from '../model/getMobileServiceDetails';
 import { GetOrganizationProfile } from '../model/getOrganizationProfile';
@@ -63,6 +65,45 @@ export class ViewsService {
         return false;
     }
 
+
+    /**
+     * Get call summary for client
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getClientCallSummaryRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetClientCallSummary>;
+    public getClientCallSummaryRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClientCallSummary>>;
+    public getClientCallSummaryRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClientCallSummary>>;
+    public getClientCallSummaryRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling getClientCallSummaryRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetClientCallSummary>(`${this.basePath}/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/client`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * Get dashboard activities
@@ -238,6 +279,45 @@ export class ViewsService {
         ];
 
         return this.httpClient.get<GetDashboardClientExperts>(`${this.basePath}/views/dashboard/client/experts`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get call summary for expert
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getExpertCallSummaryRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertCallSummary>;
+    public getExpertCallSummaryRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertCallSummary>>;
+    public getExpertCallSummaryRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertCallSummary>>;
+    public getExpertCallSummaryRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling getExpertCallSummaryRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetExpertCallSummary>(`${this.basePath}/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -36,8 +36,6 @@ export interface ServiceUsageEvent {
     freeSeconds: number;
     callStarted: boolean;
     callExpired: boolean;
-    callFree: boolean;
-    callSignificant: boolean;
     persisted: boolean;
     callFinalized: boolean;
     callStopped: boolean;

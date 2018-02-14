@@ -19,7 +19,15 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { AdminPanelLogin } from '../model/adminPanelLogin';
+import { AdminPanelSession } from '../model/adminPanelSession';
+import { GetActivity } from '../model/getActivity';
+import { GetCallDetails } from '../model/getCallDetails';
+import { GetCounters } from '../model/getCounters';
+import { GetPayoutInvoice } from '../model/getPayoutInvoice';
+import { GetProfile } from '../model/getProfile';
+import { GetTechnicalProblem } from '../model/getTechnicalProblem';
 import { JValue } from '../model/jValue';
+import { MoneyDto } from '../model/moneyDto';
 import { PostGeneratePayoutInvoice } from '../model/postGeneratePayoutInvoice';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -67,9 +75,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetActivity>>;
+    public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetActivity>>>;
+    public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetActivity>>>;
     public getAccountActivitiesRoute(accountId: string, limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling getAccountActivitiesRoute.');
@@ -106,7 +114,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/account-activities`,
+        return this.httpClient.get<Array<GetActivity>>(`${this.basePath}/adminpanel/account-activities`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -125,9 +133,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getClientActivitiesRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getClientActivitiesRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getClientActivitiesRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getClientActivitiesRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetActivity>>;
+    public getClientActivitiesRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetActivity>>>;
+    public getClientActivitiesRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetActivity>>>;
     public getClientActivitiesRoute(limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (limit === null || limit === undefined) {
             throw new Error('Required parameter limit was null or undefined when calling getClientActivitiesRoute.');
@@ -158,7 +166,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/client-activities`,
+        return this.httpClient.get<Array<GetActivity>>(`${this.basePath}/adminpanel/client-activities`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -175,9 +183,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCountersRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getCountersRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getCountersRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getCountersRoute(observe?: 'body', reportProgress?: boolean): Observable<GetCounters>;
+    public getCountersRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetCounters>>;
+    public getCountersRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetCounters>>;
     public getCountersRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -194,7 +202,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/counters`,
+        return this.httpClient.get<GetCounters>(`${this.basePath}/adminpanel/counters`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -210,9 +218,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCurrentSessionRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getCurrentSessionRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getCurrentSessionRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getCurrentSessionRoute(observe?: 'body', reportProgress?: boolean): Observable<AdminPanelSession>;
+    public getCurrentSessionRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AdminPanelSession>>;
+    public getCurrentSessionRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AdminPanelSession>>;
     public getCurrentSessionRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -229,7 +237,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/session`,
+        return this.httpClient.get<AdminPanelSession>(`${this.basePath}/adminpanel/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -246,9 +254,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProfileBalanceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getProfileBalanceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getProfileBalanceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<MoneyDto>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MoneyDto>>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MoneyDto>>;
     public getProfileBalanceRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling getProfileBalanceRoute.');
@@ -268,7 +276,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.get<MoneyDto>(`${this.basePath}/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -286,9 +294,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProfilesRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getProfilesRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getProfilesRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getProfilesRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetProfile>>;
+    public getProfilesRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetProfile>>>;
+    public getProfilesRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetProfile>>>;
     public getProfilesRoute(limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (limit === null || limit === undefined) {
             throw new Error('Required parameter limit was null or undefined when calling getProfilesRoute.');
@@ -319,7 +327,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/profiles`,
+        return this.httpClient.get<Array<GetProfile>>(`${this.basePath}/adminpanel/profiles`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -338,9 +346,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getTechnicalIssuesRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getTechnicalIssuesRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getTechnicalIssuesRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getTechnicalIssuesRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetTechnicalProblem>>;
+    public getTechnicalIssuesRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetTechnicalProblem>>>;
+    public getTechnicalIssuesRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetTechnicalProblem>>>;
     public getTechnicalIssuesRoute(limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (limit === null || limit === undefined) {
             throw new Error('Required parameter limit was null or undefined when calling getTechnicalIssuesRoute.');
@@ -371,7 +379,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/adminpanel/technical-issues`,
+        return this.httpClient.get<Array<GetTechnicalProblem>>(`${this.basePath}/adminpanel/technical-issues`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -424,9 +432,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postActivityDetailsRoute(body: AdminPanelLogin, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postActivityDetailsRoute(body: AdminPanelLogin, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postActivityDetailsRoute(body: AdminPanelLogin, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postActivityDetailsRoute(body: AdminPanelLogin, observe?: 'body', reportProgress?: boolean): Observable<GetCallDetails>;
+    public postActivityDetailsRoute(body: AdminPanelLogin, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetCallDetails>>;
+    public postActivityDetailsRoute(body: AdminPanelLogin, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetCallDetails>>;
     public postActivityDetailsRoute(body: AdminPanelLogin, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postActivityDetailsRoute.');
@@ -450,7 +458,7 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/adminpanel/activity-details`,
+        return this.httpClient.post<GetCallDetails>(`${this.basePath}/adminpanel/activity-details`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -468,9 +476,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe?: 'body', reportProgress?: boolean): Observable<GetPayoutInvoice>;
+    public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayoutInvoice>>;
+    public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayoutInvoice>>;
     public postGeneratePayoutInvoiceRoute(body: PostGeneratePayoutInvoice, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postGeneratePayoutInvoiceRoute.');
@@ -494,7 +502,7 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/adminpanel/payout-invoice`,
+        return this.httpClient.post<GetPayoutInvoice>(`${this.basePath}/adminpanel/payout-invoice`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -512,9 +520,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postLoginRoute(body: AdminPanelLogin, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postLoginRoute(body: AdminPanelLogin, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postLoginRoute(body: AdminPanelLogin, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postLoginRoute(body: AdminPanelLogin, observe?: 'body', reportProgress?: boolean): Observable<AdminPanelSession>;
+    public postLoginRoute(body: AdminPanelLogin, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AdminPanelSession>>;
+    public postLoginRoute(body: AdminPanelLogin, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AdminPanelSession>>;
     public postLoginRoute(body: AdminPanelLogin, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postLoginRoute.');
@@ -538,7 +546,7 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/adminpanel/session`,
+        return this.httpClient.post<AdminPanelSession>(`${this.basePath}/adminpanel/session`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -13,8 +13,8 @@ import { CurrencyUnit } from './currencyUnit';
 
 
 export interface Money {
-    zero: boolean;
     negative: boolean;
+    zero: boolean;
     currencyUnit: CurrencyUnit;
     scale: number;
     amount: number;

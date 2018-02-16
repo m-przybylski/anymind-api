@@ -86,7 +86,7 @@ export class RatelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<SignedAgent>(`${this.basePath}/ratel/config`,
+        return this.httpClient.get<SignedAgent>(`${this.basePath}/api/ratel/config`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -129,7 +129,7 @@ export class RatelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/ratel/config/user`,
+        return this.httpClient.post<any>(`${this.basePath}/api/ratel/config/user`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -180,7 +180,7 @@ export class RatelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSUERatelCall>(`${this.basePath}/ratel/call/create`,
+        return this.httpClient.post<GetSUERatelCall>(`${this.basePath}/api/ratel/call/create`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -220,7 +220,7 @@ export class RatelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/ratel/call/${encodeURIComponent(String(sueId))}/room/close`,
+        return this.httpClient.post<any>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/room/close`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -260,7 +260,7 @@ export class RatelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<RatelRoomDetails>(`${this.basePath}/ratel/call/${encodeURIComponent(String(sueId))}/room/create`,
+        return this.httpClient.post<RatelRoomDetails>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/room/create`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -300,7 +300,7 @@ export class RatelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<RatelCallDetails>(`${this.basePath}/ratel/call/${encodeURIComponent(String(sueId))}/stop`,
+        return this.httpClient.post<RatelCallDetails>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/stop`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -336,7 +336,7 @@ export class RatelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/ratel/config/push-notification`,
+        return this.httpClient.post<any>(`${this.basePath}/api/ratel/config/push-notification`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -383,7 +383,7 @@ export class RatelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/ratel/call/${encodeURIComponent(String(sueId))}/start`,
+        return this.httpClient.post<any>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/start`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -83,7 +83,7 @@ export class PayoutsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetPayoutMethodDto>(`${this.basePath}/payouts/payout-method`,
+        return this.httpClient.get<GetPayoutMethodDto>(`${this.basePath}/api/payouts/payout-method`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -126,7 +126,7 @@ export class PayoutsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<JValue>(`${this.basePath}/payouts/payout-method`,
+        return this.httpClient.put<JValue>(`${this.basePath}/api/payouts/payout-method`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

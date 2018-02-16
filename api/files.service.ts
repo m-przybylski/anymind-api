@@ -91,7 +91,7 @@ export class FilesService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<FileIdDto>(`${this.basePath}/files/token`,
+        return this.httpClient.post<FileIdDto>(`${this.basePath}/api/files/token`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -131,7 +131,7 @@ export class FilesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<FileInfo>(`${this.basePath}/files/${encodeURIComponent(String(token))}`,
+        return this.httpClient.get<FileInfo>(`${this.basePath}/api/files/${encodeURIComponent(String(token))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -20,7 +20,7 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { AddServiceUsageRequest } from '../model/addServiceUsageRequest';
 import { GetComment } from '../model/getComment';
-import { GetIncomingCallDetails } from '../model/getIncomingCallDetails';
+import { GetExpertSueDetails } from '../model/getExpertSueDetails';
 import { GetService } from '../model/getService';
 import { GetServiceGrossPrice } from '../model/getServiceGrossPrice';
 import { GetServiceTags } from '../model/getServiceTags';
@@ -104,7 +104,7 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/services/${encodeURIComponent(String(serviceId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -159,48 +159,9 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetComment>>(`${this.basePath}/services/${encodeURIComponent(String(serviceId))}/comments`,
+        return this.httpClient.get<Array<GetComment>>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}/comments`,
             {
                 params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get service usage event
-     * 
-     * @param ratelCallId ratelCallId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getIncomingCallDetailsRoute(ratelCallId: string, observe?: 'body', reportProgress?: boolean): Observable<GetIncomingCallDetails>;
-    public getIncomingCallDetailsRoute(ratelCallId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetIncomingCallDetails>>;
-    public getIncomingCallDetailsRoute(ratelCallId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetIncomingCallDetails>>;
-    public getIncomingCallDetailsRoute(ratelCallId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (ratelCallId === null || ratelCallId === undefined) {
-            throw new Error('Required parameter ratelCallId was null or undefined when calling getIncomingCallDetailsRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<GetIncomingCallDetails>(`${this.basePath}/services/usage-event/${encodeURIComponent(String(ratelCallId))}`,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -238,7 +199,7 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetService>>(`${this.basePath}/services/profile/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.get<Array<GetService>>(`${this.basePath}/api/services/profile/${encodeURIComponent(String(accountId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -277,7 +238,7 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetServiceGrossPrice>(`${this.basePath}/services/${encodeURIComponent(String(serviceId))}/gross-price`,
+        return this.httpClient.get<GetServiceGrossPrice>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}/gross-price`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -316,7 +277,46 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetService>(`${this.basePath}/services/${encodeURIComponent(String(serviceId))}`,
+        return this.httpClient.get<GetService>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get service usage event details for expert
+     * 
+     * @param ratelCallId ratelCallId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertSueDetails>;
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertSueDetails>>;
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertSueDetails>>;
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (ratelCallId === null || ratelCallId === undefined) {
+            throw new Error('Required parameter ratelCallId was null or undefined when calling getSueDetailsForExpertRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetExpertSueDetails>(`${this.basePath}/api/services/usage-event/${encodeURIComponent(String(ratelCallId))}/details/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -355,7 +355,7 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetService>>(`${this.basePath}/services/suggest/${encodeURIComponent(String(expression))}`,
+        return this.httpClient.get<Array<GetService>>(`${this.basePath}/api/services/suggest/${encodeURIComponent(String(expression))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -406,7 +406,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/comments/${encodeURIComponent(String(commentId))}/answer`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/comments/${encodeURIComponent(String(commentId))}/answer`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -458,7 +458,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/comments/${encodeURIComponent(String(commentId))}/report`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/comments/${encodeURIComponent(String(commentId))}/report`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -506,7 +506,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/comments`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/comments`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -554,7 +554,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/expert-complaint`,
+        return this.httpClient.post<any>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/expert-complaint`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -598,7 +598,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Array<GetServiceWithInvitations>>(`${this.basePath}/services/invitations`,
+        return this.httpClient.post<Array<GetServiceWithInvitations>>(`${this.basePath}/api/services/invitations`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -638,7 +638,7 @@ export class ServiceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<ServiceRecommendation>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/recommend`,
+        return this.httpClient.post<ServiceRecommendation>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/recommend`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -682,7 +682,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetService>(`${this.basePath}/services`,
+        return this.httpClient.post<GetService>(`${this.basePath}/api/services`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -730,7 +730,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetServiceUsageRequest>(`${this.basePath}/services/${encodeURIComponent(String(serviceId))}/usage-request`,
+        return this.httpClient.post<GetServiceUsageRequest>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}/usage-request`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -774,7 +774,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Array<GetServiceWithEmployees>>(`${this.basePath}/services/employees`,
+        return this.httpClient.post<Array<GetServiceWithEmployees>>(`${this.basePath}/api/services/employees`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -818,7 +818,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Array<GetServiceTags>>(`${this.basePath}/services/tags`,
+        return this.httpClient.post<Array<GetServiceTags>>(`${this.basePath}/api/services/tags`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -866,7 +866,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/technical-problem`,
+        return this.httpClient.post<any>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/technical-problem`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -914,7 +914,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<GetService>(`${this.basePath}/services/${encodeURIComponent(String(serviceUsageEventId))}/recommend`,
+        return this.httpClient.put<GetService>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/recommend`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -962,7 +962,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<GetService>(`${this.basePath}/services/${encodeURIComponent(String(serviceId))}`,
+        return this.httpClient.put<GetService>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

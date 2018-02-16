@@ -110,7 +110,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Account>(`${this.basePath}/accounts`,
+        return this.httpClient.post<Account>(`${this.basePath}/api/accounts`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -154,7 +154,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/accounts/settings/mobile/change-password`,
+        return this.httpClient.post<any>(`${this.basePath}/api/accounts/settings/mobile/change-password`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -198,7 +198,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/accounts/settings/change-password`,
+        return this.httpClient.put<any>(`${this.basePath}/api/accounts/settings/change-password`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -242,7 +242,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/accounts/settings/msisdn-verification/confirm`,
+        return this.httpClient.post<any>(`${this.basePath}/api/accounts/settings/msisdn-verification/confirm`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -282,7 +282,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/accounts/exists/email/${encodeURIComponent(String(email))}`,
+        return this.httpClient.get<any>(`${this.basePath}/api/accounts/exists/email/${encodeURIComponent(String(email))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -317,7 +317,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetCallInvoiceDetails>(`${this.basePath}/accounts/settings/invoice-details/call`,
+        return this.httpClient.get<GetCallInvoiceDetails>(`${this.basePath}/api/accounts/settings/invoice-details/call`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -352,7 +352,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetCompanyInvoiceDetails>(`${this.basePath}/accounts/settings/invoice-details/company`,
+        return this.httpClient.get<GetCompanyInvoiceDetails>(`${this.basePath}/api/accounts/settings/invoice-details/company`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -387,7 +387,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetMobileProtectedViews>(`${this.basePath}/accounts/mobile-permissions/protected-views`,
+        return this.httpClient.get<GetMobileProtectedViews>(`${this.basePath}/api/accounts/mobile-permissions/protected-views`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -422,7 +422,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetPersonalInvoiceDetails>(`${this.basePath}/accounts/settings/invoice-details/personal`,
+        return this.httpClient.get<GetPersonalInvoiceDetails>(`${this.basePath}/api/accounts/settings/invoice-details/personal`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -457,7 +457,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<Country>>(`${this.basePath}/accounts/settings/countries`,
+        return this.httpClient.get<Array<Country>>(`${this.basePath}/api/accounts/settings/countries`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -492,7 +492,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<Account>>(`${this.basePath}/accounts`,
+        return this.httpClient.get<Array<Account>>(`${this.basePath}/api/accounts`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -535,7 +535,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/accounts/settings/msisdn-verification/create`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/accounts/settings/msisdn-verification/create`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -579,7 +579,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.patch<Account>(`${this.basePath}/accounts/mobile-permissions`,
+        return this.httpClient.patch<Account>(`${this.basePath}/api/accounts/mobile-permissions`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -627,7 +627,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.patch<Account>(`${this.basePath}/accounts/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.patch<Account>(`${this.basePath}/api/accounts/${encodeURIComponent(String(accountId))}`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -667,7 +667,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<GetSession>(`${this.basePath}/accounts/confirm/email/${encodeURIComponent(String(token))}`,
+        return this.httpClient.post<GetSession>(`${this.basePath}/api/accounts/confirm/email/${encodeURIComponent(String(token))}`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -711,7 +711,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetCallInvoiceDetails>(`${this.basePath}/accounts/settings/invoice-details/call`,
+        return this.httpClient.post<GetCallInvoiceDetails>(`${this.basePath}/api/accounts/settings/invoice-details/call`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -755,7 +755,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetCompanyInvoiceDetails>(`${this.basePath}/accounts/settings/invoice-details/company`,
+        return this.httpClient.post<GetCompanyInvoiceDetails>(`${this.basePath}/api/accounts/settings/invoice-details/company`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -795,7 +795,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Account>(`${this.basePath}/accounts/confirm/email/invitation/${encodeURIComponent(String(invitationToken))}`,
+        return this.httpClient.post<Account>(`${this.basePath}/api/accounts/confirm/email/invitation/${encodeURIComponent(String(invitationToken))}`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -839,7 +839,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Account>(`${this.basePath}/accounts/mobile-permissions`,
+        return this.httpClient.post<Account>(`${this.basePath}/api/accounts/mobile-permissions`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -883,7 +883,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPersonalInvoiceDetails>(`${this.basePath}/accounts/settings/invoice-details/personal`,
+        return this.httpClient.post<GetPersonalInvoiceDetails>(`${this.basePath}/api/accounts/settings/invoice-details/personal`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -931,7 +931,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<Account>(`${this.basePath}/accounts/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.put<Account>(`${this.basePath}/api/accounts/${encodeURIComponent(String(accountId))}`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -975,7 +975,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/accounts/settings/general`,
+        return this.httpClient.put<any>(`${this.basePath}/api/accounts/settings/general`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -1011,7 +1011,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/accounts/settings/mobile/change-password/sms`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/accounts/settings/mobile/change-password/sms`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -1051,7 +1051,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/accounts/mobile-permissions/${encodeURIComponent(String(pin))}`,
+        return this.httpClient.get<any>(`${this.basePath}/api/accounts/mobile-permissions/${encodeURIComponent(String(pin))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -92,7 +92,7 @@ export class InvitationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.delete<any>(`${this.basePath}/invitations`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/invitations`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -131,7 +131,7 @@ export class InvitationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetInvitation>(`${this.basePath}/invitations/${encodeURIComponent(String(invitationToken))}`,
+        return this.httpClient.get<GetInvitation>(`${this.basePath}/api/invitations/${encodeURIComponent(String(invitationToken))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -166,7 +166,7 @@ export class InvitationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetInvitation>>(`${this.basePath}/invitations`,
+        return this.httpClient.get<Array<GetInvitation>>(`${this.basePath}/api/invitations`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -205,7 +205,7 @@ export class InvitationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/invitations/${encodeURIComponent(String(invitationId))}/accept`,
+        return this.httpClient.post<any>(`${this.basePath}/api/invitations/${encodeURIComponent(String(invitationId))}/accept`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -245,7 +245,7 @@ export class InvitationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/invitations/${encodeURIComponent(String(invitationId))}/reject`,
+        return this.httpClient.post<any>(`${this.basePath}/api/invitations/${encodeURIComponent(String(invitationId))}/reject`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -289,7 +289,7 @@ export class InvitationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/invitations`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/invitations`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

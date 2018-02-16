@@ -94,7 +94,7 @@ export class RegistrationService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetRegistrationStatus>(`${this.basePath}/registration/msisdn/check`,
+        return this.httpClient.get<GetRegistrationStatus>(`${this.basePath}/api/registration/msisdn/check`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -138,7 +138,7 @@ export class RegistrationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSession>(`${this.basePath}/registration/msisdn/code`,
+        return this.httpClient.post<GetSession>(`${this.basePath}/api/registration/msisdn/code`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -182,7 +182,7 @@ export class RegistrationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetRegistrationSession>(`${this.basePath}/registration/msisdn/verify`,
+        return this.httpClient.post<GetRegistrationSession>(`${this.basePath}/api/registration/msisdn/verify`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -226,7 +226,7 @@ export class RegistrationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/registration/msisdn/verify/code`,
+        return this.httpClient.post<any>(`${this.basePath}/api/registration/msisdn/verify/code`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

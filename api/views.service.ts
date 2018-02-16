@@ -95,7 +95,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetClientCallSummary>(`${this.basePath}/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/client`,
+        return this.httpClient.get<GetClientCallSummary>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/client`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -164,7 +164,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetActivities>(`${this.basePath}/views/dashboard/activities`,
+        return this.httpClient.get<GetActivities>(`${this.basePath}/api/views/dashboard/activities`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -204,7 +204,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetActivityFilters>(`${this.basePath}/views/dashboard/activities/filters/${encodeURIComponent(String(accountType))}`,
+        return this.httpClient.get<GetActivityFilters>(`${this.basePath}/api/views/dashboard/activities/filters/${encodeURIComponent(String(accountType))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -243,7 +243,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetCallDetails>(`${this.basePath}/views/dashboard/sue/${encodeURIComponent(String(sueId))}/details`,
+        return this.httpClient.get<GetCallDetails>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/details`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -278,7 +278,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetDashboardClientExperts>(`${this.basePath}/views/dashboard/client/experts`,
+        return this.httpClient.get<GetDashboardClientExperts>(`${this.basePath}/api/views/dashboard/client/experts`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -317,7 +317,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetExpertCallSummary>(`${this.basePath}/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/expert`,
+        return this.httpClient.get<GetExpertCallSummary>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -356,7 +356,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetSimpleExpertProfile>(`${this.basePath}/views/mobile/profile/${encodeURIComponent(String(profileId))}/expert`,
+        return this.httpClient.get<GetSimpleExpertProfile>(`${this.basePath}/api/views/mobile/profile/${encodeURIComponent(String(profileId))}/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -395,7 +395,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetSimpleOrganizationProfile>(`${this.basePath}/views/mobile/profile/${encodeURIComponent(String(profileId))}/organization`,
+        return this.httpClient.get<GetSimpleOrganizationProfile>(`${this.basePath}/api/views/mobile/profile/${encodeURIComponent(String(profileId))}/organization`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -443,7 +443,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetMobileServiceDetails>(`${this.basePath}/views/mobile/service/${encodeURIComponent(String(serviceId))}`,
+        return this.httpClient.get<GetMobileServiceDetails>(`${this.basePath}/api/views/mobile/service/${encodeURIComponent(String(serviceId))}`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -483,7 +483,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetExpertProfile>(`${this.basePath}/views/profile/${encodeURIComponent(String(profileId))}/expert`,
+        return this.httpClient.get<GetExpertProfile>(`${this.basePath}/api/views/profile/${encodeURIComponent(String(profileId))}/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -522,7 +522,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetOrganizationProfile>(`${this.basePath}/views/profile/${encodeURIComponent(String(profileId))}/organization`,
+        return this.httpClient.get<GetOrganizationProfile>(`${this.basePath}/api/views/profile/${encodeURIComponent(String(profileId))}/organization`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

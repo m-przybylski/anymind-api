@@ -94,7 +94,7 @@ export class SearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSuggestedQueries>(`${this.basePath}/search/query/suggestions`,
+        return this.httpClient.post<GetSuggestedQueries>(`${this.basePath}/api/search/query/suggestions`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -130,7 +130,7 @@ export class SearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/search/resend-data`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/search/resend-data`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -171,7 +171,7 @@ export class SearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<RetrainResponse>(`${this.basePath}/search/retrain`,
+        return this.httpClient.post<RetrainResponse>(`${this.basePath}/api/search/retrain`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -212,7 +212,7 @@ export class SearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Array<GetSearchRequestResult>>(`${this.basePath}/search`,
+        return this.httpClient.post<Array<GetSearchRequestResult>>(`${this.basePath}/api/search`,
             query,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -253,7 +253,7 @@ export class SearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSuggestedTags>(`${this.basePath}/search/tags/suggestions`,
+        return this.httpClient.post<GetSuggestedTags>(`${this.basePath}/api/search/tags/suggestions`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

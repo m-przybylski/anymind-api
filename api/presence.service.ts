@@ -96,7 +96,7 @@ export class PresenceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/presence/notification/expert`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/notification/expert`,
             expertId,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -132,7 +132,7 @@ export class PresenceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/presence/expert/invisible`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/expert/invisible`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -168,7 +168,7 @@ export class PresenceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetExpertVisibility>(`${this.basePath}/presence/expert/visibility`,
+        return this.httpClient.get<GetExpertVisibility>(`${this.basePath}/api/presence/expert/visibility`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -203,7 +203,7 @@ export class PresenceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/presence/expert/visible`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/expert/visible`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -247,7 +247,7 @@ export class PresenceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/presence/notification/service`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/notification/service`,
             serviceId,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -291,7 +291,7 @@ export class PresenceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Array<ServicePresenceStatus>>(`${this.basePath}/presence/service`,
+        return this.httpClient.post<Array<ServicePresenceStatus>>(`${this.basePath}/api/presence/service`,
             serviceIds,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -335,7 +335,7 @@ export class PresenceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Array<AccountPresenceStatus>>(`${this.basePath}/presence/expert`,
+        return this.httpClient.post<Array<AccountPresenceStatus>>(`${this.basePath}/api/presence/expert`,
             expertIds,
             {
                 withCredentials: this.configuration.withCredentials,

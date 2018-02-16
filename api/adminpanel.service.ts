@@ -114,7 +114,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetActivity>>(`${this.basePath}/adminpanel/account-activities`,
+        return this.httpClient.get<Array<GetActivity>>(`${this.basePath}/api/adminpanel/account-activities`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -166,7 +166,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetActivity>>(`${this.basePath}/adminpanel/client-activities`,
+        return this.httpClient.get<Array<GetActivity>>(`${this.basePath}/api/adminpanel/client-activities`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -202,7 +202,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetCounters>(`${this.basePath}/adminpanel/counters`,
+        return this.httpClient.get<GetCounters>(`${this.basePath}/api/adminpanel/counters`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -237,7 +237,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<AdminPanelSession>(`${this.basePath}/adminpanel/session`,
+        return this.httpClient.get<AdminPanelSession>(`${this.basePath}/api/adminpanel/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -276,7 +276,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<MoneyDto>(`${this.basePath}/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -327,7 +327,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetProfile>>(`${this.basePath}/adminpanel/profiles`,
+        return this.httpClient.get<Array<GetProfile>>(`${this.basePath}/api/adminpanel/profiles`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -379,7 +379,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetTechnicalProblem>>(`${this.basePath}/adminpanel/technical-issues`,
+        return this.httpClient.get<Array<GetTechnicalProblem>>(`${this.basePath}/api/adminpanel/technical-issues`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -415,7 +415,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/adminpanel/session`,
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/adminpanel/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -458,7 +458,7 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetCallDetails>(`${this.basePath}/adminpanel/activity-details`,
+        return this.httpClient.post<GetCallDetails>(`${this.basePath}/api/adminpanel/activity-details`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -502,7 +502,7 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayoutInvoice>(`${this.basePath}/adminpanel/payout-invoice`,
+        return this.httpClient.post<GetPayoutInvoice>(`${this.basePath}/api/adminpanel/payout-invoice`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -546,7 +546,7 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<AdminPanelSession>(`${this.basePath}/adminpanel/session`,
+        return this.httpClient.post<AdminPanelSession>(`${this.basePath}/api/adminpanel/session`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

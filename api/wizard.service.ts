@@ -83,7 +83,7 @@ export class WizardService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetWizardProfile>(`${this.basePath}/wizard/profile`,
+        return this.httpClient.get<GetWizardProfile>(`${this.basePath}/api/wizard/profile`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -118,7 +118,7 @@ export class WizardService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<WizardCompleteResult>(`${this.basePath}/wizard/complete`,
+        return this.httpClient.post<WizardCompleteResult>(`${this.basePath}/api/wizard/complete`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -162,7 +162,7 @@ export class WizardService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<GetWizardProfile>(`${this.basePath}/wizard/profile`,
+        return this.httpClient.put<GetWizardProfile>(`${this.basePath}/api/wizard/profile`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

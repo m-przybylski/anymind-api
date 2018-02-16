@@ -82,7 +82,7 @@ export class ConfigService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<Language>>(`${this.basePath}/config/languages`,
+        return this.httpClient.get<Array<Language>>(`${this.basePath}/api/config/languages`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -117,7 +117,7 @@ export class ConfigService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<PhonePrefix>>(`${this.basePath}/config/phone-prefixes`,
+        return this.httpClient.get<Array<PhonePrefix>>(`${this.basePath}/api/config/phone-prefixes`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -83,7 +83,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetSession>(`${this.basePath}/session`,
+        return this.httpClient.get<GetSession>(`${this.basePath}/api/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -118,7 +118,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetSession>>(`${this.basePath}/session/list`,
+        return this.httpClient.get<Array<GetSession>>(`${this.basePath}/api/session/list`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -161,7 +161,7 @@ export class SessionService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSession>(`${this.basePath}/session`,
+        return this.httpClient.post<GetSession>(`${this.basePath}/api/session`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -197,7 +197,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/session`,
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -236,7 +236,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/session/${encodeURIComponent(String(apiKey))}`,
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/session/${encodeURIComponent(String(apiKey))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

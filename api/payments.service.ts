@@ -104,7 +104,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/payments/paypal/create-future-payment`,
+        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/create-future-payment`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -148,7 +148,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<PaymentId>(`${this.basePath}/payments/paypal/create-internal-payment`,
+        return this.httpClient.post<PaymentId>(`${this.basePath}/api/payments/paypal/create-internal-payment`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -192,7 +192,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/payments/paypal/create-payment`,
+        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/create-payment`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -236,7 +236,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/payments/paypal/execute-payment`,
+        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/execute-payment`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -272,7 +272,7 @@ export class PaymentsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetCreditCard>>(`${this.basePath}/payments/tpay/credit-cards`,
+        return this.httpClient.get<Array<GetCreditCard>>(`${this.basePath}/api/payments/tpay/credit-cards`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -307,7 +307,7 @@ export class PaymentsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<DefaultCreditCard>(`${this.basePath}/payments/default-payment-method`,
+        return this.httpClient.get<DefaultCreditCard>(`${this.basePath}/api/payments/default-payment-method`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -342,7 +342,7 @@ export class PaymentsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<PaymentLink>>(`${this.basePath}/payments/payu/payment-links`,
+        return this.httpClient.get<Array<PaymentLink>>(`${this.basePath}/api/payments/payu/payment-links`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -377,7 +377,7 @@ export class PaymentsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetPaymentOptions>(`${this.basePath}/payments/options`,
+        return this.httpClient.get<GetPaymentOptions>(`${this.basePath}/api/payments/options`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -420,7 +420,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/payments/paypal/ipn`,
+        return this.httpClient.post<any>(`${this.basePath}/api/payments/paypal/ipn`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -464,7 +464,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/payments/tpay/credit-card`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/payments/tpay/credit-card`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -508,7 +508,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/payments/payu/notification`,
+        return this.httpClient.post<any>(`${this.basePath}/api/payments/payu/notification`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -552,7 +552,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetOrder>(`${this.basePath}/payments/payu/order`,
+        return this.httpClient.post<GetOrder>(`${this.basePath}/api/payments/payu/order`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -596,7 +596,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/payments/tpay/notification`,
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/payments/tpay/notification`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -637,7 +637,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/payments/default-payment-method`,
+        return this.httpClient.put<any>(`${this.basePath}/api/payments/default-payment-method`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -681,7 +681,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/payments/paypal/verify-payment`,
+        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/verify-payment`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

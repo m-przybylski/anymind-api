@@ -80,7 +80,7 @@ export class WsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/ws/register`,
+        return this.httpClient.get<any>(`${this.basePath}/api/ws/register`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

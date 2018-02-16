@@ -94,7 +94,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/recover-password`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/recover-password`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -138,7 +138,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/recover-password/verify/email`,
+        return this.httpClient.post<any>(`${this.basePath}/api/recover-password/verify/email`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -182,7 +182,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/recover-password/verify/msisdn`,
+        return this.httpClient.post<any>(`${this.basePath}/api/recover-password/verify/msisdn`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -226,7 +226,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/recover-password/email`,
+        return this.httpClient.put<any>(`${this.basePath}/api/recover-password/email`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -270,7 +270,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/recover-password/msisdn`,
+        return this.httpClient.put<any>(`${this.basePath}/api/recover-password/msisdn`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

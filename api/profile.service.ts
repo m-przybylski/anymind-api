@@ -89,7 +89,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}/favourite/expert`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -128,7 +128,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}/favourite/organization`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/organization`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -167,7 +167,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetProfileWithServices>>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}/employers/services`,
+        return this.httpClient.get<Array<GetProfileWithServices>>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/employers/services`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -206,7 +206,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetProfile>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}`,
+        return this.httpClient.get<GetProfile>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -245,7 +245,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetProfileWithServices>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}/services`,
+        return this.httpClient.get<GetProfileWithServices>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/services`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -280,7 +280,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetProfileWithServicesInvitations>>(`${this.basePath}/profiles/invitations`,
+        return this.httpClient.get<Array<GetProfileWithServicesInvitations>>(`${this.basePath}/api/profiles/invitations`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -323,7 +323,7 @@ export class ProfileService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.patch<any>(`${this.basePath}/profiles`,
+        return this.httpClient.patch<any>(`${this.basePath}/api/profiles`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -363,7 +363,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<JValue>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}/favourite/expert`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/expert`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -403,7 +403,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<JValue>(`${this.basePath}/profiles/${encodeURIComponent(String(profileId))}/favourite/organization`,
+        return this.httpClient.post<JValue>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/organization`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -447,7 +447,7 @@ export class ProfileService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/profiles`,
+        return this.httpClient.put<any>(`${this.basePath}/api/profiles`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

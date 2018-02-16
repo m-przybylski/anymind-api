@@ -87,7 +87,7 @@ export class EmploymentService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/employments/service/${encodeURIComponent(String(serviceId))}`,
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/employments/service/${encodeURIComponent(String(serviceId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -126,7 +126,7 @@ export class EmploymentService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/employments/${encodeURIComponent(String(employmentId))}`,
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/employments/${encodeURIComponent(String(employmentId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -169,7 +169,7 @@ export class EmploymentService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/employments`,
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/employments`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -204,7 +204,7 @@ export class EmploymentService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetProfileDetailsWithEmployments>>(`${this.basePath}/employments`,
+        return this.httpClient.get<Array<GetProfileDetailsWithEmployments>>(`${this.basePath}/api/employments`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

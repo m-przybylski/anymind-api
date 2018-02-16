@@ -82,7 +82,7 @@ export class FinancesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<MoneyDto>(`${this.basePath}/finances/client/balance`,
+        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/finances/client/balance`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -117,7 +117,7 @@ export class FinancesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<ClientFinancialOperation>>(`${this.basePath}/finances/client/transactions`,
+        return this.httpClient.get<Array<ClientFinancialOperation>>(`${this.basePath}/api/finances/client/transactions`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -152,7 +152,7 @@ export class FinancesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<MoneyDto>(`${this.basePath}/finances/profile/balance`,
+        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/finances/profile/balance`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

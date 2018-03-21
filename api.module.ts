@@ -21,6 +21,7 @@ import { SearchService } from './api/search.service';
 import { ServiceService } from './api/service.service';
 import { SessionService } from './api/session.service';
 import { ViewsService } from './api/views.service';
+import { WidgetService } from './api/widget.service';
 import { WizardService } from './api/wizard.service';
 import { WsService } from './api/ws.service';
 
@@ -47,6 +48,7 @@ import { WsService } from './api/ws.service';
     ServiceService,
     SessionService,
     ViewsService,
+    WidgetService,
     WizardService,
     WsService ]
 })

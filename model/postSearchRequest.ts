@@ -14,7 +14,7 @@ import { PriceSearchParam } from './priceSearchParam';
 
 export interface PostSearchRequest {
     query: string;
-    price: Array<PriceSearchParam>;
+    price?: Array<PriceSearchParam>;
     languages: Array<string>;
     serviceType?: string;
     tags: Array<string>;

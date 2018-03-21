@@ -18,15 +18,17 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { GetActivities } from '../model/getActivities';
 import { GetActivityFilters } from '../model/getActivityFilters';
 import { GetCallDetails } from '../model/getCallDetails';
+import { GetClientActivities } from '../model/getClientActivities';
 import { GetClientCallSummary } from '../model/getClientCallSummary';
 import { GetDashboardClientExperts } from '../model/getDashboardClientExperts';
 import { GetExpertCallSummary } from '../model/getExpertCallSummary';
 import { GetExpertProfile } from '../model/getExpertProfile';
 import { GetMobileServiceDetails } from '../model/getMobileServiceDetails';
 import { GetOrganizationProfile } from '../model/getOrganizationProfile';
+import { GetPayoutDetails } from '../model/getPayoutDetails';
+import { GetProfileActivities } from '../model/getProfileActivities';
 import { GetSimpleExpertProfile } from '../model/getSimpleExpertProfile';
 import { GetSimpleOrganizationProfile } from '../model/getSimpleOrganizationProfile';
 
@@ -106,12 +108,46 @@ export class ViewsService {
     }
 
     /**
-     * Get dashboard activities
+     * Get dashboard activity filters for client
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getDashboardActivitiesClientFiltersRoute(observe?: 'body', reportProgress?: boolean): Observable<GetActivityFilters>;
+    public getDashboardActivitiesClientFiltersRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetActivityFilters>>;
+    public getDashboardActivitiesClientFiltersRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetActivityFilters>>;
+    public getDashboardActivitiesClientFiltersRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetActivityFilters>(`${this.basePath}/api/views/dashboard/activities/client/filters`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get dashboard activities for client
      * 
      * @param activityType ActivityType
      * @param profileId AccountId
      * @param serviceId ServiceId
-     * @param accountType FinancialAccountType
      * @param dateFrom Instant
      * @param dateTo Instant
      * @param limit Int
@@ -119,10 +155,10 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDashboardActivitiesRoute(activityType?: string, profileId?: string, serviceId?: string, accountType?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'body', reportProgress?: boolean): Observable<GetActivities>;
-    public getDashboardActivitiesRoute(activityType?: string, profileId?: string, serviceId?: string, accountType?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetActivities>>;
-    public getDashboardActivitiesRoute(activityType?: string, profileId?: string, serviceId?: string, accountType?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetActivities>>;
-    public getDashboardActivitiesRoute(activityType?: string, profileId?: string, serviceId?: string, accountType?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getDashboardActivitiesClientRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'body', reportProgress?: boolean): Observable<GetClientActivities>;
+    public getDashboardActivitiesClientRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClientActivities>>;
+    public getDashboardActivitiesClientRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClientActivities>>;
+    public getDashboardActivitiesClientRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         if (activityType !== undefined) {
@@ -133,9 +169,6 @@ export class ViewsService {
         }
         if (serviceId !== undefined) {
             queryParameters = queryParameters.set('serviceId', <any>serviceId);
-        }
-        if (accountType !== undefined) {
-            queryParameters = queryParameters.set('accountType', <any>accountType);
         }
         if (dateFrom !== undefined) {
             queryParameters = queryParameters.set('dateFrom', <any>dateFrom);
@@ -164,7 +197,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetActivities>(`${this.basePath}/api/views/dashboard/activities`,
+        return this.httpClient.get<GetClientActivities>(`${this.basePath}/api/views/dashboard/activities/client`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -176,18 +209,79 @@ export class ViewsService {
     }
 
     /**
-     * Get dashboard activity filters
+     * Get dashboard activity filters for profile
      * 
-     * @param accountType accountType
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDashboardActivityFiltersRoute(accountType: string, observe?: 'body', reportProgress?: boolean): Observable<GetActivityFilters>;
-    public getDashboardActivityFiltersRoute(accountType: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetActivityFilters>>;
-    public getDashboardActivityFiltersRoute(accountType: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetActivityFilters>>;
-    public getDashboardActivityFiltersRoute(accountType: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (accountType === null || accountType === undefined) {
-            throw new Error('Required parameter accountType was null or undefined when calling getDashboardActivityFiltersRoute.');
+    public getDashboardActivitiesProfileFiltersRoute(observe?: 'body', reportProgress?: boolean): Observable<GetActivityFilters>;
+    public getDashboardActivitiesProfileFiltersRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetActivityFilters>>;
+    public getDashboardActivitiesProfileFiltersRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetActivityFilters>>;
+    public getDashboardActivitiesProfileFiltersRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetActivityFilters>(`${this.basePath}/api/views/dashboard/activities/profile/filters`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get dashboard activities for profile
+     * 
+     * @param activityType ActivityType
+     * @param profileId AccountId
+     * @param serviceId ServiceId
+     * @param dateFrom Instant
+     * @param dateTo Instant
+     * @param limit Int
+     * @param offset Int
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getDashboardActivitiesProfileRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'body', reportProgress?: boolean): Observable<GetProfileActivities>;
+    public getDashboardActivitiesProfileRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfileActivities>>;
+    public getDashboardActivitiesProfileRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfileActivities>>;
+    public getDashboardActivitiesProfileRoute(activityType?: string, profileId?: string, serviceId?: string, dateFrom?: string, dateTo?: string, limit?: string, offset?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (activityType !== undefined) {
+            queryParameters = queryParameters.set('activityType', <any>activityType);
+        }
+        if (profileId !== undefined) {
+            queryParameters = queryParameters.set('profileId', <any>profileId);
+        }
+        if (serviceId !== undefined) {
+            queryParameters = queryParameters.set('serviceId', <any>serviceId);
+        }
+        if (dateFrom !== undefined) {
+            queryParameters = queryParameters.set('dateFrom', <any>dateFrom);
+        }
+        if (dateTo !== undefined) {
+            queryParameters = queryParameters.set('dateTo', <any>dateTo);
+        }
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+        if (offset !== undefined) {
+            queryParameters = queryParameters.set('offset', <any>offset);
         }
 
         let headers = this.defaultHeaders;
@@ -204,8 +298,9 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetActivityFilters>(`${this.basePath}/api/views/dashboard/activities/filters/${encodeURIComponent(String(accountType))}`,
+        return this.httpClient.get<GetProfileActivities>(`${this.basePath}/api/views/dashboard/activities/profile`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -279,6 +374,45 @@ export class ViewsService {
         ];
 
         return this.httpClient.get<GetDashboardClientExperts>(`${this.basePath}/api/views/dashboard/client/experts`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get payout details
+     * 
+     * @param payoutId payoutId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getDashboardPayoutDetailsRoute(payoutId: string, observe?: 'body', reportProgress?: boolean): Observable<GetPayoutDetails>;
+    public getDashboardPayoutDetailsRoute(payoutId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayoutDetails>>;
+    public getDashboardPayoutDetailsRoute(payoutId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayoutDetails>>;
+    public getDashboardPayoutDetailsRoute(payoutId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (payoutId === null || payoutId === undefined) {
+            throw new Error('Required parameter payoutId was null or undefined when calling getDashboardPayoutDetailsRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetPayoutDetails>(`${this.basePath}/api/views/dashboard/payout/${encodeURIComponent(String(payoutId))}/details`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

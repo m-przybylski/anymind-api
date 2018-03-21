@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@anymind-ng/api",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "swagger client for anymind",
   "author": "AnyMind",
   "keywords": [
@@ -19,7 +19,7 @@
     "build": "ng-packagr -p package.json",
     "publish:lib": "npm publish ./dist",
     "publish:lib:next": "npm publish --tag next ./dist",
-    "gen": "swagger-codegen generate -i https://api.dev.profitelo.pl/swagger/swagger.json -l typescript-angular -t typescript-angular"
+    "gen": "swagger-codegen generate -i https://api.dev.profitelo.pl/api/swagger/swagger.json -l typescript-angular -t typescript-angular"
   },
   "peerDependencies": {
     "@angular/common": "^5.2.0",

@@ -9,10 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetActivity } from './getActivity';
+import { GetClientActivity } from './getClientActivity';
+import { GetProfileActivity } from './getProfileActivity';
 
 
 export interface GetActivities {
-    activities: Array<GetActivity>;
-    count: number;
+    clientActivities: Array<GetClientActivity>;
+    profileActivities: Array<GetProfileActivity>;
 }

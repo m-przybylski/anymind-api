@@ -9,11 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetServiceUsageEvent } from './getServiceUsageEvent';
-import { RatelCallDetails } from './ratelCallDetails';
+import { MoneyDto } from './moneyDto';
 
 
-export interface GetSUERatelCall {
-    sue: GetServiceUsageEvent;
-    callDetails: RatelCallDetails;
+export interface GetPayoutDto {
+    accountId: string;
+    amount: MoneyDto;
 }

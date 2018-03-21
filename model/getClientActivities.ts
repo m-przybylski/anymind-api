@@ -9,11 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetServiceUsageEvent } from './getServiceUsageEvent';
-import { RatelCallDetails } from './ratelCallDetails';
+import { GetClientActivity } from './getClientActivity';
 
 
-export interface GetSUERatelCall {
-    sue: GetServiceUsageEvent;
-    callDetails: RatelCallDetails;
+export interface GetClientActivities {
+    activities: Array<GetClientActivity>;
+    count: number;
 }

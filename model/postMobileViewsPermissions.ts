@@ -13,5 +13,5 @@
 
 export interface PostMobileViewsPermissions {
     mobilePin: string;
-    protectedViews: Array<string>;
+    protectedViews?: Array<string>;
 }

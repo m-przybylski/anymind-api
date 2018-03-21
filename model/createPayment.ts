@@ -16,7 +16,7 @@ export interface CreatePayment {
     description: string;
     cancelUrl: string;
     returnUrl: string;
-    postPayment: PostPayment;
+    postPayment?: PostPayment;
     authorizationCode?: string;
     correlationId?: string;
 }

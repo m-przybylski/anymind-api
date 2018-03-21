@@ -9,15 +9,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetCompanyInvoiceDetails } from './getCompanyInvoiceDetails';
+import { GetPayoutMethodDto } from './getPayoutMethodDto';
 import { MoneyDto } from './moneyDto';
 
 
-export interface GetServiceUsageDetails {
-    serviceUsageEventId: string;
-    ratelCallId: string;
-    ratelRoomId?: string;
-    answeredAt: Date;
-    ratePerMinute: MoneyDto;
-    financialOperation?: MoneyDto;
-    callDuration: number;
+export interface GetPayoutDetails {
+    payoutId: string;
+    requestedAmount: MoneyDto;
+    tax: number;
+    payoutAmount: MoneyDto;
+    payoutMethod: GetPayoutMethodDto;
+    companyInvoiceDetails: GetCompanyInvoiceDetails;
+    createdAt: Date;
 }

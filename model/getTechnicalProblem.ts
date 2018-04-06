@@ -19,11 +19,12 @@ export interface GetTechnicalProblem {
     accountId: string;
 }
 export namespace GetTechnicalProblem {
-    export type ProblemTypeEnum = 'EXPERT_COULD_NOT_HEAR_CLIENT' | 'CLIENT_COULD_NOT_HEAR_EXPERT' | 'NOISE' | 'OTHER';
+    export type ProblemTypeEnum = 'EXPERT_COULD_NOT_HEAR_CLIENT' | 'CLIENT_COULD_NOT_HEAR_EXPERT' | 'NOISE' | 'OTHER' | 'AUTO_DISCONNECT';
     export const ProblemTypeEnum = {
         EXPERTCOULDNOTHEARCLIENT: 'EXPERT_COULD_NOT_HEAR_CLIENT' as ProblemTypeEnum,
         CLIENTCOULDNOTHEAREXPERT: 'CLIENT_COULD_NOT_HEAR_EXPERT' as ProblemTypeEnum,
         NOISE: 'NOISE' as ProblemTypeEnum,
-        OTHER: 'OTHER' as ProblemTypeEnum
+        OTHER: 'OTHER' as ProblemTypeEnum,
+        AUTODISCONNECT: 'AUTO_DISCONNECT' as ProblemTypeEnum
     }
 }

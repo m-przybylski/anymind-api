@@ -21,6 +21,7 @@ export interface GetProfileActivity {
     expertId?: string;
     serviceName?: string;
     serviceOwnerId?: string;
+    isFreelanceService?: boolean;
     serviceUsageDetails?: ServiceUsageDetails;
     financialOperation?: SimpleProfileFinancialOperation;
     initializedAt: Date;

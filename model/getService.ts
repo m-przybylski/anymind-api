@@ -23,6 +23,7 @@ export interface GetService {
     usageDurationInSeconds: number;
     language: string;
     isSuspended: boolean;
+    isFreelance: boolean;
     createdAt: Date;
     deletedAt?: Date;
 }

@@ -9,11 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MoneyDto } from './moneyDto';
 
 
-export interface SimpleFinancialOperation {
-    id: string;
-    operation: MoneyDto;
-    type: string;
+export interface GetRecoverMethod {
+    method: GetRecoverMethod.MethodEnum;
+}
+export namespace GetRecoverMethod {
+    export type MethodEnum = 'EMAIL' | 'SMS';
+    export const MethodEnum = {
+        EMAIL: 'EMAIL' as MethodEnum,
+        SMS: 'SMS' as MethodEnum
+    }
 }

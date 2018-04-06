@@ -18,7 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { JValue } from '../model/jValue';
+import { GetRecoverMethod } from '../model/getRecoverMethod';
 import { PostRecoverPassword } from '../model/postRecoverPassword';
 import { PostRecoverPasswordVerifyEmailToken } from '../model/postRecoverPasswordVerifyEmailToken';
 import { PostRecoverPasswordVerifyMsisdnToken } from '../model/postRecoverPasswordVerifyMsisdnToken';
@@ -68,9 +68,9 @@ export class RecoverPasswordService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postRecoverPasswordRoute(body: PostRecoverPassword, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postRecoverPasswordRoute(body: PostRecoverPassword, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postRecoverPasswordRoute(body: PostRecoverPassword, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postRecoverPasswordRoute(body: PostRecoverPassword, observe?: 'body', reportProgress?: boolean): Observable<GetRecoverMethod>;
+    public postRecoverPasswordRoute(body: PostRecoverPassword, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetRecoverMethod>>;
+    public postRecoverPasswordRoute(body: PostRecoverPassword, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetRecoverMethod>>;
     public postRecoverPasswordRoute(body: PostRecoverPassword, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postRecoverPasswordRoute.');
@@ -94,7 +94,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/recover-password`,
+        return this.httpClient.post<GetRecoverMethod>(`${this.basePath}/api/recover-password`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

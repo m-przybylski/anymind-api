@@ -9,15 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetProfile } from './getProfile';
-import { GetService } from './getService';
-import { ServiceUsageEvent } from './serviceUsageEvent';
 
 
-export interface GetIncomingCallDetails {
-    sue: ServiceUsageEvent;
-    service: GetService;
-    expert: GetProfile;
-    clientNickname?: string;
-    clientAvatar?: string;
+export interface GetClosedBetaExpert {
+    msisdn: string;
+    email?: string;
+    description?: string;
 }

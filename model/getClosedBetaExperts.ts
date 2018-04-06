@@ -9,10 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetClosedBetaExpert } from './getClosedBetaExpert';
 
 
-export interface PostGeneratePayoutInvoice {
-    accountId: string;
-    dateFrom: Date;
-    dateTo: Date;
+export interface GetClosedBetaExperts {
+    closedBetaExperts: Array<GetClosedBetaExpert>;
 }

@@ -9,10 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MoneyDto } from './moneyDto';
 
 
-export interface GetPayoutInvoice {
-    accountId: string;
-    amount: MoneyDto;
+export interface GetExpertComplaint {
+    id: string;
+    expertId: string;
+    clientId: string;
+    sueId: string;
+    message: string;
 }

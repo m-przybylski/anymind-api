@@ -21,6 +21,7 @@ export interface GetServiceUsageEvent {
     clientFinancialOperationId?: string;
     expertId: string;
     expertFinancialOperationId?: string;
+    profileFinancialOperationId?: string;
     channelPartnerId?: string;
     referralPartnerId?: string;
     clientInvoiceId?: string;

@@ -21,5 +21,6 @@ export interface GetWizardService {
     tags: Array<WizardTag>;
     invitations?: Array<ServiceInvitation>;
     isOwnerEmployee: boolean;
+    isFreelance: boolean;
     language: string;
 }

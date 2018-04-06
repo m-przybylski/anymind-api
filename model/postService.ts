@@ -17,6 +17,7 @@ import { ServiceInvitation } from './serviceInvitation';
 export interface PostService {
     invitations: Array<ServiceInvitation>;
     isOwnerEmployee: boolean;
+    isFreelance: boolean;
     name: string;
     description: string;
     price: MoneyDto;

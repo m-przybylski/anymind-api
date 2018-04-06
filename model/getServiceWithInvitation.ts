@@ -20,6 +20,7 @@ export interface GetServiceWithInvitation {
     description: string;
     price: MoneyDto;
     isSuspended: boolean;
+    isFreelance: boolean;
     language: string;
     createdAt: Date;
     invitation: GetInvitation;

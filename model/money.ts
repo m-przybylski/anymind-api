@@ -15,8 +15,6 @@ import { CurrencyUnit } from './currencyUnit';
 export interface Money {
     zero: boolean;
     negative: boolean;
-    currencyUnit: CurrencyUnit;
-    scale: number;
     amount: number;
     amountMajor: number;
     amountMajorLong: number;
@@ -28,4 +26,6 @@ export interface Money {
     positive: boolean;
     positiveOrZero: boolean;
     negativeOrZero: boolean;
+    currencyUnit: CurrencyUnit;
+    scale: number;
 }

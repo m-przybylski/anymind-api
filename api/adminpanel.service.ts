@@ -23,7 +23,10 @@ import { AdminPanelSession } from '../model/adminPanelSession';
 import { GetActivities } from '../model/getActivities';
 import { GetCallDetails } from '../model/getCallDetails';
 import { GetClientActivity } from '../model/getClientActivity';
+import { GetClosedBetaExpert } from '../model/getClosedBetaExpert';
+import { GetClosedBetaExperts } from '../model/getClosedBetaExperts';
 import { GetCounters } from '../model/getCounters';
+import { GetExpertComplaint } from '../model/getExpertComplaint';
 import { GetPayoutDto } from '../model/getPayoutDto';
 import { GetProfile } from '../model/getProfile';
 import { GetTechnicalProblem } from '../model/getTechnicalProblem';
@@ -66,6 +69,45 @@ export class AdminpanelService {
         return false;
     }
 
+
+    /**
+     * Delete expert from closed beta list
+     * 
+     * @param msisdn msisdn
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
+    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
+    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public deleteClosedBetaExpertRoute(msisdn: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (msisdn === null || msisdn === undefined) {
+            throw new Error('Required parameter msisdn was null or undefined when calling deleteClosedBetaExpertRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.delete<JValue>(`${this.basePath}/api/adminpanel/closed-beta-experts/${encodeURIComponent(String(msisdn))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * Get lists of account activities
@@ -179,6 +221,80 @@ export class AdminpanelService {
     }
 
     /**
+     * Get closed beta expert list
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getClosedBetaExpertListRoute(observe?: 'body', reportProgress?: boolean): Observable<GetClosedBetaExperts>;
+    public getClosedBetaExpertListRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClosedBetaExperts>>;
+    public getClosedBetaExpertListRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClosedBetaExperts>>;
+    public getClosedBetaExpertListRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetClosedBetaExperts>(`${this.basePath}/api/adminpanel/closed-beta-experts`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Check if expert is registered for closed beta
+     * 
+     * @param msisdn msisdn
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getClosedBetaExpertRoute(msisdn: string, observe?: 'body', reportProgress?: boolean): Observable<GetClosedBetaExpert>;
+    public getClosedBetaExpertRoute(msisdn: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClosedBetaExpert>>;
+    public getClosedBetaExpertRoute(msisdn: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClosedBetaExpert>>;
+    public getClosedBetaExpertRoute(msisdn: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (msisdn === null || msisdn === undefined) {
+            throw new Error('Required parameter msisdn was null or undefined when calling getClosedBetaExpertRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetClosedBetaExpert>(`${this.basePath}/api/adminpanel/closed-beta-experts/${encodeURIComponent(String(msisdn))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get counters
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -240,6 +356,58 @@ export class AdminpanelService {
 
         return this.httpClient.get<AdminPanelSession>(`${this.basePath}/api/adminpanel/session`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get list of expert complaints
+     * 
+     * @param limit Int
+     * @param offset Int
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getExpertComplaintsRoute(limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetExpertComplaint>>;
+    public getExpertComplaintsRoute(limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetExpertComplaint>>>;
+    public getExpertComplaintsRoute(limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetExpertComplaint>>>;
+    public getExpertComplaintsRoute(limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getExpertComplaintsRoute.');
+        }
+        if (offset === null || offset === undefined) {
+            throw new Error('Required parameter offset was null or undefined when calling getExpertComplaintsRoute.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+        if (offset !== undefined) {
+            queryParameters = queryParameters.set('offset', <any>offset);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<GetExpertComplaint>>(`${this.basePath}/api/adminpanel/expert-complaints`,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -548,6 +716,50 @@ export class AdminpanelService {
         }
 
         return this.httpClient.post<AdminPanelSession>(`${this.basePath}/api/adminpanel/session`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Put closed beta expert list
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe?: 'body', reportProgress?: boolean): Observable<GetClosedBetaExperts>;
+    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClosedBetaExperts>>;
+    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClosedBetaExperts>>;
+    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putClosedBetaExpertListRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<GetClosedBetaExperts>(`${this.basePath}/api/adminpanel/closed-beta-experts`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

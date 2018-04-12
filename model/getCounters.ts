@@ -16,4 +16,6 @@ export interface GetCounters {
     clientsCount: number;
     expertsCount: number;
     companiesCount: number;
+    sueCount: number;
+    paidSueCount: number;
 }

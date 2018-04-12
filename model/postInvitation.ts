@@ -13,7 +13,6 @@
 
 export interface PostInvitation {
     serviceId: string;
-    serviceName: string;
     email?: string;
     msisdn?: string;
     employeeId?: string;

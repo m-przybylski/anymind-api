@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 import { MoneyDto } from './moneyDto';
+import { PostServiceInvitation } from './postServiceInvitation';
 import { PostServiceTag } from './postServiceTag';
-import { ServiceInvitation } from './serviceInvitation';
 
 
 export interface PostService {
-    invitations: Array<ServiceInvitation>;
+    invitations: Array<PostServiceInvitation>;
     isOwnerEmployee: boolean;
     isFreelance: boolean;
     name: string;

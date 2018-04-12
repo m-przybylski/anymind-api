@@ -18,9 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { AccountLogin } from '../model/accountLogin';
 import { GetSession } from '../model/getSession';
 import { JValue } from '../model/jValue';
+import { LoginCredentials } from '../model/loginCredentials';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -135,10 +135,10 @@ export class SessionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public login(body: AccountLogin, observe?: 'body', reportProgress?: boolean): Observable<GetSession>;
-    public login(body: AccountLogin, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSession>>;
-    public login(body: AccountLogin, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSession>>;
-    public login(body: AccountLogin, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public login(body: LoginCredentials, observe?: 'body', reportProgress?: boolean): Observable<GetSession>;
+    public login(body: LoginCredentials, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSession>>;
+    public login(body: LoginCredentials, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSession>>;
+    public login(body: LoginCredentials, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling login.');
         }

@@ -17,7 +17,7 @@ import { MoneyDto } from './moneyDto';
 export interface GetPayoutDetails {
     payoutId: string;
     requestedAmount: MoneyDto;
-    tax: number;
+    tax: string;
     payoutAmount: MoneyDto;
     payoutMethod: GetPayoutMethodDto;
     companyInvoiceDetails: GetCompanyInvoiceDetails;

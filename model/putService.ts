@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 import { MoneyDto } from './moneyDto';
+import { PostServiceInvitation } from './postServiceInvitation';
 import { PostServiceTag } from './postServiceTag';
-import { ServiceInvitation } from './serviceInvitation';
 
 
 export interface PutService {
     name: string;
     description: string;
     price: MoneyDto;
-    invitations: Array<ServiceInvitation>;
+    invitations: Array<PostServiceInvitation>;
     tags: Array<PostServiceTag>;
     isOwnerEmployee: boolean;
     language: string;

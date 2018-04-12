@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { MoneyDto } from './moneyDto';
-import { ServiceInvitation } from './serviceInvitation';
+import { PostServiceInvitation } from './postServiceInvitation';
 import { WizardTag } from './wizardTag';
 
 
@@ -19,7 +19,7 @@ export interface GetWizardService {
     description: string;
     price: MoneyDto;
     tags: Array<WizardTag>;
-    invitations?: Array<ServiceInvitation>;
+    invitations?: Array<PostServiceInvitation>;
     isOwnerEmployee: boolean;
     isFreelance: boolean;
     language: string;

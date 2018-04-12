@@ -11,14 +11,7 @@
  */
 
 
-export interface CurrencyUnit {
-    code: string;
-    numericCode: number;
-    decimalPlaces: number;
-    defaultFractionDigits: number;
-    currencyCode: string;
-    symbol: string;
-    numeric3Code: string;
-    countryCodes: Array<string>;
-    pseudoCurrency: boolean;
+export interface LoginCredentials {
+    msisdn: string;
+    password: string;
 }

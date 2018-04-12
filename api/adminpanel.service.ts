@@ -595,6 +595,86 @@ export class AdminpanelService {
     }
 
     /**
+     * Block account
+     * 
+     * @param accountId Account ID
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postAccountBlockRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
+    public postAccountBlockRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
+    public postAccountBlockRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postAccountBlockRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling postAccountBlockRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<JValue>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/block`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Unblock account
+     * 
+     * @param accountId Account ID
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postAccountUnblockRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
+    public postAccountUnblockRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
+    public postAccountUnblockRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postAccountUnblockRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling postAccountUnblockRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<JValue>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/unblock`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get call activity details
      * 
      * @param body 

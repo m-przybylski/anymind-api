@@ -22,8 +22,7 @@ import { AccountPresenceStatus } from '../model/accountPresenceStatus';
 import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetExpertVisibility } from '../model/getExpertVisibility';
 import { PostExpertsPresence } from '../model/postExpertsPresence';
-import { PostRegisterForExpertAvailability } from '../model/postRegisterForExpertAvailability';
-import { PostRegisterForServiceAvailability } from '../model/postRegisterForServiceAvailability';
+import { PostRegisterForWidgetAvailability } from '../model/postRegisterForWidgetAvailability';
 import { PostServicesPresence } from '../model/postServicesPresence';
 import { ServicePresenceStatus } from '../model/servicePresenceStatus';
 
@@ -62,50 +61,6 @@ export class PresenceService {
         return false;
     }
 
-
-    /**
-     * Notify when expert is available
-     * 
-     * @param expertId expertId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public expertAvailableNotificationRoute(expertId: PostRegisterForExpertAvailability, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public expertAvailableNotificationRoute(expertId: PostRegisterForExpertAvailability, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public expertAvailableNotificationRoute(expertId: PostRegisterForExpertAvailability, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
-    public expertAvailableNotificationRoute(expertId: PostRegisterForExpertAvailability, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (expertId === null || expertId === undefined) {
-            throw new Error('Required parameter expertId was null or undefined when calling expertAvailableNotificationRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/notification/expert`,
-            expertId,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
 
     /**
      * Set expert as invisible
@@ -215,50 +170,6 @@ export class PresenceService {
     }
 
     /**
-     * Notify when service is available
-     * 
-     * @param serviceId serviceId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public serviceAvailableNotificationRoute(serviceId: PostRegisterForServiceAvailability, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public serviceAvailableNotificationRoute(serviceId: PostRegisterForServiceAvailability, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public serviceAvailableNotificationRoute(serviceId: PostRegisterForServiceAvailability, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
-    public serviceAvailableNotificationRoute(serviceId: PostRegisterForServiceAvailability, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceId === null || serviceId === undefined) {
-            throw new Error('Required parameter serviceId was null or undefined when calling serviceAvailableNotificationRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/notification/service`,
-            serviceId,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Services presence status
      * 
      * @param serviceIds serviceIds
@@ -337,6 +248,50 @@ export class PresenceService {
 
         return this.httpClient.post<Array<AccountPresenceStatus>>(`${this.basePath}/api/presence/expert`,
             expertIds,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Notify when widget is available
+     * 
+     * @param body body
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling widgetAvailabilityNotificationRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/notification/widget`,
+            body,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

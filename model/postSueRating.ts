@@ -9,18 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MoneyDto } from './moneyDto';
 
 
-export interface GetService {
-    id: string;
-    ownerId: string;
-    name: string;
-    description: string;
-    price: MoneyDto;
-    language: string;
-    isSuspended: boolean;
-    isFreelance: boolean;
-    createdAt: Date;
-    deletedAt?: Date;
+export interface PostSueRating {
+    rate: PostSueRating.RateEnum;
+}
+export namespace PostSueRating {
+    export type RateEnum = 'POSITIVE' | 'NEGATIVE';
+    export const RateEnum = {
+        POSITIVE: 'POSITIVE' as RateEnum,
+        NEGATIVE: 'NEGATIVE' as RateEnum
+    }
 }

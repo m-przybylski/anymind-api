@@ -18,28 +18,22 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { ChangeDefaultCreditCard } from '../model/changeDefaultCreditCard';
-import { CreatePayment } from '../model/createPayment';
-import { DefaultCreditCard } from '../model/defaultCreditCard';
-import { ExecutePayment } from '../model/executePayment';
-import { GetCreditCard } from '../model/getCreditCard';
-import { GetOrder } from '../model/getOrder';
-import { GetPayment } from '../model/getPayment';
-import { GetPaymentOptions } from '../model/getPaymentOptions';
-import { InstantPaymentNotification } from '../model/instantPaymentNotification';
-import { PaymentId } from '../model/paymentId';
-import { PaymentLink } from '../model/paymentLink';
-import { PostAddNewCard } from '../model/postAddNewCard';
-import { PostOrder } from '../model/postOrder';
-import { PostPayment } from '../model/postPayment';
-import { VerifyPayment } from '../model/verifyPayment';
+import { GetClientComplaint } from '../model/getClientComplaint';
+import { GetComment } from '../model/getComment';
+import { GetExpertSueDetails } from '../model/getExpertSueDetails';
+import { PostClientComplaint } from '../model/postClientComplaint';
+import { PostComment } from '../model/postComment';
+import { PostCommentAnswer } from '../model/postCommentAnswer';
+import { PostCommentReport } from '../model/postCommentReport';
+import { PostExpertComplaint } from '../model/postExpertComplaint';
+import { PostTechnicalProblem } from '../model/postTechnicalProblem';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class PaymentsService {
+export class ServiceUsageEventService {
 
     protected basePath = 'https://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -71,18 +65,269 @@ export class PaymentsService {
 
 
     /**
-     * Create PayPal future payment
+     * Cancel client complaint
      * 
-     * @param body Create future payment
+     * @param sueId sueId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createFuturePaymentRoute(body: CreatePayment, observe?: 'body', reportProgress?: boolean): Observable<GetPayment>;
-    public createFuturePaymentRoute(body: CreatePayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayment>>;
-    public createFuturePaymentRoute(body: CreatePayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayment>>;
-    public createFuturePaymentRoute(body: CreatePayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteClientComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteClientComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteClientComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteClientComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling deleteClientComplaintRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.delete<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/client-complaint`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get client complaint for expert
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getClientComplaintForExpertRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetClientComplaint>;
+    public getClientComplaintForExpertRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClientComplaint>>;
+    public getClientComplaintForExpertRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClientComplaint>>;
+    public getClientComplaintForExpertRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling getClientComplaintForExpertRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetClientComplaint>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/client-complaint/expert`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get client complaint
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getClientComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetClientComplaint>;
+    public getClientComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClientComplaint>>;
+    public getClientComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClientComplaint>>;
+    public getClientComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling getClientComplaintRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetClientComplaint>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/client-complaint`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get all client complaints for expert
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getClientComplaintsForExpertRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<GetClientComplaint>>;
+    public getClientComplaintsForExpertRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetClientComplaint>>>;
+    public getClientComplaintsForExpertRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetClientComplaint>>>;
+    public getClientComplaintsForExpertRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<GetClientComplaint>>(`${this.basePath}/api/service-usage-event/client-complaints/expert`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get comments for service
+     * 
+     * @param serviceId serviceId
+     * @param limit Int
+     * @param offset Int
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetComment>>;
+    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetComment>>>;
+    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetComment>>>;
+    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new Error('Required parameter serviceId was null or undefined when calling getCommentsRoute.');
+        }
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getCommentsRoute.');
+        }
+        if (offset === null || offset === undefined) {
+            throw new Error('Required parameter offset was null or undefined when calling getCommentsRoute.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+        if (offset !== undefined) {
+            queryParameters = queryParameters.set('offset', <any>offset);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<GetComment>>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}/comments`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get service usage event details for expert
+     * 
+     * @param ratelCallId ratelCallId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertSueDetails>;
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertSueDetails>>;
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertSueDetails>>;
+    public getSueDetailsForExpertRoute(ratelCallId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (ratelCallId === null || ratelCallId === undefined) {
+            throw new Error('Required parameter ratelCallId was null or undefined when calling getSueDetailsForExpertRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetExpertSueDetails>(`${this.basePath}/api/service-usage-event/ratel-call/${encodeURIComponent(String(ratelCallId))}/details/expert`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Create client complaint
+     * 
+     * @param sueId sueId
+     * @param body body
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postClientComplaintRoute(sueId: string, body: PostClientComplaint, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postClientComplaintRoute(sueId: string, body: PostClientComplaint, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postClientComplaintRoute(sueId: string, body: PostClientComplaint, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postClientComplaintRoute(sueId: string, body: PostClientComplaint, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postClientComplaintRoute.');
+        }
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createFuturePaymentRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postClientComplaintRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -103,7 +348,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/create-future-payment`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/client-complaint`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -115,18 +360,26 @@ export class PaymentsService {
     }
 
     /**
-     * Create internal payment
+     * Create comment answer
      * 
-     * @param body Create payment
+     * @param sueId sueId
+     * @param commentId commentId
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createInternalPaymentRoute(body: PostPayment, observe?: 'body', reportProgress?: boolean): Observable<PaymentId>;
-    public createInternalPaymentRoute(body: PostPayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PaymentId>>;
-    public createInternalPaymentRoute(body: PostPayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PaymentId>>;
-    public createInternalPaymentRoute(body: PostPayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postCommentAnswerRoute(sueId: string, commentId: string, body: PostCommentAnswer, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postCommentAnswerRoute(sueId: string, commentId: string, body: PostCommentAnswer, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postCommentAnswerRoute(sueId: string, commentId: string, body: PostCommentAnswer, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postCommentAnswerRoute(sueId: string, commentId: string, body: PostCommentAnswer, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postCommentAnswerRoute.');
+        }
+        if (commentId === null || commentId === undefined) {
+            throw new Error('Required parameter commentId was null or undefined when calling postCommentAnswerRoute.');
+        }
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createInternalPaymentRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postCommentAnswerRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -147,7 +400,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<PaymentId>(`${this.basePath}/api/payments/paypal/create-internal-payment`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/comments/${encodeURIComponent(String(commentId))}/answer`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -159,18 +412,26 @@ export class PaymentsService {
     }
 
     /**
-     * Create PayPal payment
+     * Create comment report
      * 
-     * @param body Create payment
+     * @param sueId sueId
+     * @param commentId commentId
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createPaymentRoute(body: CreatePayment, observe?: 'body', reportProgress?: boolean): Observable<GetPayment>;
-    public createPaymentRoute(body: CreatePayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayment>>;
-    public createPaymentRoute(body: CreatePayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayment>>;
-    public createPaymentRoute(body: CreatePayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postCommentReportRoute(sueId: string, commentId: string, body: PostCommentReport, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postCommentReportRoute(sueId: string, commentId: string, body: PostCommentReport, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postCommentReportRoute(sueId: string, commentId: string, body: PostCommentReport, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postCommentReportRoute(sueId: string, commentId: string, body: PostCommentReport, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postCommentReportRoute.');
+        }
+        if (commentId === null || commentId === undefined) {
+            throw new Error('Required parameter commentId was null or undefined when calling postCommentReportRoute.');
+        }
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createPaymentRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postCommentReportRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -191,7 +452,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/create-payment`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/comments/${encodeURIComponent(String(commentId))}/report`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -203,18 +464,22 @@ export class PaymentsService {
     }
 
     /**
-     * Execute PayPal payment
+     * Create comment
      * 
-     * @param body Execute payment
+     * @param sueId sueId
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public executePaymentRoute(body: ExecutePayment, observe?: 'body', reportProgress?: boolean): Observable<GetPayment>;
-    public executePaymentRoute(body: ExecutePayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayment>>;
-    public executePaymentRoute(body: ExecutePayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayment>>;
-    public executePaymentRoute(body: ExecutePayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postCommentRoute(sueId: string, body: PostComment, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postCommentRoute(sueId: string, body: PostComment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postCommentRoute(sueId: string, body: PostComment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postCommentRoute(sueId: string, body: PostComment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postCommentRoute.');
+        }
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling executePaymentRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postCommentRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -235,7 +500,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/execute-payment`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/comments`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -247,15 +512,19 @@ export class PaymentsService {
     }
 
     /**
-     * Get credit cards
+     * Accept client complaint
      * 
+     * @param sueId sueId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCreditCardsRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<GetCreditCard>>;
-    public getCreditCardsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetCreditCard>>>;
-    public getCreditCardsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetCreditCard>>>;
-    public getCreditCardsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postExpertAcceptComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postExpertAcceptComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postExpertAcceptComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postExpertAcceptComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postExpertAcceptComplaintRoute.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -271,7 +540,8 @@ export class PaymentsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetCreditCard>>(`${this.basePath}/api/payments/tpay/credit-cards`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/client-complaint/expert/accept`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -282,123 +552,22 @@ export class PaymentsService {
     }
 
     /**
-     * Get default payment method
+     * Store expert&#39;s complaint about client
      * 
+     * @param sueId sueId
+     * @param body body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDefaultPaymentMethodRoute(observe?: 'body', reportProgress?: boolean): Observable<DefaultCreditCard>;
-    public getDefaultPaymentMethodRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<DefaultCreditCard>>;
-    public getDefaultPaymentMethodRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<DefaultCreditCard>>;
-    public getDefaultPaymentMethodRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+    public postExpertComplaintRoute(sueId: string, body: PostExpertComplaint, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postExpertComplaintRoute(sueId: string, body: PostExpertComplaint, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postExpertComplaintRoute(sueId: string, body: PostExpertComplaint, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postExpertComplaintRoute(sueId: string, body: PostExpertComplaint, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postExpertComplaintRoute.');
         }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<DefaultCreditCard>(`${this.basePath}/api/payments/default-payment-method`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get payu payment links
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getPayUPaymentLinksRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<PaymentLink>>;
-    public getPayUPaymentLinksRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<PaymentLink>>>;
-    public getPayUPaymentLinksRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<PaymentLink>>>;
-    public getPayUPaymentLinksRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<Array<PaymentLink>>(`${this.basePath}/api/payments/payu/payment-links`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get payment options
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getPaymentOptionsRoute(observe?: 'body', reportProgress?: boolean): Observable<GetPaymentOptions>;
-    public getPaymentOptionsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPaymentOptions>>;
-    public getPaymentOptionsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPaymentOptions>>;
-    public getPaymentOptionsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<GetPaymentOptions>(`${this.basePath}/api/payments/options`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * PayPal IPN notification
-     * 
-     * @param body IPN notification
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public ipnPathRoute(body: InstantPaymentNotification, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ipnPathRoute(body: InstantPaymentNotification, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ipnPathRoute(body: InstantPaymentNotification, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public ipnPathRoute(body: InstantPaymentNotification, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling ipnPathRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postExpertComplaintRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -419,7 +588,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/paypal/ipn`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/expert-complaint`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -431,18 +600,18 @@ export class PaymentsService {
     }
 
     /**
-     * Add new credit card
+     * Reject client complaint
      * 
-     * @param body New card&#39;s data
+     * @param sueId sueId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postCreditCardRoute(body: PostAddNewCard, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postCreditCardRoute(body: PostAddNewCard, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postCreditCardRoute(body: PostAddNewCard, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postCreditCardRoute(body: PostAddNewCard, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postCreditCardRoute.');
+    public postExpertRejectComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postExpertRejectComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postExpertRejectComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postExpertRejectComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postExpertRejectComplaintRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -458,13 +627,9 @@ export class PaymentsService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/tpay/credit-card`,
-            body,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/client-complaint/expert/reject`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -475,18 +640,22 @@ export class PaymentsService {
     }
 
     /**
-     * Payu notify
+     * Store information about technical problems during call
      * 
-     * @param body Notify request
+     * @param sueId sueId
+     * @param body body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postPayUNotifyRoute(body: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postPayUNotifyRoute(body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postPayUNotifyRoute(body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postPayUNotifyRoute(body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postTechnicalProblemRoute(sueId: string, body: PostTechnicalProblem, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postTechnicalProblemRoute(sueId: string, body: PostTechnicalProblem, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postTechnicalProblemRoute(sueId: string, body: PostTechnicalProblem, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postTechnicalProblemRoute(sueId: string, body: PostTechnicalProblem, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postTechnicalProblemRoute.');
+        }
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postPayUNotifyRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postTechnicalProblemRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -507,180 +676,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/payu/notification`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Create order
-     * 
-     * @param body Order request
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postPayUOrderRoute(body: PostOrder, observe?: 'body', reportProgress?: boolean): Observable<GetOrder>;
-    public postPayUOrderRoute(body: PostOrder, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOrder>>;
-    public postPayUOrderRoute(body: PostOrder, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOrder>>;
-    public postPayUOrderRoute(body: PostOrder, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postPayUOrderRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<GetOrder>(`${this.basePath}/api/payments/payu/order`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * TPay card notification
-     * 
-     * @param body Notification
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postTPayNotificationRoute(body: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postTPayNotificationRoute(body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postTPayNotificationRoute(body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postTPayNotificationRoute(body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postTPayNotificationRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/tpay/notification`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Change default payment method
-     * 
-     * @param body ChangeDefaultCreditCard
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public putDefaultPaymentMethodRoute(body?: ChangeDefaultCreditCard, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public putDefaultPaymentMethodRoute(body?: ChangeDefaultCreditCard, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public putDefaultPaymentMethodRoute(body?: ChangeDefaultCreditCard, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public putDefaultPaymentMethodRoute(body?: ChangeDefaultCreditCard, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<any>(`${this.basePath}/api/payments/default-payment-method`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Verify PayPal payment
-     * 
-     * @param body Verify payment
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public verifyPaymentRoute(body: VerifyPayment, observe?: 'body', reportProgress?: boolean): Observable<GetPayment>;
-    public verifyPaymentRoute(body: VerifyPayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayment>>;
-    public verifyPaymentRoute(body: VerifyPayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayment>>;
-    public verifyPaymentRoute(body: VerifyPayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling verifyPaymentRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/verify-payment`,
+        return this.httpClient.post<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/technical-problem`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

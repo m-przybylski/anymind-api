@@ -25,9 +25,10 @@ export interface GetClientActivity {
     initializedAt: Date;
 }
 export namespace GetClientActivity {
-    export type ActivityTypeEnum = 'SERVICE_USAGE_EVENT' | 'FINANCIAL_TRANSACTION';
+    export type ActivityTypeEnum = 'SERVICE_USAGE_EVENT' | 'FINANCIAL_TRANSACTION' | 'REFUND';
     export const ActivityTypeEnum = {
         SERVICEUSAGEEVENT: 'SERVICE_USAGE_EVENT' as ActivityTypeEnum,
-        FINANCIALTRANSACTION: 'FINANCIAL_TRANSACTION' as ActivityTypeEnum
+        FINANCIALTRANSACTION: 'FINANCIAL_TRANSACTION' as ActivityTypeEnum,
+        REFUND: 'REFUND' as ActivityTypeEnum
     }
 }

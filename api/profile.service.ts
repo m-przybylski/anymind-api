@@ -21,7 +21,6 @@ import { Observable }                                        from 'rxjs/Observab
 import { GetProfile } from '../model/getProfile';
 import { GetProfileWithServices } from '../model/getProfileWithServices';
 import { GetProfileWithServicesInvitations } from '../model/getProfileWithServicesInvitations';
-import { JValue } from '../model/jValue';
 import { UpdateProfile } from '../model/updateProfile';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -341,9 +340,9 @@ export class ProfileService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postProfileFavouriteExpertRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postProfileFavouriteExpertRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postProfileFavouriteExpertRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postProfileFavouriteExpertRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postProfileFavouriteExpertRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postProfileFavouriteExpertRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postProfileFavouriteExpertRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling postProfileFavouriteExpertRoute.');
@@ -363,7 +362,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/expert`,
+        return this.httpClient.post<any>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/expert`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -381,9 +380,9 @@ export class ProfileService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postProfileFavouriteOrganizationRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postProfileFavouriteOrganizationRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postProfileFavouriteOrganizationRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postProfileFavouriteOrganizationRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postProfileFavouriteOrganizationRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postProfileFavouriteOrganizationRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postProfileFavouriteOrganizationRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling postProfileFavouriteOrganizationRoute.');
@@ -403,7 +402,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/organization`,
+        return this.httpClient.post<any>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}/favourite/organization`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

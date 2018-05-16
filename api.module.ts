@@ -19,6 +19,7 @@ import { RecoverPasswordService } from './api/recoverPassword.service';
 import { RegistrationService } from './api/registration.service';
 import { SearchService } from './api/search.service';
 import { ServiceService } from './api/service.service';
+import { ServiceUsageEventService } from './api/serviceUsageEvent.service';
 import { SessionService } from './api/session.service';
 import { ViewsService } from './api/views.service';
 import { WidgetService } from './api/widget.service';
@@ -46,6 +47,7 @@ import { WsService } from './api/ws.service';
     RegistrationService,
     SearchService,
     ServiceService,
+    ServiceUsageEventService,
     SessionService,
     ViewsService,
     WidgetService,

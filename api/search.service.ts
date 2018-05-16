@@ -18,7 +18,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetSearchRequestResult } from '../model/getSearchRequestResult';
 import { GetSuggestedQueries } from '../model/getSuggestedQueries';
 import { GetSuggestedTags } from '../model/getSuggestedTags';
@@ -111,9 +110,9 @@ export class SearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postSearchResendDataRoute(observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public postSearchResendDataRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public postSearchResendDataRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public postSearchResendDataRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postSearchResendDataRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postSearchResendDataRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postSearchResendDataRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -130,7 +129,7 @@ export class SearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/search/resend-data`,
+        return this.httpClient.post<any>(`${this.basePath}/api/search/resend-data`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -20,7 +20,6 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { DeleteInvitations } from '../model/deleteInvitations';
 import { GetInvitation } from '../model/getInvitation';
-import { JValue } from '../model/jValue';
 import { PostInvitations } from '../model/postInvitations';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -263,9 +262,9 @@ export class InvitationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postInvitationRoute(body: PostInvitations, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postInvitationRoute(body: PostInvitations, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postInvitationRoute(body: PostInvitations, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postInvitationRoute(body: PostInvitations, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postInvitationRoute(body: PostInvitations, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postInvitationRoute(body: PostInvitations, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postInvitationRoute(body: PostInvitations, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postInvitationRoute.');
@@ -289,7 +288,7 @@ export class InvitationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/invitations`,
+        return this.httpClient.post<any>(`${this.basePath}/api/invitations`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

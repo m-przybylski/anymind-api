@@ -18,26 +18,17 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { AddServiceUsageRequest } from '../model/addServiceUsageRequest';
-import { GetComment } from '../model/getComment';
-import { GetExpertSueDetails } from '../model/getExpertSueDetails';
 import { GetService } from '../model/getService';
 import { GetServiceGrossPrice } from '../model/getServiceGrossPrice';
 import { GetServiceTags } from '../model/getServiceTags';
-import { GetServiceUsageRequest } from '../model/getServiceUsageRequest';
 import { GetServiceWithEmployees } from '../model/getServiceWithEmployees';
 import { GetServiceWithInvitations } from '../model/getServiceWithInvitations';
-import { JValue } from '../model/jValue';
-import { PostComment } from '../model/postComment';
-import { PostCommentAnswer } from '../model/postCommentAnswer';
-import { PostCommentReport } from '../model/postCommentReport';
-import { PostExpertComplaint } from '../model/postExpertComplaint';
+import { GetSueRating } from '../model/getSueRating';
 import { PostService } from '../model/postService';
 import { PostServicesIds } from '../model/postServicesIds';
-import { PostTechnicalProblem } from '../model/postTechnicalProblem';
+import { PostSueRating } from '../model/postSueRating';
 import { PutService } from '../model/putService';
-import { PutServiceRecommendations } from '../model/putServiceRecommendations';
-import { ServiceRecommendation } from '../model/serviceRecommendation';
+import { PutSueRating } from '../model/putSueRating';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -106,62 +97,6 @@ export class ServiceService {
 
         return this.httpClient.delete<any>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}`,
             {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get comments for service
-     * 
-     * @param serviceId serviceId
-     * @param limit Int
-     * @param offset Int
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetComment>>;
-    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetComment>>>;
-    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetComment>>>;
-    public getCommentsRoute(serviceId: string, limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceId === null || serviceId === undefined) {
-            throw new Error('Required parameter serviceId was null or undefined when calling getCommentsRoute.');
-        }
-        if (limit === null || limit === undefined) {
-            throw new Error('Required parameter limit was null or undefined when calling getCommentsRoute.');
-        }
-        if (offset === null || offset === undefined) {
-            throw new Error('Required parameter offset was null or undefined when calling getCommentsRoute.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (limit !== undefined) {
-            queryParameters = queryParameters.set('limit', <any>limit);
-        }
-        if (offset !== undefined) {
-            queryParameters = queryParameters.set('offset', <any>offset);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<Array<GetComment>>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}/comments`,
-            {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -288,45 +223,6 @@ export class ServiceService {
     }
 
     /**
-     * Get service usage event details for expert
-     * 
-     * @param ratelCallId ratelCallId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertSueDetails>;
-    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertSueDetails>>;
-    public getSueDetailsForExpertRoute(ratelCallId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertSueDetails>>;
-    public getSueDetailsForExpertRoute(ratelCallId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (ratelCallId === null || ratelCallId === undefined) {
-            throw new Error('Required parameter ratelCallId was null or undefined when calling getSueDetailsForExpertRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<GetExpertSueDetails>(`${this.basePath}/api/services/usage-event/${encodeURIComponent(String(ratelCallId))}/details/expert`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Get suggested employees
      * 
      * @param expression expression
@@ -356,206 +252,6 @@ export class ServiceService {
         ];
 
         return this.httpClient.get<Array<GetService>>(`${this.basePath}/api/services/suggest/${encodeURIComponent(String(expression))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Create comment answer
-     * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param commentId commentId
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postCommentAnswerRoute(serviceUsageEventId: string, commentId: string, body: PostCommentAnswer, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postCommentAnswerRoute(serviceUsageEventId: string, commentId: string, body: PostCommentAnswer, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postCommentAnswerRoute(serviceUsageEventId: string, commentId: string, body: PostCommentAnswer, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
-    public postCommentAnswerRoute(serviceUsageEventId: string, commentId: string, body: PostCommentAnswer, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling postCommentAnswerRoute.');
-        }
-        if (commentId === null || commentId === undefined) {
-            throw new Error('Required parameter commentId was null or undefined when calling postCommentAnswerRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postCommentAnswerRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<JValue>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/comments/${encodeURIComponent(String(commentId))}/answer`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Create comment report
-     * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param commentId commentId
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postCommentReportRoute(serviceUsageEventId: string, commentId: string, body: PostCommentReport, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postCommentReportRoute(serviceUsageEventId: string, commentId: string, body: PostCommentReport, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postCommentReportRoute(serviceUsageEventId: string, commentId: string, body: PostCommentReport, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
-    public postCommentReportRoute(serviceUsageEventId: string, commentId: string, body: PostCommentReport, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling postCommentReportRoute.');
-        }
-        if (commentId === null || commentId === undefined) {
-            throw new Error('Required parameter commentId was null or undefined when calling postCommentReportRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postCommentReportRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<JValue>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/comments/${encodeURIComponent(String(commentId))}/report`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Create comment
-     * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postCommentRoute(serviceUsageEventId: string, body: PostComment, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postCommentRoute(serviceUsageEventId: string, body: PostComment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postCommentRoute(serviceUsageEventId: string, body: PostComment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
-    public postCommentRoute(serviceUsageEventId: string, body: PostComment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling postCommentRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postCommentRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<JValue>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/comments`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Store expert&#39;s complaint about client
-     * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param body body
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postExpertComplaintRoute(serviceUsageEventId: string, body: PostExpertComplaint, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postExpertComplaintRoute(serviceUsageEventId: string, body: PostExpertComplaint, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postExpertComplaintRoute(serviceUsageEventId: string, body: PostExpertComplaint, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postExpertComplaintRoute(serviceUsageEventId: string, body: PostExpertComplaint, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling postExpertComplaintRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postExpertComplaintRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/expert-complaint`,
-            body,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -610,46 +306,6 @@ export class ServiceService {
     }
 
     /**
-     * Create service recommendation
-     * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postServiceRecommendationRoute(serviceUsageEventId: string, observe?: 'body', reportProgress?: boolean): Observable<ServiceRecommendation>;
-    public postServiceRecommendationRoute(serviceUsageEventId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ServiceRecommendation>>;
-    public postServiceRecommendationRoute(serviceUsageEventId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ServiceRecommendation>>;
-    public postServiceRecommendationRoute(serviceUsageEventId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling postServiceRecommendationRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.post<ServiceRecommendation>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/recommend`,
-            null,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Create a service
      * 
      * @param body UpdateServiceDetails
@@ -683,54 +339,6 @@ export class ServiceService {
         }
 
         return this.httpClient.post<GetService>(`${this.basePath}/api/services`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Request usage of service
-     * 
-     * @param serviceId serviceId
-     * @param body AddServiceUsageRequest
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postServiceUsageRequestRoute(serviceId: string, body: AddServiceUsageRequest, observe?: 'body', reportProgress?: boolean): Observable<GetServiceUsageRequest>;
-    public postServiceUsageRequestRoute(serviceId: string, body: AddServiceUsageRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetServiceUsageRequest>>;
-    public postServiceUsageRequestRoute(serviceId: string, body: AddServiceUsageRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetServiceUsageRequest>>;
-    public postServiceUsageRequestRoute(serviceId: string, body: AddServiceUsageRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceId === null || serviceId === undefined) {
-            throw new Error('Required parameter serviceId was null or undefined when calling postServiceUsageRequestRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postServiceUsageRequestRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<GetServiceUsageRequest>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}/usage-request`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -830,22 +438,22 @@ export class ServiceService {
     }
 
     /**
-     * Store information about technical problems during call
+     * Create sue rating
      * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param body body
+     * @param sueId sueId
+     * @param body PostSueRating
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postTechnicalProblemRoute(serviceUsageEventId: string, body: PostTechnicalProblem, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postTechnicalProblemRoute(serviceUsageEventId: string, body: PostTechnicalProblem, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postTechnicalProblemRoute(serviceUsageEventId: string, body: PostTechnicalProblem, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postTechnicalProblemRoute(serviceUsageEventId: string, body: PostTechnicalProblem, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling postTechnicalProblemRoute.');
+    public postSueRatingRoute(sueId: string, body: PostSueRating, observe?: 'body', reportProgress?: boolean): Observable<GetSueRating>;
+    public postSueRatingRoute(sueId: string, body: PostSueRating, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSueRating>>;
+    public postSueRatingRoute(sueId: string, body: PostSueRating, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSueRating>>;
+    public postSueRatingRoute(sueId: string, body: PostSueRating, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postSueRatingRoute.');
         }
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postTechnicalProblemRoute.');
+            throw new Error('Required parameter body was null or undefined when calling postSueRatingRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -866,55 +474,7 @@ export class ServiceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/technical-problem`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Update service recommendations
-     * 
-     * @param serviceUsageEventId serviceUsageEventId
-     * @param body UpdateServiceRecommendations
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public putServiceRecommendationsRoute(serviceUsageEventId: string, body: PutServiceRecommendations, observe?: 'body', reportProgress?: boolean): Observable<GetService>;
-    public putServiceRecommendationsRoute(serviceUsageEventId: string, body: PutServiceRecommendations, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetService>>;
-    public putServiceRecommendationsRoute(serviceUsageEventId: string, body: PutServiceRecommendations, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetService>>;
-    public putServiceRecommendationsRoute(serviceUsageEventId: string, body: PutServiceRecommendations, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (serviceUsageEventId === null || serviceUsageEventId === undefined) {
-            throw new Error('Required parameter serviceUsageEventId was null or undefined when calling putServiceRecommendationsRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling putServiceRecommendationsRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<GetService>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceUsageEventId))}/recommend`,
+        return this.httpClient.post<GetSueRating>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/rate`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -963,6 +523,54 @@ export class ServiceService {
         }
 
         return this.httpClient.put<GetService>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Update sue rating
+     * 
+     * @param sueId sueId
+     * @param body UpdateSueRating
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'body', reportProgress?: boolean): Observable<GetService>;
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetService>>;
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetService>>;
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling putSueRatingRoute.');
+        }
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putSueRatingRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<GetService>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/rate`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

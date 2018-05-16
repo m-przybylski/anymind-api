@@ -19,7 +19,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { GetSession } from '../model/getSession';
-import { JValue } from '../model/jValue';
 import { LoginCredentials } from '../model/loginCredentials';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -178,9 +177,9 @@ export class SessionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public logoutCurrentRoute(observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public logoutCurrentRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public logoutCurrentRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public logoutCurrentRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public logoutCurrentRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public logoutCurrentRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public logoutCurrentRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -197,7 +196,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/session`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -214,9 +213,9 @@ export class SessionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public logoutRoute(apiKey: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public logoutRoute(apiKey: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public logoutRoute(apiKey: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public logoutRoute(apiKey: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public logoutRoute(apiKey: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public logoutRoute(apiKey: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public logoutRoute(apiKey: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (apiKey === null || apiKey === undefined) {
             throw new Error('Required parameter apiKey was null or undefined when calling logoutRoute.');
@@ -236,7 +235,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/session/${encodeURIComponent(String(apiKey))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/session/${encodeURIComponent(String(apiKey))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

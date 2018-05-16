@@ -19,7 +19,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { AccountPresenceStatus } from '../model/accountPresenceStatus';
-import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetExpertVisibility } from '../model/getExpertVisibility';
 import { PostExpertsPresence } from '../model/postExpertsPresence';
 import { PostRegisterForWidgetAvailability } from '../model/postRegisterForWidgetAvailability';
@@ -68,9 +67,9 @@ export class PresenceService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public expertInvisibleRoute(observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public expertInvisibleRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public expertInvisibleRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public expertInvisibleRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public expertInvisibleRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public expertInvisibleRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public expertInvisibleRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -87,7 +86,7 @@ export class PresenceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/expert/invisible`,
+        return this.httpClient.post<any>(`${this.basePath}/api/presence/expert/invisible`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -139,9 +138,9 @@ export class PresenceService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public expertVisibleRoute(observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public expertVisibleRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public expertVisibleRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public expertVisibleRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public expertVisibleRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public expertVisibleRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public expertVisibleRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -158,7 +157,7 @@ export class PresenceService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/expert/visible`,
+        return this.httpClient.post<any>(`${this.basePath}/api/presence/expert/visible`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -264,9 +263,9 @@ export class PresenceService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public widgetAvailabilityNotificationRoute(body: PostRegisterForWidgetAvailability, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling widgetAvailabilityNotificationRoute.');
@@ -290,7 +289,7 @@ export class PresenceService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/presence/notification/widget`,
+        return this.httpClient.post<any>(`${this.basePath}/api/presence/notification/widget`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

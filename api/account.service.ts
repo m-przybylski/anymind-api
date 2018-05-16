@@ -25,13 +25,11 @@ import { ChangeAccountPasswordMobile } from '../model/changeAccountPasswordMobil
 import { ConfirmMsisdnVerificationRequest } from '../model/confirmMsisdnVerificationRequest';
 import { Country } from '../model/country';
 import { CreateMsisdnVerificationRequest } from '../model/createMsisdnVerificationRequest';
-import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetCallInvoiceDetails } from '../model/getCallInvoiceDetails';
 import { GetCompanyInvoiceDetails } from '../model/getCompanyInvoiceDetails';
 import { GetMobileProtectedViews } from '../model/getMobileProtectedViews';
 import { GetPersonalInvoiceDetails } from '../model/getPersonalInvoiceDetails';
 import { GetSession } from '../model/getSession';
-import { JValue } from '../model/jValue';
 import { PatchAccount } from '../model/patchAccount';
 import { PatchMobileViewsPermissions } from '../model/patchMobileViewsPermissions';
 import { PostCallInvoiceDetails } from '../model/postCallInvoiceDetails';
@@ -509,9 +507,9 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public newMsisdnVerificationRoute(body: CreateMsisdnVerificationRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling newMsisdnVerificationRoute.');
@@ -535,7 +533,7 @@ export class AccountService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/accounts/settings/msisdn-verification/create`,
+        return this.httpClient.post<any>(`${this.basePath}/api/accounts/settings/msisdn-verification/create`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -992,9 +990,9 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendPasswordChangeSmsRoute(observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public sendPasswordChangeSmsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public sendPasswordChangeSmsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public sendPasswordChangeSmsRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public sendPasswordChangeSmsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public sendPasswordChangeSmsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public sendPasswordChangeSmsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -1011,7 +1009,7 @@ export class AccountService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/accounts/settings/mobile/change-password/sms`,
+        return this.httpClient.post<any>(`${this.basePath}/api/accounts/settings/mobile/change-password/sms`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

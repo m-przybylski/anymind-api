@@ -23,6 +23,7 @@ import { AdminPanelSession } from '../model/adminPanelSession';
 import { GetActivities } from '../model/getActivities';
 import { GetCallDetails } from '../model/getCallDetails';
 import { GetClientActivity } from '../model/getClientActivity';
+import { GetClientComplaint } from '../model/getClientComplaint';
 import { GetClosedBetaExpert } from '../model/getClosedBetaExpert';
 import { GetClosedBetaExperts } from '../model/getClosedBetaExperts';
 import { GetCounters } from '../model/getCounters';
@@ -30,7 +31,6 @@ import { GetExpertComplaint } from '../model/getExpertComplaint';
 import { GetPayoutDto } from '../model/getPayoutDto';
 import { GetProfile } from '../model/getProfile';
 import { GetTechnicalProblem } from '../model/getTechnicalProblem';
-import { JValue } from '../model/jValue';
 import { MoneyDto } from '../model/moneyDto';
 import { PostGeneratePayout } from '../model/postGeneratePayout';
 
@@ -77,9 +77,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public deleteClosedBetaExpertRoute(msisdn: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (msisdn === null || msisdn === undefined) {
             throw new Error('Required parameter msisdn was null or undefined when calling deleteClosedBetaExpertRoute.');
@@ -99,7 +99,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/adminpanel/closed-beta-experts/${encodeURIComponent(String(msisdn))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/adminpanel/closed-beta-experts/${encodeURIComponent(String(msisdn))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -158,6 +158,62 @@ export class AdminpanelService {
         ];
 
         return this.httpClient.get<GetActivities>(`${this.basePath}/api/adminpanel/account-activities`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get complaints rejected by experts
+     * 
+     * @param limit Int
+     * @param offset Int
+     * @param status ClientComplaintStatus
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAdminClientComplaintsRoute(limit: string, offset: string, status?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetClientComplaint>>;
+    public getAdminClientComplaintsRoute(limit: string, offset: string, status?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetClientComplaint>>>;
+    public getAdminClientComplaintsRoute(limit: string, offset: string, status?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetClientComplaint>>>;
+    public getAdminClientComplaintsRoute(limit: string, offset: string, status?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getAdminClientComplaintsRoute.');
+        }
+        if (offset === null || offset === undefined) {
+            throw new Error('Required parameter offset was null or undefined when calling getAdminClientComplaintsRoute.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+        if (offset !== undefined) {
+            queryParameters = queryParameters.set('offset', <any>offset);
+        }
+        if (status !== undefined) {
+            queryParameters = queryParameters.set('status', <any>status);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<GetClientComplaint>>(`${this.basePath}/api/adminpanel/client-complaints`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -565,9 +621,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public logoutCurrentSessionRoute(observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public logoutCurrentSessionRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public logoutCurrentSessionRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public logoutCurrentSessionRoute(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public logoutCurrentSessionRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public logoutCurrentSessionRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public logoutCurrentSessionRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -584,7 +640,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/adminpanel/session`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/adminpanel/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -601,9 +657,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postAccountBlockRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postAccountBlockRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postAccountBlockRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postAccountBlockRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAccountBlockRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAccountBlockRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postAccountBlockRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling postAccountBlockRoute.');
@@ -623,7 +679,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/block`,
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/block`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -641,9 +697,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postAccountUnblockRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public postAccountUnblockRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public postAccountUnblockRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public postAccountUnblockRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAccountUnblockRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAccountUnblockRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postAccountUnblockRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling postAccountUnblockRoute.');
@@ -663,7 +719,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<JValue>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/unblock`,
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/unblock`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -709,6 +765,86 @@ export class AdminpanelService {
 
         return this.httpClient.post<GetCallDetails>(`${this.basePath}/api/adminpanel/activity-details`,
             body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Accept client complaint
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postAdminAcceptComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAdminAcceptComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAdminAcceptComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postAdminAcceptComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postAdminAcceptComplaintRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/client-complaints/${encodeURIComponent(String(sueId))}/accept`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Reject client complaint
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postAdminRejectComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAdminRejectComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAdminRejectComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postAdminRejectComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling postAdminRejectComplaintRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/client-complaints/${encodeURIComponent(String(sueId))}/reject`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -9,6 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetPayoutMethodDto } from './getPayoutMethodDto';
 import { ServiceUsageDetails } from './serviceUsageDetails';
 import { SimpleProfileFinancialOperation } from './simpleProfileFinancialOperation';
 
@@ -24,12 +25,14 @@ export interface GetProfileActivity {
     isFreelanceService?: boolean;
     serviceUsageDetails?: ServiceUsageDetails;
     financialOperation?: SimpleProfileFinancialOperation;
+    payoutMethod?: GetPayoutMethodDto;
     initializedAt: Date;
 }
 export namespace GetProfileActivity {
-    export type ActivityTypeEnum = 'SERVICE_USAGE_EVENT' | 'FINANCIAL_TRANSACTION';
+    export type ActivityTypeEnum = 'SERVICE_USAGE_EVENT' | 'FINANCIAL_TRANSACTION' | 'REFUND';
     export const ActivityTypeEnum = {
         SERVICEUSAGEEVENT: 'SERVICE_USAGE_EVENT' as ActivityTypeEnum,
-        FINANCIALTRANSACTION: 'FINANCIAL_TRANSACTION' as ActivityTypeEnum
+        FINANCIALTRANSACTION: 'FINANCIAL_TRANSACTION' as ActivityTypeEnum,
+        REFUND: 'REFUND' as ActivityTypeEnum
     }
 }

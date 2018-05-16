@@ -9,18 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MoneyDto } from './moneyDto';
 
 
-export interface GetService {
-    id: string;
-    ownerId: string;
-    name: string;
-    description: string;
-    price: MoneyDto;
-    language: string;
-    isSuspended: boolean;
-    isFreelance: boolean;
-    createdAt: Date;
-    deletedAt?: Date;
+export interface PutSueRating {
+    tags: Array<string>;
 }

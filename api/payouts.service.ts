@@ -19,7 +19,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { GetPayoutMethodDto } from '../model/getPayoutMethodDto';
-import { JValue } from '../model/jValue';
 import { PutPayoutMethodDto } from '../model/putPayoutMethodDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -100,9 +99,9 @@ export class PayoutsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public putPayoutMethodRoute(body: PutPayoutMethodDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling putPayoutMethodRoute.');
@@ -126,7 +125,7 @@ export class PayoutsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<JValue>(`${this.basePath}/api/payouts/payout-method`,
+        return this.httpClient.put<any>(`${this.basePath}/api/payouts/payout-method`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

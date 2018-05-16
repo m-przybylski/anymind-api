@@ -11,11 +11,19 @@
  */
 
 
-export interface GetEmployment {
+export interface GetSueRating {
     id: string;
+    sueId: string;
+    clientId: string;
+    expertId: string;
     serviceId: string;
-    profileId: string;
-    usageCounter: number;
-    rating?: any;
-    createdAt: Date;
+    rate: GetSueRating.RateEnum;
+    tags: Array<string>;
+}
+export namespace GetSueRating {
+    export type RateEnum = 'POSITIVE' | 'NEGATIVE';
+    export const RateEnum = {
+        POSITIVE: 'POSITIVE' as RateEnum,
+        NEGATIVE: 'NEGATIVE' as RateEnum
+    }
 }

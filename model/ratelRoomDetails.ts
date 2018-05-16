@@ -16,5 +16,4 @@ export interface RatelRoomDetails {
     name: string;
     orgId: string;
     users: Array<string>;
-    created: Date;
 }

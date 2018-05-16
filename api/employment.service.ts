@@ -20,7 +20,6 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { DeleteEmployments } from '../model/deleteEmployments';
 import { GetProfileDetailsWithEmployments } from '../model/getProfileDetailsWithEmployments';
-import { JValue } from '../model/jValue';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -65,9 +64,9 @@ export class EmploymentService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEmploymentForServiceRoute(serviceId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public deleteEmploymentForServiceRoute(serviceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public deleteEmploymentForServiceRoute(serviceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public deleteEmploymentForServiceRoute(serviceId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteEmploymentForServiceRoute(serviceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteEmploymentForServiceRoute(serviceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public deleteEmploymentForServiceRoute(serviceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (serviceId === null || serviceId === undefined) {
             throw new Error('Required parameter serviceId was null or undefined when calling deleteEmploymentForServiceRoute.');
@@ -87,7 +86,7 @@ export class EmploymentService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/employments/service/${encodeURIComponent(String(serviceId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/employments/service/${encodeURIComponent(String(serviceId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -104,9 +103,9 @@ export class EmploymentService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEmploymentRoute(employmentId: string, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public deleteEmploymentRoute(employmentId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public deleteEmploymentRoute(employmentId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public deleteEmploymentRoute(employmentId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteEmploymentRoute(employmentId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteEmploymentRoute(employmentId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public deleteEmploymentRoute(employmentId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (employmentId === null || employmentId === undefined) {
             throw new Error('Required parameter employmentId was null or undefined when calling deleteEmploymentRoute.');
@@ -126,7 +125,7 @@ export class EmploymentService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/employments/${encodeURIComponent(String(employmentId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/employments/${encodeURIComponent(String(employmentId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -143,9 +142,9 @@ export class EmploymentService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe?: 'body', reportProgress?: boolean): Observable<JValue>;
-    public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<JValue>>;
-    public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<JValue>>;
+    public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public deleteEmploymentsRoute(employeeIds: DeleteEmployments, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (employeeIds === null || employeeIds === undefined) {
             throw new Error('Required parameter employeeIds was null or undefined when calling deleteEmploymentsRoute.');
@@ -169,7 +168,7 @@ export class EmploymentService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.delete<JValue>(`${this.basePath}/api/employments`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/employments`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

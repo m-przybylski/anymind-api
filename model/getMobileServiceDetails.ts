@@ -9,7 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetComment } from './getComment';
 import { GetProfile } from './getProfile';
 import { GetProfileDetails } from './getProfileDetails';
 import { GetService } from './getService';
@@ -21,5 +20,4 @@ export interface GetMobileServiceDetails {
     ownerProfile: GetProfile;
     employees: Array<GetProfileDetails>;
     tags: Array<Tag>;
-    comments: Array<GetComment>;
 }

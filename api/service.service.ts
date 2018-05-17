@@ -23,12 +23,9 @@ import { GetServiceGrossPrice } from '../model/getServiceGrossPrice';
 import { GetServiceTags } from '../model/getServiceTags';
 import { GetServiceWithEmployees } from '../model/getServiceWithEmployees';
 import { GetServiceWithInvitations } from '../model/getServiceWithInvitations';
-import { GetSueRating } from '../model/getSueRating';
 import { PostService } from '../model/postService';
 import { PostServicesIds } from '../model/postServicesIds';
-import { PostSueRating } from '../model/postSueRating';
 import { PutService } from '../model/putService';
-import { PutSueRating } from '../model/putSueRating';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -438,54 +435,6 @@ export class ServiceService {
     }
 
     /**
-     * Create sue rating
-     * 
-     * @param sueId sueId
-     * @param body PostSueRating
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postSueRatingRoute(sueId: string, body: PostSueRating, observe?: 'body', reportProgress?: boolean): Observable<GetSueRating>;
-    public postSueRatingRoute(sueId: string, body: PostSueRating, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSueRating>>;
-    public postSueRatingRoute(sueId: string, body: PostSueRating, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSueRating>>;
-    public postSueRatingRoute(sueId: string, body: PostSueRating, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (sueId === null || sueId === undefined) {
-            throw new Error('Required parameter sueId was null or undefined when calling postSueRatingRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postSueRatingRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<GetSueRating>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/rate`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Update Details of a service
      * 
      * @param serviceId serviceId
@@ -523,54 +472,6 @@ export class ServiceService {
         }
 
         return this.httpClient.put<GetService>(`${this.basePath}/api/services/${encodeURIComponent(String(serviceId))}`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Update sue rating
-     * 
-     * @param sueId sueId
-     * @param body UpdateSueRating
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'body', reportProgress?: boolean): Observable<GetService>;
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetService>>;
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetService>>;
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (sueId === null || sueId === undefined) {
-            throw new Error('Required parameter sueId was null or undefined when calling putSueRatingRoute.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling putSueRatingRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<GetService>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/rate`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

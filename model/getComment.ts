@@ -11,18 +11,15 @@
  */
 import { GetAnswer } from './getAnswer';
 import { GetClientDetails } from './getClientDetails';
-import { GetProfileDetails } from './getProfileDetails';
 
 
 export interface GetComment {
     commentId: string;
     content: string;
-    clientId: string;
     expertId: string;
-    expertDetails: GetProfileDetails;
     answer?: GetAnswer;
     callDurationInSeconds: number;
     isRecommended: boolean;
-    clientDetails?: GetClientDetails;
+    clientDetails: GetClientDetails;
     createdAt: Date;
 }

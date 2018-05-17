@@ -9,6 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetClientDetails } from './getClientDetails';
 import { MoneyDto } from './moneyDto';
 
 
@@ -20,7 +21,5 @@ export interface GetExpertSueDetails {
     ratelRoomId?: string;
     freeSeconds: number;
     callDuration: number;
-    clientId: string;
-    clientNickname?: string;
-    clientAvatar?: string;
+    clientDetails: GetClientDetails;
 }

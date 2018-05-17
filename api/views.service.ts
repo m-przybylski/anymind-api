@@ -543,24 +543,15 @@ export class ViewsService {
      * Get service details
      * 
      * @param serviceId serviceId
-     * @param commentsLimit Comments limit
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMobileServiceDetailsRoute(serviceId: string, commentsLimit: string, observe?: 'body', reportProgress?: boolean): Observable<GetMobileServiceDetails>;
-    public getMobileServiceDetailsRoute(serviceId: string, commentsLimit: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetMobileServiceDetails>>;
-    public getMobileServiceDetailsRoute(serviceId: string, commentsLimit: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetMobileServiceDetails>>;
-    public getMobileServiceDetailsRoute(serviceId: string, commentsLimit: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getMobileServiceDetailsRoute(serviceId: string, observe?: 'body', reportProgress?: boolean): Observable<GetMobileServiceDetails>;
+    public getMobileServiceDetailsRoute(serviceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetMobileServiceDetails>>;
+    public getMobileServiceDetailsRoute(serviceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetMobileServiceDetails>>;
+    public getMobileServiceDetailsRoute(serviceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (serviceId === null || serviceId === undefined) {
             throw new Error('Required parameter serviceId was null or undefined when calling getMobileServiceDetailsRoute.');
-        }
-        if (commentsLimit === null || commentsLimit === undefined) {
-            throw new Error('Required parameter commentsLimit was null or undefined when calling getMobileServiceDetailsRoute.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (commentsLimit !== undefined) {
-            queryParameters = queryParameters.set('commentsLimit', <any>commentsLimit);
         }
 
         let headers = this.defaultHeaders;
@@ -579,7 +570,6 @@ export class ViewsService {
 
         return this.httpClient.get<GetMobileServiceDetails>(`${this.basePath}/api/views/mobile/service/${encodeURIComponent(String(serviceId))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

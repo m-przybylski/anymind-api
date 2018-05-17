@@ -9,14 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetClientDetails } from './getClientDetails';
 import { MoneyDto } from './moneyDto';
 
 
 export interface GetExpertCallSummary {
     serviceUsageEventId: string;
-    clientId: string;
-    clientNickname?: string;
-    clientAvatar?: string;
+    clientDetails: GetClientDetails;
     callProfit: MoneyDto;
     serviceName: string;
     callDuration: number;

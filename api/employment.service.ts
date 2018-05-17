@@ -19,6 +19,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { DeleteEmployments } from '../model/deleteEmployments';
+import { GetComment } from '../model/getComment';
 import { GetProfileDetailsWithEmployments } from '../model/getProfileDetailsWithEmployments';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -205,6 +206,62 @@ export class EmploymentService {
 
         return this.httpClient.get<Array<GetProfileDetailsWithEmployments>>(`${this.basePath}/api/employments`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * List comments for employment
+     * 
+     * @param employmentId employmentId
+     * @param limit Int
+     * @param offset Int
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getEmploymentCommentsRoute(employmentId: string, limit: string, offset: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetComment>>;
+    public getEmploymentCommentsRoute(employmentId: string, limit: string, offset: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetComment>>>;
+    public getEmploymentCommentsRoute(employmentId: string, limit: string, offset: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetComment>>>;
+    public getEmploymentCommentsRoute(employmentId: string, limit: string, offset: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (employmentId === null || employmentId === undefined) {
+            throw new Error('Required parameter employmentId was null or undefined when calling getEmploymentCommentsRoute.');
+        }
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getEmploymentCommentsRoute.');
+        }
+        if (offset === null || offset === undefined) {
+            throw new Error('Required parameter offset was null or undefined when calling getEmploymentCommentsRoute.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+        if (offset !== undefined) {
+            queryParameters = queryParameters.set('offset', <any>offset);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<GetComment>>(`${this.basePath}/api/employments/${encodeURIComponent(String(employmentId))}/comments`,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

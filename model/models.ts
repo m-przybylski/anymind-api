@@ -48,7 +48,7 @@ export * from './getCompanyInvoiceDetails';
 export * from './getCounters';
 export * from './getCreditCard';
 export * from './getDashboardClientExperts';
-export * from './getEmployment';
+export * from './getEmploymentDetails';
 export * from './getExpertCallSummary';
 export * from './getExpertComplaint';
 export * from './getExpertDetails';

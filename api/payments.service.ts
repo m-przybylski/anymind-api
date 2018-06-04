@@ -26,7 +26,6 @@ import { GetCreditCard } from '../model/getCreditCard';
 import { GetOrder } from '../model/getOrder';
 import { GetPayment } from '../model/getPayment';
 import { GetPaymentOptions } from '../model/getPaymentOptions';
-import { InstantPaymentNotification } from '../model/instantPaymentNotification';
 import { PaymentId } from '../model/paymentId';
 import { PaymentLink } from '../model/paymentLink';
 import { PostAddNewCard } from '../model/postAddNewCard';
@@ -387,50 +386,6 @@ export class PaymentsService {
     }
 
     /**
-     * PayPal IPN notification
-     * 
-     * @param body IPN notification
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public ipnPathRoute(body: InstantPaymentNotification, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public ipnPathRoute(body: InstantPaymentNotification, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public ipnPathRoute(body: InstantPaymentNotification, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public ipnPathRoute(body: InstantPaymentNotification, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling ipnPathRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/paypal/ipn`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Add new credit card
      * 
      * @param body New card&#39;s data
@@ -475,50 +430,6 @@ export class PaymentsService {
     }
 
     /**
-     * Payu notify
-     * 
-     * @param body Notify request
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postPayUNotifyRoute(body: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postPayUNotifyRoute(body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postPayUNotifyRoute(body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postPayUNotifyRoute(body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postPayUNotifyRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/payu/notification`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Create order
      * 
      * @param body Order request
@@ -552,50 +463,6 @@ export class PaymentsService {
         }
 
         return this.httpClient.post<GetOrder>(`${this.basePath}/api/payments/payu/order`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * TPay card notification
-     * 
-     * @param body Notification
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postTPayNotificationRoute(body: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postTPayNotificationRoute(body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postTPayNotificationRoute(body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postTPayNotificationRoute(body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postTPayNotificationRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/tpay/notification`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

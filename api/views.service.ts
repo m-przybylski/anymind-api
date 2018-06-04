@@ -18,12 +18,12 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { ClientCallSummary } from '../model/clientCallSummary';
+import { ExpertCallSummary } from '../model/expertCallSummary';
 import { GetActivityFilters } from '../model/getActivityFilters';
 import { GetCallDetails } from '../model/getCallDetails';
 import { GetClientActivities } from '../model/getClientActivities';
-import { GetClientCallSummary } from '../model/getClientCallSummary';
 import { GetDashboardClientExperts } from '../model/getDashboardClientExperts';
-import { GetExpertCallSummary } from '../model/getExpertCallSummary';
 import { GetExpertProfile } from '../model/getExpertProfile';
 import { GetMobileServiceDetails } from '../model/getMobileServiceDetails';
 import { GetOrganizationProfile } from '../model/getOrganizationProfile';
@@ -75,9 +75,9 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getClientCallSummaryRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetClientCallSummary>;
-    public getClientCallSummaryRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClientCallSummary>>;
-    public getClientCallSummaryRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClientCallSummary>>;
+    public getClientCallSummaryRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<ClientCallSummary>;
+    public getClientCallSummaryRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ClientCallSummary>>;
+    public getClientCallSummaryRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ClientCallSummary>>;
     public getClientCallSummaryRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (sueId === null || sueId === undefined) {
             throw new Error('Required parameter sueId was null or undefined when calling getClientCallSummaryRoute.');
@@ -97,7 +97,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetClientCallSummary>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/client`,
+        return this.httpClient.get<ClientCallSummary>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/client`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -429,9 +429,9 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getExpertCallSummaryRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertCallSummary>;
-    public getExpertCallSummaryRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertCallSummary>>;
-    public getExpertCallSummaryRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertCallSummary>>;
+    public getExpertCallSummaryRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<ExpertCallSummary>;
+    public getExpertCallSummaryRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ExpertCallSummary>>;
+    public getExpertCallSummaryRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ExpertCallSummary>>;
     public getExpertCallSummaryRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (sueId === null || sueId === undefined) {
             throw new Error('Required parameter sueId was null or undefined when calling getExpertCallSummaryRoute.');
@@ -451,7 +451,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetExpertCallSummary>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/expert`,
+        return this.httpClient.get<ExpertCallSummary>(`${this.basePath}/api/views/dashboard/sue/${encodeURIComponent(String(sueId))}/call-summary/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

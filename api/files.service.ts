@@ -65,12 +65,12 @@ export class FilesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createFileTokenPath(body: PostFileDetails, observe?: 'body', reportProgress?: boolean): Observable<FileIdDto>;
-    public createFileTokenPath(body: PostFileDetails, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileIdDto>>;
-    public createFileTokenPath(body: PostFileDetails, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileIdDto>>;
-    public createFileTokenPath(body: PostFileDetails, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createFileTokenRoute(body: PostFileDetails, observe?: 'body', reportProgress?: boolean): Observable<FileIdDto>;
+    public createFileTokenRoute(body: PostFileDetails, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileIdDto>>;
+    public createFileTokenRoute(body: PostFileDetails, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileIdDto>>;
+    public createFileTokenRoute(body: PostFileDetails, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createFileTokenPath.');
+            throw new Error('Required parameter body was null or undefined when calling createFileTokenRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -109,12 +109,12 @@ export class FilesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public fileInfoPath(token: string, observe?: 'body', reportProgress?: boolean): Observable<FileInfo>;
-    public fileInfoPath(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileInfo>>;
-    public fileInfoPath(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileInfo>>;
-    public fileInfoPath(token: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public fileInfoRoute(token: string, observe?: 'body', reportProgress?: boolean): Observable<FileInfo>;
+    public fileInfoRoute(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileInfo>>;
+    public fileInfoRoute(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileInfo>>;
+    public fileInfoRoute(token: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (token === null || token === undefined) {
-            throw new Error('Required parameter token was null or undefined when calling fileInfoPath.');
+            throw new Error('Required parameter token was null or undefined when calling fileInfoRoute.');
         }
 
         let headers = this.defaultHeaders;

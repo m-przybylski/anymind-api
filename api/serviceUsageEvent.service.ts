@@ -20,7 +20,6 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { GetClientComplaint } from '../model/getClientComplaint';
 import { GetExpertSueDetails } from '../model/getExpertSueDetails';
-import { GetService } from '../model/getService';
 import { GetSueRating } from '../model/getSueRating';
 import { PostClientComplaint } from '../model/postClientComplaint';
 import { PostComment } from '../model/postComment';
@@ -686,13 +685,13 @@ export class ServiceUsageEventService {
      * Update sue rating
      * 
      * @param sueId sueId
-     * @param body UpdateSueRating
+     * @param body PutSueRating
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'body', reportProgress?: boolean): Observable<GetService>;
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetService>>;
-    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetService>>;
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public putSueRatingRoute(sueId: string, body: PutSueRating, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public putSueRatingRoute(sueId: string, body: PutSueRating, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (sueId === null || sueId === undefined) {
             throw new Error('Required parameter sueId was null or undefined when calling putSueRatingRoute.');
@@ -719,7 +718,7 @@ export class ServiceUsageEventService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<GetService>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/rate`,
+        return this.httpClient.put<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/rate`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

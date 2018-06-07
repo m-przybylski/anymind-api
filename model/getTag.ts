@@ -11,9 +11,16 @@
  */
 
 
-export interface GetExpertDetails {
+export interface GetTag {
+    id: string;
     name: string;
-    avatar: string;
-    description: string;
-    links: Array<string>;
+    status: GetTag.StatusEnum;
+}
+export namespace GetTag {
+    export type StatusEnum = 'NEW' | 'ACCEPTED' | 'REJECTED';
+    export const StatusEnum = {
+        NEW: 'NEW' as StatusEnum,
+        ACCEPTED: 'ACCEPTED' as StatusEnum,
+        REJECTED: 'REJECTED' as StatusEnum
+    }
 }

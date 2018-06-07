@@ -11,14 +11,14 @@
  */
 import { GetProfile } from './getProfile';
 import { GetService } from './getService';
+import { GetTag } from './getTag';
 import { MoneyDto } from './moneyDto';
-import { Tag } from './tag';
 
 
 export interface ClientCallSummary {
     sueId: string;
     service: GetService;
-    serviceTags: Array<Tag>;
+    serviceTags: Array<GetTag>;
     cost: MoneyDto;
     callDuration: number;
     isRecommendable: boolean;

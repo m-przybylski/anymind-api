@@ -19,7 +19,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { FileIdDto } from '../model/fileIdDto';
-import { FileInfo } from '../model/fileInfo';
+import { GetFileInfo } from '../model/getFileInfo';
 import { PostFileDetails } from '../model/postFileDetails';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -109,9 +109,9 @@ export class FilesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public fileInfoRoute(token: string, observe?: 'body', reportProgress?: boolean): Observable<FileInfo>;
-    public fileInfoRoute(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FileInfo>>;
-    public fileInfoRoute(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FileInfo>>;
+    public fileInfoRoute(token: string, observe?: 'body', reportProgress?: boolean): Observable<GetFileInfo>;
+    public fileInfoRoute(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetFileInfo>>;
+    public fileInfoRoute(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetFileInfo>>;
     public fileInfoRoute(token: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (token === null || token === undefined) {
             throw new Error('Required parameter token was null or undefined when calling fileInfoRoute.');
@@ -131,7 +131,7 @@ export class FilesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<FileInfo>(`${this.basePath}/api/files/${encodeURIComponent(String(token))}`,
+        return this.httpClient.get<GetFileInfo>(`${this.basePath}/api/files/${encodeURIComponent(String(token))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

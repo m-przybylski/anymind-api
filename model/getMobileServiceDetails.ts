@@ -12,12 +12,12 @@
 import { GetProfile } from './getProfile';
 import { GetProfileDetails } from './getProfileDetails';
 import { GetService } from './getService';
-import { Tag } from './tag';
+import { GetTag } from './getTag';
 
 
 export interface GetMobileServiceDetails {
     service: GetService;
     ownerProfile: GetProfile;
     employees: Array<GetProfileDetails>;
-    tags: Array<Tag>;
+    tags: Array<GetTag>;
 }

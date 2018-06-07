@@ -14,13 +14,13 @@ import { GetCommentDetails } from './getCommentDetails';
 import { GetProfile } from './getProfile';
 import { GetService } from './getService';
 import { GetServiceUsageDetails } from './getServiceUsageDetails';
-import { Tag } from './tag';
+import { GetTag } from './getTag';
 
 
 export interface GetCallDetails {
     isRecommended: boolean;
     isRecommendable: boolean;
-    recommendedTags: Array<Tag>;
+    recommendedTags: Array<GetTag>;
     comment?: GetCommentDetails;
     clientDetails: GetClientDetails;
     service: GetService;

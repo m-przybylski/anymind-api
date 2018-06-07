@@ -18,7 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { GetProfile } from '../model/getProfile';
+import { GetProfileWithDocuments } from '../model/getProfileWithDocuments';
 import { GetProfileWithServices } from '../model/getProfileWithServices';
 import { GetProfileWithServicesInvitations } from '../model/getProfileWithServicesInvitations';
 import { UpdateProfile } from '../model/updateProfile';
@@ -183,9 +183,9 @@ export class ProfileService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<GetProfile>;
-    public getProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfile>>;
-    public getProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfile>>;
+    public getProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<GetProfileWithDocuments>;
+    public getProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfileWithDocuments>>;
+    public getProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfileWithDocuments>>;
     public getProfileRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling getProfileRoute.');
@@ -205,7 +205,7 @@ export class ProfileService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetProfile>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}`,
+        return this.httpClient.get<GetProfileWithDocuments>(`${this.basePath}/api/profiles/${encodeURIComponent(String(profileId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

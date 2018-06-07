@@ -9,11 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetOrganizationDetails } from './getOrganizationDetails';
 import { GetProfileDetails } from './getProfileDetails';
 import { GetService } from './getService';
 
 
 export interface GetServiceWithEmployees {
-    serviceDetails: GetService;
+    service: GetService;
+    organizationDetails: GetOrganizationDetails;
     employeesDetails: Array<GetProfileDetails>;
 }

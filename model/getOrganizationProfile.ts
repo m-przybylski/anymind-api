@@ -14,7 +14,7 @@ import { GetProfileWithDocuments } from './getProfileWithDocuments';
 
 
 export interface GetOrganizationProfile {
-    profile: GetProfileWithDocuments;
+    profileWithDocuments: GetProfileWithDocuments;
     services: Array<GetOrganizationServiceDetails>;
     isFavourite: boolean;
 }

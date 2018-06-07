@@ -14,7 +14,7 @@ import { GetProfileWithDocuments } from './getProfileWithDocuments';
 
 
 export interface GetExpertProfile {
-    profile: GetProfileWithDocuments;
+    profileWithDocuments: GetProfileWithDocuments;
     services: Array<GetExpertServiceDetails>;
     isFavourite: boolean;
 }

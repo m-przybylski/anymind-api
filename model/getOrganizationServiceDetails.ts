@@ -11,11 +11,11 @@
  */
 import { GetProfileDetails } from './getProfileDetails';
 import { GetService } from './getService';
-import { Tag } from './tag';
+import { GetTag } from './getTag';
 
 
 export interface GetOrganizationServiceDetails {
     service: GetService;
     employees: Array<GetProfileDetails>;
-    tags: Array<Tag>;
+    tags: Array<GetTag>;
 }

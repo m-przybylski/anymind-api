@@ -9,13 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ProfileDocument } from './profileDocument';
 
 
 export interface GetOrganizationDetails {
     name: string;
     logo: string;
     description: string;
-    files: Array<ProfileDocument>;
     links: Array<string>;
 }

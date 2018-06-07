@@ -9,10 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Tag } from './tag';
+import { GetTag } from './getTag';
 
 
 export interface GetServiceTags {
     serviceId: string;
-    tags: Array<Tag>;
+    tags: Array<GetTag>;
 }

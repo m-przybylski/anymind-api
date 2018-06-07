@@ -9,13 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetExpertDetails } from './getExpertDetails';
-import { GetOrganizationDetails } from './getOrganizationDetails';
+import { GetProfile } from './getProfile';
+import { ProfileDocument } from './profileDocument';
 
 
 export interface GetProfileWithDocuments {
-    id: string;
-    isActive: boolean;
-    organizationDetails?: GetOrganizationDetails;
-    expertDetails?: GetExpertDetails;
+    profile: GetProfile;
+    organizationDocuments: Array<ProfileDocument>;
+    expertDocuments: Array<ProfileDocument>;
 }

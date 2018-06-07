@@ -10,18 +10,10 @@
  * Do not edit the class manually.
  */
 import { GetInvitation } from './getInvitation';
-import { MoneyDto } from './moneyDto';
+import { GetService } from './getService';
 
 
 export interface GetServiceWithInvitation {
-    id: string;
-    ownerId: string;
-    name: string;
-    description: string;
-    price: MoneyDto;
-    isSuspended: boolean;
-    isFreelance: boolean;
-    language: string;
-    createdAt: Date;
+    service: GetService;
     invitation: GetInvitation;
 }

@@ -11,11 +11,11 @@
  */
 import { GetProfile } from './getProfile';
 import { GetService } from './getService';
-import { Tag } from './tag';
+import { GetTag } from './getTag';
 
 
 export interface GetExpertServiceDetails {
     service: GetService;
     ownerProfile: GetProfile;
-    tags: Array<Tag>;
+    tags: Array<GetTag>;
 }

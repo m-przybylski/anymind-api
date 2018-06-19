@@ -11,13 +11,11 @@
  */
 
 
-export interface GetEmployment {
+export interface GetProfileDetailsWithEmployment {
     id: string;
-    serviceId: string;
-    serviceOwnerId: string;
-    employeeId: string;
+    name: string;
+    img: string;
     usageCounter: number;
     commentCounter: number;
-    rating?: number;
-    createdAt: Date;
+    rating: number;
 }

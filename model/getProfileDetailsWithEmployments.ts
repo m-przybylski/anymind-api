@@ -9,11 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetEmploymentDetails } from './getEmploymentDetails';
+import { GetEmployment } from './getEmployment';
 import { GetProfileDetails } from './getProfileDetails';
 
 
 export interface GetProfileDetailsWithEmployments {
     expertProfile: GetProfileDetails;
-    employments: Array<GetEmploymentDetails>;
+    employments: Array<GetEmployment>;
 }

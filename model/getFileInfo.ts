@@ -16,7 +16,7 @@ export interface GetFileInfo {
     token: string;
     accountId: string;
     name?: string;
-    size?: any;
+    size?: number;
     isUploaded: boolean;
     status: GetFileInfo.StatusEnum;
     fileType: GetFileInfo.FileTypeEnum;

@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 import { GetOrganizationDetails } from './getOrganizationDetails';
-import { GetProfileDetails } from './getProfileDetails';
+import { GetProfileDetailsWithEmployment } from './getProfileDetailsWithEmployment';
 import { GetService } from './getService';
 
 
 export interface GetServiceWithEmployees {
     service: GetService;
-    organizationDetails: GetOrganizationDetails;
-    employeesDetails: Array<GetProfileDetails>;
+    organizationDetails?: GetOrganizationDetails;
+    employeesDetails: Array<GetProfileDetailsWithEmployment>;
 }

@@ -13,8 +13,13 @@
 
 export interface PaymentSystem {
     id?: string;
-    slug: string;
-    desc: string;
-    updatedAt: Date;
-    createdAt: Date;
+    name: PaymentSystem.NameEnum;
+}
+export namespace PaymentSystem {
+    export type NameEnum = 'PayPal' | 'PayU' | 'CreditCard';
+    export const NameEnum = {
+        PayPal: 'PayPal' as NameEnum,
+        PayU: 'PayU' as NameEnum,
+        CreditCard: 'CreditCard' as NameEnum
+    }
 }

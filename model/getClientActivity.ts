@@ -22,6 +22,7 @@ export interface GetClientActivity {
     serviceOwnerId?: string;
     serviceUsageDetails?: ServiceUsageDetails;
     financialOperation?: SimpleClientFinancialOperation;
+    paymentSystemName?: GetClientActivity.PaymentSystemNameEnum;
     initializedAt: Date;
 }
 export namespace GetClientActivity {
@@ -30,5 +31,11 @@ export namespace GetClientActivity {
         SERVICEUSAGEEVENT: 'SERVICE_USAGE_EVENT' as ActivityTypeEnum,
         FINANCIALTRANSACTION: 'FINANCIAL_TRANSACTION' as ActivityTypeEnum,
         REFUND: 'REFUND' as ActivityTypeEnum
+    }
+    export type PaymentSystemNameEnum = 'PayPal' | 'PayU' | 'CreditCard';
+    export const PaymentSystemNameEnum = {
+        PayPal: 'PayPal' as PaymentSystemNameEnum,
+        PayU: 'PayU' as PaymentSystemNameEnum,
+        CreditCard: 'CreditCard' as PaymentSystemNameEnum
     }
 }

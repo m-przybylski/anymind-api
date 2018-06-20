@@ -9,8 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ExpertProfile } from './expertProfile';
 import { GetProfile } from './getProfile';
-import { GetProfileDetails } from './getProfileDetails';
 import { GetService } from './getService';
 import { GetTag } from './getTag';
 
@@ -18,6 +18,6 @@ import { GetTag } from './getTag';
 export interface GetMobileServiceDetails {
     service: GetService;
     ownerProfile: GetProfile;
-    employees: Array<GetProfileDetails>;
+    employees: Array<ExpertProfile>;
     tags: Array<GetTag>;
 }

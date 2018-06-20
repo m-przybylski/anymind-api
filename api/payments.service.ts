@@ -21,7 +21,9 @@ import { Observable }                                        from 'rxjs/Observab
 import { ChangeDefaultCreditCard } from '../model/changeDefaultCreditCard';
 import { CreatePayment } from '../model/createPayment';
 import { DefaultCreditCard } from '../model/defaultCreditCard';
+import { DeleteCreditCard } from '../model/deleteCreditCard';
 import { ExecutePayment } from '../model/executePayment';
+import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetCreditCard } from '../model/getCreditCard';
 import { GetOrder } from '../model/getOrder';
 import { GetPayment } from '../model/getPayment';
@@ -31,6 +33,7 @@ import { PaymentLink } from '../model/paymentLink';
 import { PostAddNewCard } from '../model/postAddNewCard';
 import { PostOrder } from '../model/postOrder';
 import { PostPayment } from '../model/postPayment';
+import { ThreeDSecureUrl } from '../model/threeDSecureUrl';
 import { VerifyPayment } from '../model/verifyPayment';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -192,6 +195,49 @@ export class PaymentsService {
 
         return this.httpClient.post<GetPayment>(`${this.basePath}/api/payments/paypal/create-payment`,
             body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Delete credit card
+     * 
+     * @param body Card to delete
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteCreditCardRoute(body: DeleteCreditCard, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
+    public deleteCreditCardRoute(body: DeleteCreditCard, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
+    public deleteCreditCardRoute(body: DeleteCreditCard, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public deleteCreditCardRoute(body: DeleteCreditCard, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling deleteCreditCardRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.delete<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/payments/tpay/credit-card`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -392,9 +438,9 @@ export class PaymentsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postCreditCardRoute(body: PostAddNewCard, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postCreditCardRoute(body: PostAddNewCard, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postCreditCardRoute(body: PostAddNewCard, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postCreditCardRoute(body: PostAddNewCard, observe?: 'body', reportProgress?: boolean): Observable<ThreeDSecureUrl>;
+    public postCreditCardRoute(body: PostAddNewCard, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ThreeDSecureUrl>>;
+    public postCreditCardRoute(body: PostAddNewCard, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ThreeDSecureUrl>>;
     public postCreditCardRoute(body: PostAddNewCard, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postCreditCardRoute.');
@@ -418,7 +464,7 @@ export class PaymentsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/payments/tpay/credit-card`,
+        return this.httpClient.post<ThreeDSecureUrl>(`${this.basePath}/api/payments/tpay/credit-card`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

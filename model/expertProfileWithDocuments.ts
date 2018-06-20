@@ -9,8 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ProfileDocument } from './profileDocument';
 
 
-export interface ChangeDefaultCreditCard {
-    creditCardId?: string;
+export interface ExpertProfileWithDocuments {
+    id: string;
+    name: string;
+    avatar: string;
+    description: string;
+    documents: Array<ProfileDocument>;
 }

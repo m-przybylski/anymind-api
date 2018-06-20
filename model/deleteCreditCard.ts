@@ -11,6 +11,6 @@
  */
 
 
-export interface ChangeDefaultCreditCard {
-    creditCardId?: string;
+export interface DeleteCreditCard {
+    id: string;
 }

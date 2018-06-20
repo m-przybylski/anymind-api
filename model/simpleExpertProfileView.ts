@@ -9,8 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ExpertProfileWithDocuments } from './expertProfileWithDocuments';
+import { GetService } from './getService';
 
 
-export interface ChangeDefaultCreditCard {
-    creditCardId?: string;
+export interface SimpleExpertProfileView {
+    expertProfile: ExpertProfileWithDocuments;
+    services: Array<GetService>;
+    isFavourite: boolean;
 }

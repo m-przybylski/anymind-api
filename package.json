@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@anymind-ng/api",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "swagger client for anymind",
   "author": "AnyMind",
   "keywords": [

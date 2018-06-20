@@ -9,8 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { OrganizationProfileWithDocuments } from './organizationProfileWithDocuments';
+import { ServiceWithEmployments } from './serviceWithEmployments';
 
 
-export interface ChangeDefaultCreditCard {
-    creditCardId?: string;
+export interface OrganizationProfileView {
+    organizationProfile: OrganizationProfileWithDocuments;
+    services: Array<ServiceWithEmployments>;
+    isFavourite: boolean;
 }

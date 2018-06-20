@@ -14,6 +14,6 @@
 export interface GetCreditCard {
     isDefault: boolean;
     maskedNumber: string;
-    cardAuth: string;
+    id: string;
     expiryDate: string;
 }

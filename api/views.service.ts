@@ -20,17 +20,17 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { ClientCallSummary } from '../model/clientCallSummary';
 import { ExpertCallSummary } from '../model/expertCallSummary';
+import { ExpertProfileView } from '../model/expertProfileView';
 import { GetActivityFilters } from '../model/getActivityFilters';
 import { GetCallDetails } from '../model/getCallDetails';
 import { GetClientActivities } from '../model/getClientActivities';
 import { GetDashboardClientExperts } from '../model/getDashboardClientExperts';
-import { GetExpertProfile } from '../model/getExpertProfile';
 import { GetMobileServiceDetails } from '../model/getMobileServiceDetails';
-import { GetOrganizationProfile } from '../model/getOrganizationProfile';
 import { GetPayoutDetails } from '../model/getPayoutDetails';
 import { GetProfileActivities } from '../model/getProfileActivities';
-import { GetSimpleExpertProfile } from '../model/getSimpleExpertProfile';
-import { GetSimpleOrganizationProfile } from '../model/getSimpleOrganizationProfile';
+import { OrganizationProfileView } from '../model/organizationProfileView';
+import { SimpleExpertProfileView } from '../model/simpleExpertProfileView';
+import { SimpleOrganizationProfileView } from '../model/simpleOrganizationProfileView';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -468,9 +468,9 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMobileExpertProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<GetSimpleExpertProfile>;
-    public getMobileExpertProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSimpleExpertProfile>>;
-    public getMobileExpertProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSimpleExpertProfile>>;
+    public getMobileExpertProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<SimpleExpertProfileView>;
+    public getMobileExpertProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SimpleExpertProfileView>>;
+    public getMobileExpertProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SimpleExpertProfileView>>;
     public getMobileExpertProfileRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling getMobileExpertProfileRoute.');
@@ -490,7 +490,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetSimpleExpertProfile>(`${this.basePath}/api/views/mobile/profile/${encodeURIComponent(String(profileId))}/expert`,
+        return this.httpClient.get<SimpleExpertProfileView>(`${this.basePath}/api/views/mobile/profile/${encodeURIComponent(String(profileId))}/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -507,9 +507,9 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMobileOrganizationProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<GetSimpleOrganizationProfile>;
-    public getMobileOrganizationProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSimpleOrganizationProfile>>;
-    public getMobileOrganizationProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSimpleOrganizationProfile>>;
+    public getMobileOrganizationProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<SimpleOrganizationProfileView>;
+    public getMobileOrganizationProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SimpleOrganizationProfileView>>;
+    public getMobileOrganizationProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SimpleOrganizationProfileView>>;
     public getMobileOrganizationProfileRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling getMobileOrganizationProfileRoute.');
@@ -529,7 +529,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetSimpleOrganizationProfile>(`${this.basePath}/api/views/mobile/profile/${encodeURIComponent(String(profileId))}/organization`,
+        return this.httpClient.get<SimpleOrganizationProfileView>(`${this.basePath}/api/views/mobile/profile/${encodeURIComponent(String(profileId))}/organization`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -585,9 +585,9 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getWebExpertProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertProfile>;
-    public getWebExpertProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertProfile>>;
-    public getWebExpertProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertProfile>>;
+    public getWebExpertProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<ExpertProfileView>;
+    public getWebExpertProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ExpertProfileView>>;
+    public getWebExpertProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ExpertProfileView>>;
     public getWebExpertProfileRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling getWebExpertProfileRoute.');
@@ -607,7 +607,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetExpertProfile>(`${this.basePath}/api/views/profile/${encodeURIComponent(String(profileId))}/expert`,
+        return this.httpClient.get<ExpertProfileView>(`${this.basePath}/api/views/profile/${encodeURIComponent(String(profileId))}/expert`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -624,9 +624,9 @@ export class ViewsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getWebOrganizationProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<GetOrganizationProfile>;
-    public getWebOrganizationProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOrganizationProfile>>;
-    public getWebOrganizationProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOrganizationProfile>>;
+    public getWebOrganizationProfileRoute(profileId: string, observe?: 'body', reportProgress?: boolean): Observable<OrganizationProfileView>;
+    public getWebOrganizationProfileRoute(profileId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<OrganizationProfileView>>;
+    public getWebOrganizationProfileRoute(profileId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<OrganizationProfileView>>;
     public getWebOrganizationProfileRoute(profileId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (profileId === null || profileId === undefined) {
             throw new Error('Required parameter profileId was null or undefined when calling getWebOrganizationProfileRoute.');
@@ -646,7 +646,7 @@ export class ViewsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetOrganizationProfile>(`${this.basePath}/api/views/profile/${encodeURIComponent(String(profileId))}/organization`,
+        return this.httpClient.get<OrganizationProfileView>(`${this.basePath}/api/views/profile/${encodeURIComponent(String(profileId))}/organization`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -11,6 +11,9 @@
  */
 
 
-export interface ChangeDefaultCreditCard {
-    creditCardId?: string;
+export interface ExpertProfile {
+    id: string;
+    name: string;
+    avatar: string;
+    description: string;
 }

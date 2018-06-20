@@ -9,19 +9,19 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetProfile } from './getProfile';
+import { MoneyDto } from './moneyDto';
 
 
-export interface PostAddNewCard {
+export interface ServiceWithOwnerProfile {
+    id: string;
+    ownerProfile?: GetProfile;
     name: string;
-    email: string;
-    encryptedCard: string;
-    expiryDate: string;
-    language?: PostAddNewCard.LanguageEnum;
-}
-export namespace PostAddNewCard {
-    export type LanguageEnum = 'pl' | 'en';
-    export const LanguageEnum = {
-        Pl: 'pl' as LanguageEnum,
-        En: 'en' as LanguageEnum
-    }
+    description: string;
+    price: MoneyDto;
+    language: string;
+    isSuspended: boolean;
+    isFreelance: boolean;
+    createdAt: Date;
+    deletedAt?: Date;
 }

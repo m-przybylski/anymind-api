@@ -19,8 +19,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { DeleteEmployments } from '../model/deleteEmployments';
+import { ExpertProfileWithEmployments } from '../model/expertProfileWithEmployments';
 import { GetComment } from '../model/getComment';
-import { GetProfileDetailsWithEmployments } from '../model/getProfileDetailsWithEmployments';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -185,9 +185,9 @@ export class EmploymentService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getEmployeesRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<GetProfileDetailsWithEmployments>>;
-    public getEmployeesRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetProfileDetailsWithEmployments>>>;
-    public getEmployeesRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetProfileDetailsWithEmployments>>>;
+    public getEmployeesRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<ExpertProfileWithEmployments>>;
+    public getEmployeesRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<ExpertProfileWithEmployments>>>;
+    public getEmployeesRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<ExpertProfileWithEmployments>>>;
     public getEmployeesRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -204,7 +204,7 @@ export class EmploymentService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetProfileDetailsWithEmployments>>(`${this.basePath}/api/employments`,
+        return this.httpClient.get<Array<ExpertProfileWithEmployments>>(`${this.basePath}/api/employments`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

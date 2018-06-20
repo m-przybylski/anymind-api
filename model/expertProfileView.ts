@@ -9,8 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { EmploymentWithService } from './employmentWithService';
+import { ExpertProfileWithDocuments } from './expertProfileWithDocuments';
 
 
-export interface ChangeDefaultCreditCard {
-    creditCardId?: string;
+export interface ExpertProfileView {
+    expertProfile: ExpertProfileWithDocuments;
+    employments: Array<EmploymentWithService>;
+    isFavourite: boolean;
 }

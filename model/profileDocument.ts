@@ -12,6 +12,7 @@
 
 
 export interface ProfileDocument {
+    name?: string;
     token: string;
     previews: Array<string>;
 }

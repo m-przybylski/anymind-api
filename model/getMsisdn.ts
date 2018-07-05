@@ -9,15 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ServiceWithOwnerProfile } from './serviceWithOwnerProfile';
 
 
-export interface EmploymentWithService {
-    id: string;
-    serviceDetails: ServiceWithOwnerProfile;
-    employeeId: string;
-    usageCounter: number;
-    commentCounter: number;
-    rating?: number;
-    createdAt: Date;
+export interface GetMsisdn {
+    msisdn: string;
 }

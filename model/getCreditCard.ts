@@ -16,4 +16,16 @@ export interface GetCreditCard {
     maskedNumber: string;
     id: string;
     expiryDate: string;
+    cardType: GetCreditCard.CardTypeEnum;
+    createdAt: Date;
+}
+export namespace GetCreditCard {
+    export type CardTypeEnum = 'AMEX' | 'DINERS' | 'MASTERCARD' | 'VISA' | 'OTHER';
+    export const CardTypeEnum = {
+        AMEX: 'AMEX' as CardTypeEnum,
+        DINERS: 'DINERS' as CardTypeEnum,
+        MASTERCARD: 'MASTERCARD' as CardTypeEnum,
+        VISA: 'VISA' as CardTypeEnum,
+        OTHER: 'OTHER' as CardTypeEnum
+    }
 }

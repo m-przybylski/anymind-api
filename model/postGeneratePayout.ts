@@ -13,6 +13,4 @@
 
 export interface PostGeneratePayout {
     accountId: string;
-    dateFrom: Date;
-    dateTo: Date;
 }

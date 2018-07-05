@@ -15,7 +15,7 @@ import { MoneyDto } from './moneyDto';
 
 export interface ServiceWithOwnerProfile {
     id: string;
-    ownerProfile?: GetProfile;
+    ownerProfile: GetProfile;
     name: string;
     description: string;
     price: MoneyDto;

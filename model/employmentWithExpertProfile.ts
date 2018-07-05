@@ -18,6 +18,6 @@ export interface EmploymentWithExpertProfile {
     employeeProfile: ExpertProfile;
     usageCounter: number;
     commentCounter: number;
-    rating?: any;
+    rating?: number;
     createdAt: Date;
 }

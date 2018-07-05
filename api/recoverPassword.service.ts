@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { GetMsisdn } from '../model/getMsisdn';
 import { GetRecoverMethod } from '../model/getRecoverMethod';
 import { PostRecoverPassword } from '../model/postRecoverPassword';
 import { PostRecoverPasswordVerifyEmailToken } from '../model/postRecoverPasswordVerifyEmailToken';
@@ -112,9 +113,9 @@ export class RecoverPasswordService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe?: 'body', reportProgress?: boolean): Observable<GetMsisdn>;
+    public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetMsisdn>>;
+    public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetMsisdn>>;
     public postRecoverPasswordVerifyEmailRoute(body: PostRecoverPasswordVerifyEmailToken, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling postRecoverPasswordVerifyEmailRoute.');
@@ -138,7 +139,7 @@ export class RecoverPasswordService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/recover-password/verify/email`,
+        return this.httpClient.post<GetMsisdn>(`${this.basePath}/api/recover-password/verify/email`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

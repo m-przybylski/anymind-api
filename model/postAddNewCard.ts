@@ -16,9 +16,18 @@ export interface PostAddNewCard {
     email: string;
     encryptedCard: string;
     expiryDate: string;
+    cardType: PostAddNewCard.CardTypeEnum;
     language?: PostAddNewCard.LanguageEnum;
 }
 export namespace PostAddNewCard {
+    export type CardTypeEnum = 'AMEX' | 'DINERS' | 'MASTERCARD' | 'VISA' | 'OTHER';
+    export const CardTypeEnum = {
+        AMEX: 'AMEX' as CardTypeEnum,
+        DINERS: 'DINERS' as CardTypeEnum,
+        MASTERCARD: 'MASTERCARD' as CardTypeEnum,
+        VISA: 'VISA' as CardTypeEnum,
+        OTHER: 'OTHER' as CardTypeEnum
+    }
     export type LanguageEnum = 'pl' | 'en';
     export const LanguageEnum = {
         Pl: 'pl' as LanguageEnum,

@@ -66,6 +66,7 @@ export * from './getLastConsultation';
 export * from './getLastPayment';
 export * from './getMobileProtectedViews';
 export * from './getMobileServiceDetails';
+export * from './getMsisdn';
 export * from './getOrder';
 export * from './getOrganizationDetails';
 export * from './getPayment';

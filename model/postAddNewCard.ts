@@ -18,6 +18,8 @@ export interface PostAddNewCard {
     expiryDate: string;
     cardType: PostAddNewCard.CardTypeEnum;
     language?: PostAddNewCard.LanguageEnum;
+    redirectUrlOnSuccess?: string;
+    redirectUrlOnFailure?: string;
 }
 export namespace PostAddNewCard {
     export type CardTypeEnum = 'AMEX' | 'DINERS' | 'MASTERCARD' | 'VISA' | 'OTHER';

@@ -13,6 +13,6 @@
 
 export interface Country {
     name: string;
-    iso?: string;
-    currency?: string;
+    iso: string;
+    currency: string;
 }

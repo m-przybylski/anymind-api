@@ -18,7 +18,8 @@ export interface ServiceWithOwnerProfile {
     ownerProfile: GetProfile;
     name: string;
     description: string;
-    price: MoneyDto;
+    netPrice: MoneyDto;
+    grossPrice: MoneyDto;
     language: string;
     isSuspended: boolean;
     isFreelance: boolean;

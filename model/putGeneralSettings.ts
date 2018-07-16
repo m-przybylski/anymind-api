@@ -12,7 +12,7 @@
 
 
 export interface PutGeneralSettings {
-    isAnonymous?: boolean;
+    isAnonymous: boolean;
     nickname?: string;
     avatar?: string;
 }

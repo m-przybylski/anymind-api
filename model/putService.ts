@@ -15,11 +15,11 @@ import { PostServiceTag } from './postServiceTag';
 
 
 export interface PutService {
+    invitations: Array<PostServiceInvitation>;
+    isOwnerEmployee: boolean;
     name: string;
     description: string;
     price: MoneyDto;
-    invitations: Array<PostServiceInvitation>;
     tags: Array<PostServiceTag>;
-    isOwnerEmployee: boolean;
     language: string;
 }

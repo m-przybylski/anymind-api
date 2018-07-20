@@ -21,7 +21,6 @@ import { Observable }                                        from 'rxjs/Observab
 import { ChangeDefaultCreditCard } from '../model/changeDefaultCreditCard';
 import { CreatePayment } from '../model/createPayment';
 import { DefaultCreditCard } from '../model/defaultCreditCard';
-import { DeleteCreditCard } from '../model/deleteCreditCard';
 import { ExecutePayment } from '../model/executePayment';
 import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetCreditCard } from '../model/getCreditCard';
@@ -207,16 +206,16 @@ export class PaymentsService {
     /**
      * Delete credit card
      * 
-     * @param body Card to delete
+     * @param creditCardId creditCardId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteCreditCardRoute(body: DeleteCreditCard, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public deleteCreditCardRoute(body: DeleteCreditCard, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public deleteCreditCardRoute(body: DeleteCreditCard, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
-    public deleteCreditCardRoute(body: DeleteCreditCard, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling deleteCreditCardRoute.');
+    public deleteCreditCardRoute(creditCardId: string, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
+    public deleteCreditCardRoute(creditCardId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
+    public deleteCreditCardRoute(creditCardId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public deleteCreditCardRoute(creditCardId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (creditCardId === null || creditCardId === undefined) {
+            throw new Error('Required parameter creditCardId was null or undefined when calling deleteCreditCardRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -232,12 +231,8 @@ export class PaymentsService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
 
-        return this.httpClient.delete<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/payments/tpay/credit-card`,
+        return this.httpClient.delete<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/payments/tpay/credit-card/${encodeURIComponent(String(creditCardId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

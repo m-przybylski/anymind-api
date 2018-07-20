@@ -19,7 +19,6 @@ export * from './createMsisdnVerificationRequest';
 export * from './createPayment';
 export * from './cropDetails';
 export * from './defaultCreditCard';
-export * from './deleteCreditCard';
 export * from './deleteEmployments';
 export * from './deleteInvitations';
 export * from './employmentWithExpertProfile';

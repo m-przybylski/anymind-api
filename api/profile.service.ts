@@ -18,9 +18,12 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { GetProfile } from '../model/getProfile';
 import { GetProfileWithDocuments } from '../model/getProfileWithDocuments';
 import { GetProfileWithServices } from '../model/getProfileWithServices';
 import { GetProfileWithServicesInvitations } from '../model/getProfileWithServicesInvitations';
+import { PutExpertDetails } from '../model/putExpertDetails';
+import { PutOrganizationDetails } from '../model/putOrganizationDetails';
 import { UpdateProfile } from '../model/updateProfile';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -414,7 +417,95 @@ export class ProfileService {
     }
 
     /**
-     * PUT profile
+     * Create or update expert
+     * 
+     * @param body Expert details
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public putExpertProfileRoute(body: PutExpertDetails, observe?: 'body', reportProgress?: boolean): Observable<GetProfile>;
+    public putExpertProfileRoute(body: PutExpertDetails, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfile>>;
+    public putExpertProfileRoute(body: PutExpertDetails, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfile>>;
+    public putExpertProfileRoute(body: PutExpertDetails, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putExpertProfileRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<GetProfile>(`${this.basePath}/api/profiles/expert`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Create or update organization
+     * 
+     * @param body Organization details
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public putOrganizationProfileRoute(body: PutOrganizationDetails, observe?: 'body', reportProgress?: boolean): Observable<GetProfile>;
+    public putOrganizationProfileRoute(body: PutOrganizationDetails, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfile>>;
+    public putOrganizationProfileRoute(body: PutOrganizationDetails, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfile>>;
+    public putOrganizationProfileRoute(body: PutOrganizationDetails, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putOrganizationProfileRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<GetProfile>(`${this.basePath}/api/profiles/organization`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Update profile
      * 
      * @param body Updated profile
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

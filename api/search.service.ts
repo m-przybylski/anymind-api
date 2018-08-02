@@ -25,7 +25,6 @@ import { PostRetrainSearchEngine } from '../model/postRetrainSearchEngine';
 import { PostSearchRequest } from '../model/postSearchRequest';
 import { PostSuggestQueries } from '../model/postSuggestQueries';
 import { PostSuggestTags } from '../model/postSuggestTags';
-import { RetrainResponse } from '../model/retrainResponse';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -147,9 +146,9 @@ export class SearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe?: 'body', reportProgress?: boolean): Observable<RetrainResponse>;
-    public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RetrainResponse>>;
-    public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RetrainResponse>>;
+    public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public postSearchRetrainRoute(body?: PostRetrainSearchEngine, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -170,7 +169,7 @@ export class SearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<RetrainResponse>(`${this.basePath}/api/search/retrain`,
+        return this.httpClient.post<any>(`${this.basePath}/api/search/retrain`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

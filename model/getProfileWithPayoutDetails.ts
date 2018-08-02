@@ -9,15 +9,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetCompanyInvoiceDetails } from './getCompanyInvoiceDetails';
+import { GetPayoutMethodDto } from './getPayoutMethodDto';
 import { GetProfile } from './getProfile';
-import { GetService } from './getService';
-import { Tag } from './tag';
+import { MoneyDto } from './moneyDto';
 
 
-export interface GetServiceUsageRequest {
+export interface GetProfileWithPayoutDetails {
     profile: GetProfile;
-    service: GetService;
-    tags: Array<Tag>;
-    expert: GetProfile;
-    freeSeconds: number;
+    msisdn: string;
+    email?: string;
+    invoiceDetails?: GetCompanyInvoiceDetails;
+    payoutMethod?: GetPayoutMethodDto;
+    payoutAmount: MoneyDto;
 }

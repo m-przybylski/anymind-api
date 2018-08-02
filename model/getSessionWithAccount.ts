@@ -9,8 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AccountDetails } from './accountDetails';
+import { GetSession } from './getSession';
 
 
-export interface PostRegisterForServiceAvailability {
-    serviceId: string;
+export interface GetSessionWithAccount {
+    session: GetSession;
+    account: AccountDetails;
 }

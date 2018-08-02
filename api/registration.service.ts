@@ -20,7 +20,7 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { GetRegistrationSession } from '../model/getRegistrationSession';
 import { GetRegistrationStatus } from '../model/getRegistrationStatus';
-import { GetSession } from '../model/getSession';
+import { GetSessionWithAccount } from '../model/getSessionWithAccount';
 import { VerificationConfirmation } from '../model/verificationConfirmation';
 import { VerificationRequest } from '../model/verificationRequest';
 
@@ -112,9 +112,9 @@ export class RegistrationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public confirmVerificationRoute(body: VerificationConfirmation, observe?: 'body', reportProgress?: boolean): Observable<GetSession>;
-    public confirmVerificationRoute(body: VerificationConfirmation, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSession>>;
-    public confirmVerificationRoute(body: VerificationConfirmation, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSession>>;
+    public confirmVerificationRoute(body: VerificationConfirmation, observe?: 'body', reportProgress?: boolean): Observable<GetSessionWithAccount>;
+    public confirmVerificationRoute(body: VerificationConfirmation, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSessionWithAccount>>;
+    public confirmVerificationRoute(body: VerificationConfirmation, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSessionWithAccount>>;
     public confirmVerificationRoute(body: VerificationConfirmation, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling confirmVerificationRoute.');
@@ -138,7 +138,7 @@ export class RegistrationService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSession>(`${this.basePath}/api/registration/msisdn/code`,
+        return this.httpClient.post<GetSessionWithAccount>(`${this.basePath}/api/registration/msisdn/code`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

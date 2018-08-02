@@ -19,6 +19,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { GetSession } from '../model/getSession';
+import { GetSessionWithAccount } from '../model/getSessionWithAccount';
 import { LoginCredentials } from '../model/loginCredentials';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -63,9 +64,9 @@ export class SessionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public checkRoute(observe?: 'body', reportProgress?: boolean): Observable<GetSession>;
-    public checkRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSession>>;
-    public checkRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSession>>;
+    public checkRoute(observe?: 'body', reportProgress?: boolean): Observable<GetSessionWithAccount>;
+    public checkRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSessionWithAccount>>;
+    public checkRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSessionWithAccount>>;
     public checkRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -82,7 +83,7 @@ export class SessionService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetSession>(`${this.basePath}/api/session`,
+        return this.httpClient.get<GetSessionWithAccount>(`${this.basePath}/api/session`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -134,9 +135,9 @@ export class SessionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public login(body: LoginCredentials, observe?: 'body', reportProgress?: boolean): Observable<GetSession>;
-    public login(body: LoginCredentials, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSession>>;
-    public login(body: LoginCredentials, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSession>>;
+    public login(body: LoginCredentials, observe?: 'body', reportProgress?: boolean): Observable<GetSessionWithAccount>;
+    public login(body: LoginCredentials, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetSessionWithAccount>>;
+    public login(body: LoginCredentials, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetSessionWithAccount>>;
     public login(body: LoginCredentials, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling login.');
@@ -160,7 +161,7 @@ export class SessionService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<GetSession>(`${this.basePath}/api/session`,
+        return this.httpClient.post<GetSessionWithAccount>(`${this.basePath}/api/session`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

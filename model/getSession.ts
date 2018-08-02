@@ -9,7 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { AccountDetails } from './accountDetails';
 
 
 export interface GetSession {
@@ -17,9 +16,8 @@ export interface GetSession {
     apiKey: string;
     userAgent?: string;
     ipAddress: string;
-    country: string;
+    country?: string;
     city?: string;
     isExpired: boolean;
     lastActivityAt: Date;
-    account?: AccountDetails;
 }

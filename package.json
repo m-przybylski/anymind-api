@@ -19,7 +19,8 @@
     "build": "ng-packagr -p package.json",
     "publish:lib": "npm publish ./dist",
     "publish:lib:next": "npm publish --tag next ./dist",
-    "gen": "swagger-codegen generate -i https://api.dev.profitelo.pl/api/docs/swagger/swagger.json -l typescript-angular -t typescript-angular"
+    "gen": "swagger-codegen generate -i https://api.dev.profitelo.pl/api/docs/swagger/swagger.json -l typescript-angular -t typescript-angular",
+    "ci-test": "npm run build"
   },
   "peerDependencies": {
     "@angular/common": "^5.2.0",

@@ -14,6 +14,7 @@ import { PaymentsService } from './api/payments.service';
 import { PayoutsService } from './api/payouts.service';
 import { PresenceService } from './api/presence.service';
 import { ProfileService } from './api/profile.service';
+import { PromoCodesService } from './api/promoCodes.service';
 import { RatelService } from './api/ratel.service';
 import { RecoverPasswordService } from './api/recoverPassword.service';
 import { RegistrationService } from './api/registration.service';
@@ -42,6 +43,7 @@ import { WsService } from './api/ws.service';
     PayoutsService,
     PresenceService,
     ProfileService,
+    PromoCodesService,
     RatelService,
     RecoverPasswordService,
     RegistrationService,

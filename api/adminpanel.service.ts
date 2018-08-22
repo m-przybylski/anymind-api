@@ -31,9 +31,11 @@ import { GetExpertComplaint } from '../model/getExpertComplaint';
 import { GetPayoutDto } from '../model/getPayoutDto';
 import { GetProfile } from '../model/getProfile';
 import { GetProfileWithPayoutDetails } from '../model/getProfileWithPayoutDetails';
+import { GetPromoCode } from '../model/getPromoCode';
 import { GetTechnicalProblem } from '../model/getTechnicalProblem';
 import { MoneyDto } from '../model/moneyDto';
 import { PostGeneratePayout } from '../model/postGeneratePayout';
+import { PostPromoCodes } from '../model/postPromoCodes';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -600,6 +602,74 @@ export class AdminpanelService {
     }
 
     /**
+     * Get promo codes
+     * 
+     * @param limit Int
+     * @param offset Int
+     * @param dateFrom Instant
+     * @param dateTo Instant
+     * @param issuer string
+     * @param status PromoCodeStatus
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getPromoCodesRoute(limit: string, offset: string, dateFrom?: string, dateTo?: string, issuer?: string, status?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<GetPromoCode>>;
+    public getPromoCodesRoute(limit: string, offset: string, dateFrom?: string, dateTo?: string, issuer?: string, status?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetPromoCode>>>;
+    public getPromoCodesRoute(limit: string, offset: string, dateFrom?: string, dateTo?: string, issuer?: string, status?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetPromoCode>>>;
+    public getPromoCodesRoute(limit: string, offset: string, dateFrom?: string, dateTo?: string, issuer?: string, status?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getPromoCodesRoute.');
+        }
+        if (offset === null || offset === undefined) {
+            throw new Error('Required parameter offset was null or undefined when calling getPromoCodesRoute.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+        if (offset !== undefined) {
+            queryParameters = queryParameters.set('offset', <any>offset);
+        }
+        if (dateFrom !== undefined) {
+            queryParameters = queryParameters.set('dateFrom', <any>dateFrom);
+        }
+        if (dateTo !== undefined) {
+            queryParameters = queryParameters.set('dateTo', <any>dateTo);
+        }
+        if (issuer !== undefined) {
+            queryParameters = queryParameters.set('issuer', <any>issuer);
+        }
+        if (status !== undefined) {
+            queryParameters = queryParameters.set('status', <any>status);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<Array<GetPromoCode>>(`${this.basePath}/api/adminpanel/promo-codes`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get list of technical issues
      * 
      * @param limit Int
@@ -968,6 +1038,50 @@ export class AdminpanelService {
         }
 
         return this.httpClient.post<AdminPanelSession>(`${this.basePath}/api/adminpanel/session`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Create promo codes
+     * 
+     * @param body body
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postPromoCodeRoute(body: PostPromoCodes, observe?: 'body', reportProgress?: boolean): Observable<Array<GetPromoCode>>;
+    public postPromoCodeRoute(body: PostPromoCodes, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetPromoCode>>>;
+    public postPromoCodeRoute(body: PostPromoCodes, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetPromoCode>>>;
+    public postPromoCodeRoute(body: PostPromoCodes, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling postPromoCodeRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<Array<GetPromoCode>>(`${this.basePath}/api/adminpanel/promo-codes`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

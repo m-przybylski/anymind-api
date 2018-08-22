@@ -26,16 +26,14 @@ import { Country } from '../model/country';
 import { CreateMsisdnVerificationRequest } from '../model/createMsisdnVerificationRequest';
 import { GetCallInvoiceDetails } from '../model/getCallInvoiceDetails';
 import { GetCompanyInvoiceDetails } from '../model/getCompanyInvoiceDetails';
-import { GetMobileProtectedViews } from '../model/getMobileProtectedViews';
 import { GetPersonalInvoiceDetails } from '../model/getPersonalInvoiceDetails';
 import { GetSessionWithAccount } from '../model/getSessionWithAccount';
 import { PatchAccount } from '../model/patchAccount';
-import { PatchMobileViewsPermissions } from '../model/patchMobileViewsPermissions';
 import { PostCallInvoiceDetails } from '../model/postCallInvoiceDetails';
 import { PostCompanyInvoiceDetails } from '../model/postCompanyInvoiceDetails';
-import { PostMobileViewsPermissions } from '../model/postMobileViewsPermissions';
 import { PostPersonalInvoiceDetails } from '../model/postPersonalInvoiceDetails';
 import { PutAccount } from '../model/putAccount';
+import { PutAnonymitySettings } from '../model/putAnonymitySettings';
 import { PutGeneralSettings } from '../model/putGeneralSettings';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -316,41 +314,6 @@ export class AccountService {
     }
 
     /**
-     * Get mobile protected views
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getMobileProtectedViewsRoute(observe?: 'body', reportProgress?: boolean): Observable<GetMobileProtectedViews>;
-    public getMobileProtectedViewsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetMobileProtectedViews>>;
-    public getMobileProtectedViewsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetMobileProtectedViews>>;
-    public getMobileProtectedViewsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<GetMobileProtectedViews>(`${this.basePath}/api/accounts/mobile-permissions/protected-views`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Get payout invoice details for person
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -489,50 +452,6 @@ export class AccountService {
         }
 
         return this.httpClient.post<any>(`${this.basePath}/api/accounts/settings/msisdn-verification/create`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Patch mobile pin with protected views
-     * 
-     * @param body PatchMobileViewsPermissions
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public patchMobileViewsPermissionsRoute(body: PatchMobileViewsPermissions, observe?: 'body', reportProgress?: boolean): Observable<Account>;
-    public patchMobileViewsPermissionsRoute(body: PatchMobileViewsPermissions, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Account>>;
-    public patchMobileViewsPermissionsRoute(body: PatchMobileViewsPermissions, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Account>>;
-    public patchMobileViewsPermissionsRoute(body: PatchMobileViewsPermissions, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling patchMobileViewsPermissionsRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.patch<Account>(`${this.basePath}/api/accounts/mobile-permissions`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -760,50 +679,6 @@ export class AccountService {
     }
 
     /**
-     * Post mobile pin with protected views
-     * 
-     * @param body PostMobileViewsPermissions
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postMobilePinRoute(body: PostMobileViewsPermissions, observe?: 'body', reportProgress?: boolean): Observable<Account>;
-    public postMobilePinRoute(body: PostMobileViewsPermissions, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Account>>;
-    public postMobilePinRoute(body: PostMobileViewsPermissions, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Account>>;
-    public postMobilePinRoute(body: PostMobileViewsPermissions, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postMobilePinRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<Account>(`${this.basePath}/api/accounts/mobile-permissions`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Post payout invoice details for person
      * 
      * @param body Create client invoice details
@@ -896,6 +771,50 @@ export class AccountService {
     }
 
     /**
+     * Put anonymity settings
+     * 
+     * @param body Anonymity settings
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public putAnonymitySettingsRoute(body: PutAnonymitySettings, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public putAnonymitySettingsRoute(body: PutAnonymitySettings, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public putAnonymitySettingsRoute(body: PutAnonymitySettings, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public putAnonymitySettingsRoute(body: PutAnonymitySettings, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putAnonymitySettingsRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<any>(`${this.basePath}/api/accounts/settings/anonymity`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Put general settings
      * 
      * @param body General settings
@@ -966,45 +885,6 @@ export class AccountService {
 
         return this.httpClient.post<any>(`${this.basePath}/api/accounts/settings/mobile/change-password/sms`,
             null,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Validate mobile pin
-     * 
-     * @param pin mobile pin
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public validateMobilePinRoute(pin: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public validateMobilePinRoute(pin: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public validateMobilePinRoute(pin: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public validateMobilePinRoute(pin: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (pin === null || pin === undefined) {
-            throw new Error('Required parameter pin was null or undefined when calling validateMobilePinRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<any>(`${this.basePath}/api/accounts/mobile-permissions/${encodeURIComponent(String(pin))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

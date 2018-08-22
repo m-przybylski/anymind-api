@@ -9,15 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetAccountDetails } from './getAccountDetails';
-import { GetService } from './getService';
-import { MoneyDto } from './moneyDto';
+import { JValue } from './jValue';
 
 
-export interface ExpertCallSummary {
-    sueId: string;
-    service: GetService;
-    profit: MoneyDto;
-    callDuration: number;
-    clientDetails: GetAccountDetails;
+export interface PostStartRatelCall {
+    metadata?: JValue;
 }

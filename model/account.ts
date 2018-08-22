@@ -9,7 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { AccountSettings } from './accountSettings';
+import { GetAccountDetails } from './getAccountDetails';
 
 
 export interface Account {
@@ -21,10 +21,9 @@ export interface Account {
     deletedAt?: Date;
     isBlocked: boolean;
     hasPassword: boolean;
-    hasMobilePin: boolean;
     isClientCompany: boolean;
-    settings: AccountSettings;
+    isAnonymous: boolean;
+    details: GetAccountDetails;
     currency: string;
     countryISO: string;
-    protectedViews: Array<string>;
 }

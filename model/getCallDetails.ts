@@ -9,7 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetClientDetails } from './getClientDetails';
+import { GetAccountDetails } from './getAccountDetails';
 import { GetCommentDetails } from './getCommentDetails';
 import { GetProfile } from './getProfile';
 import { GetService } from './getService';
@@ -22,7 +22,7 @@ export interface GetCallDetails {
     isRecommendable: boolean;
     recommendedTags: Array<GetTag>;
     comment?: GetCommentDetails;
-    clientDetails: GetClientDetails;
+    clientDetails: GetAccountDetails;
     service: GetService;
     serviceOwnerProfile: GetProfile;
     expertProfile: GetProfile;

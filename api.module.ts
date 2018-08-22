@@ -22,6 +22,7 @@ import { SearchService } from './api/search.service';
 import { ServiceService } from './api/service.service';
 import { ServiceUsageEventService } from './api/serviceUsageEvent.service';
 import { SessionService } from './api/session.service';
+import { VersionService } from './api/version.service';
 import { ViewsService } from './api/views.service';
 import { WidgetService } from './api/widget.service';
 import { WizardService } from './api/wizard.service';
@@ -51,6 +52,7 @@ import { WsService } from './api/ws.service';
     ServiceService,
     ServiceUsageEventService,
     SessionService,
+    VersionService,
     ViewsService,
     WidgetService,
     WizardService,

@@ -9,8 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GetAccountDetails } from './getAccountDetails';
 import { GetAnswer } from './getAnswer';
-import { GetClientDetails } from './getClientDetails';
 
 
 export interface GetComment {
@@ -20,6 +20,6 @@ export interface GetComment {
     answer?: GetAnswer;
     callDurationInSeconds: number;
     isRecommended: boolean;
-    clientDetails: GetClientDetails;
+    clientDetails: GetAccountDetails;
     createdAt: Date;
 }

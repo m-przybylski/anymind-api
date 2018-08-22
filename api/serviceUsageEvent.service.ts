@@ -19,8 +19,10 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { GetClientComplaint } from '../model/getClientComplaint';
+import { GetExpertComplaint } from '../model/getExpertComplaint';
 import { GetExpertSueDetails } from '../model/getExpertSueDetails';
 import { GetSueRating } from '../model/getSueRating';
+import { GetTechnicalProblem } from '../model/getTechnicalProblem';
 import { PostClientComplaint } from '../model/postClientComplaint';
 import { PostComment } from '../model/postComment';
 import { PostCommentAnswer } from '../model/postCommentAnswer';
@@ -219,6 +221,45 @@ export class ServiceUsageEventService {
     }
 
     /**
+     * Get expert complaint
+     * 
+     * @param sueId sueId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getExpertComplaintRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetExpertComplaint>;
+    public getExpertComplaintRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetExpertComplaint>>;
+    public getExpertComplaintRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetExpertComplaint>>;
+    public getExpertComplaintRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (sueId === null || sueId === undefined) {
+            throw new Error('Required parameter sueId was null or undefined when calling getExpertComplaintRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetExpertComplaint>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/expert-complaint`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get service usage event details for expert
      * 
      * @param ratelCallId ratelCallId
@@ -264,9 +305,9 @@ export class ServiceUsageEventService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getTechnicalProblemRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public getTechnicalProblemRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public getTechnicalProblemRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getTechnicalProblemRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<GetTechnicalProblem>;
+    public getTechnicalProblemRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetTechnicalProblem>>;
+    public getTechnicalProblemRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetTechnicalProblem>>;
     public getTechnicalProblemRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (sueId === null || sueId === undefined) {
             throw new Error('Required parameter sueId was null or undefined when calling getTechnicalProblemRoute.');
@@ -286,7 +327,7 @@ export class ServiceUsageEventService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<any>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/technical-problem`,
+        return this.httpClient.get<GetTechnicalProblem>(`${this.basePath}/api/service-usage-event/${encodeURIComponent(String(sueId))}/technical-problem`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

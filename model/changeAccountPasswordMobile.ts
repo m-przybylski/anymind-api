@@ -13,6 +13,5 @@
 
 export interface ChangeAccountPasswordMobile {
     newPassword: string;
-    token?: string;
-    mobilePin?: string;
+    token: string;
 }

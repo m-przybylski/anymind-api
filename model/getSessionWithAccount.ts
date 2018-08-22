@@ -9,11 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { AccountDetails } from './accountDetails';
+import { Account } from './account';
 import { GetSession } from './getSession';
 
 
 export interface GetSessionWithAccount {
     session: GetSession;
-    account: AccountDetails;
+    account: Account;
+    isCompany: boolean;
+    isExpert: boolean;
 }

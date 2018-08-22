@@ -21,6 +21,7 @@ import { Observable }                                        from 'rxjs/Observab
 import { CreateCallHook } from '../model/createCallHook';
 import { GetSUERatelCall } from '../model/getSUERatelCall';
 import { PostBriefcaseUserConfig } from '../model/postBriefcaseUserConfig';
+import { PostStartRatelCall } from '../model/postStartRatelCall';
 import { RatelCallDetails } from '../model/ratelCallDetails';
 import { RatelRoomDetails } from '../model/ratelRoomDetails';
 import { SignedAgent } from '../model/signedAgent';
@@ -352,13 +353,14 @@ export class RatelService {
      * 
      * @param sueId ServiceUsageEventId
      * @param xDeviceId deviceId
+     * @param body body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postStartCallRoute(sueId: string, xDeviceId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postStartCallRoute(sueId: string, xDeviceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postStartCallRoute(sueId: string, xDeviceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postStartCallRoute(sueId: string, xDeviceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public postStartCallRoute(sueId: string, xDeviceId: string, body?: PostStartRatelCall, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postStartCallRoute(sueId: string, xDeviceId: string, body?: PostStartRatelCall, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postStartCallRoute(sueId: string, xDeviceId: string, body?: PostStartRatelCall, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postStartCallRoute(sueId: string, xDeviceId: string, body?: PostStartRatelCall, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (sueId === null || sueId === undefined) {
             throw new Error('Required parameter sueId was null or undefined when calling postStartCallRoute.');
         }
@@ -382,9 +384,13 @@ export class RatelService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
 
         return this.httpClient.post<any>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/start`,
-            null,
+            body,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

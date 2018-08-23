@@ -18,6 +18,7 @@ export interface EmploymentWithService {
     employeeId: string;
     usageCounter: number;
     commentCounter: number;
+    ratingCounter: number;
     rating?: number;
     createdAt: Date;
 }

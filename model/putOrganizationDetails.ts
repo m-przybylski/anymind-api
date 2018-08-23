@@ -16,5 +16,5 @@ export interface PutOrganizationDetails {
     logo: string;
     description: string;
     files: Array<string>;
-    links: Array<string>;
+    links?: Array<string>;
 }

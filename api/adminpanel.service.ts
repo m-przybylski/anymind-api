@@ -29,10 +29,10 @@ import { GetCounters } from '../model/getCounters';
 import { GetExpertComplaint } from '../model/getExpertComplaint';
 import { GetPayoutDto } from '../model/getPayoutDto';
 import { GetProfile } from '../model/getProfile';
-import { GetProfileBalance } from '../model/getProfileBalance';
 import { GetProfileWithPayoutDetails } from '../model/getProfileWithPayoutDetails';
 import { GetPromoCode } from '../model/getPromoCode';
 import { GetTechnicalProblem } from '../model/getTechnicalProblem';
+import { MoneyDto } from '../model/moneyDto';
 import { PostAdminPanelAccount } from '../model/postAdminPanelAccount';
 import { PostGeneratePayout } from '../model/postGeneratePayout';
 import { PostPromoCodes } from '../model/postPromoCodes';
@@ -406,9 +406,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProfileBalanceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<GetProfileBalance>;
-    public getProfileBalanceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfileBalance>>;
-    public getProfileBalanceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfileBalance>>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<MoneyDto>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MoneyDto>>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MoneyDto>>;
     public getProfileBalanceRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling getProfileBalanceRoute.');
@@ -428,7 +428,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetProfileBalance>(`${this.basePath}/api/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

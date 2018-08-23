@@ -15,6 +15,6 @@ export interface PartialExpertDetails {
     name?: string;
     avatar?: string;
     description?: string;
-    files: Array<string>;
-    links: Array<string>;
+    files?: Array<string>;
+    links?: Array<string>;
 }

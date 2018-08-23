@@ -15,6 +15,6 @@ export interface PartialOrganizationDetails {
     name?: string;
     logo?: string;
     description?: string;
-    files: Array<string>;
-    links: Array<string>;
+    files?: Array<string>;
+    links?: Array<string>;
 }

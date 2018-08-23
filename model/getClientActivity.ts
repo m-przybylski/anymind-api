@@ -11,7 +11,6 @@
  */
 import { ServiceUsageDetails } from './serviceUsageDetails';
 import { SimpleClientFinancialOperation } from './simpleClientFinancialOperation';
-import { SimplePromoCodeOperation } from './simplePromoCodeOperation';
 
 
 export interface GetClientActivity {
@@ -23,7 +22,6 @@ export interface GetClientActivity {
     serviceOwnerId?: string;
     serviceUsageDetails?: ServiceUsageDetails;
     financialOperation?: SimpleClientFinancialOperation;
-    promoCodeOperation?: SimplePromoCodeOperation;
     paymentSystemName?: GetClientActivity.PaymentSystemNameEnum;
     initializedAt: Date;
 }

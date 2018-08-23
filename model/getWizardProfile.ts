@@ -20,5 +20,5 @@ export interface GetWizardProfile {
     isSummary: boolean;
     organizationDetailsOption?: PartialOrganizationDetails;
     expertDetailsOption?: PartialExpertDetails;
-    services: Array<GetWizardService>;
+    services?: Array<GetWizardService>;
 }

@@ -11,10 +11,15 @@
  */
 
 
-export interface PartialExpertDetails {
-    name?: string;
-    avatar?: string;
-    description?: string;
-    files: Array<string>;
-    links: Array<string>;
+export interface PutRole {
+    email: string;
+    role: PutRole.RoleEnum;
+}
+export namespace PutRole {
+    export type RoleEnum = 'ADMIN' | 'ACCOUNTANT' | 'USER';
+    export const RoleEnum = {
+        ADMIN: 'ADMIN' as RoleEnum,
+        ACCOUNTANT: 'ACCOUNTANT' as RoleEnum,
+        USER: 'USER' as RoleEnum
+    }
 }

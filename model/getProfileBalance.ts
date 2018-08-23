@@ -9,12 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { MoneyDto } from './moneyDto';
 
 
-export interface PartialExpertDetails {
-    name?: string;
-    avatar?: string;
-    description?: string;
-    files: Array<string>;
-    links: Array<string>;
+export interface GetProfileBalance {
+    balance: MoneyDto;
 }

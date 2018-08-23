@@ -19,7 +19,7 @@ export interface GetWizardService {
     description: string;
     price: MoneyDto;
     tags: Array<WizardTag>;
-    invitations?: Array<PostServiceInvitation>;
+    invitations: Array<PostServiceInvitation>;
     isOwnerEmployee: boolean;
     isFreelance: boolean;
     language: string;

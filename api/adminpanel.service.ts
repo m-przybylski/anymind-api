@@ -21,21 +21,23 @@ import { Observable }                                        from 'rxjs/Observab
 import { AdminPanelLogin } from '../model/adminPanelLogin';
 import { AdminPanelSession } from '../model/adminPanelSession';
 import { GetActivities } from '../model/getActivities';
+import { GetAdminPanelAccount } from '../model/getAdminPanelAccount';
 import { GetCallDetails } from '../model/getCallDetails';
 import { GetClientActivity } from '../model/getClientActivity';
 import { GetClientComplaint } from '../model/getClientComplaint';
-import { GetClosedBetaExpert } from '../model/getClosedBetaExpert';
-import { GetClosedBetaExperts } from '../model/getClosedBetaExperts';
 import { GetCounters } from '../model/getCounters';
 import { GetExpertComplaint } from '../model/getExpertComplaint';
 import { GetPayoutDto } from '../model/getPayoutDto';
 import { GetProfile } from '../model/getProfile';
+import { GetProfileBalance } from '../model/getProfileBalance';
 import { GetProfileWithPayoutDetails } from '../model/getProfileWithPayoutDetails';
 import { GetPromoCode } from '../model/getPromoCode';
 import { GetTechnicalProblem } from '../model/getTechnicalProblem';
-import { MoneyDto } from '../model/moneyDto';
+import { PostAdminPanelAccount } from '../model/postAdminPanelAccount';
 import { PostGeneratePayout } from '../model/postGeneratePayout';
 import { PostPromoCodes } from '../model/postPromoCodes';
+import { PutPassword } from '../model/putPassword';
+import { PutRole } from '../model/putRole';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -72,45 +74,6 @@ export class AdminpanelService {
         return false;
     }
 
-
-    /**
-     * Delete expert from closed beta list
-     * 
-     * @param msisdn msisdn
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteClosedBetaExpertRoute(msisdn: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteClosedBetaExpertRoute(msisdn: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (msisdn === null || msisdn === undefined) {
-            throw new Error('Required parameter msisdn was null or undefined when calling deleteClosedBetaExpertRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.delete<any>(`${this.basePath}/api/adminpanel/closed-beta-experts/${encodeURIComponent(String(msisdn))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
 
     /**
      * Get lists of account activities
@@ -163,6 +126,41 @@ export class AdminpanelService {
         return this.httpClient.get<GetActivities>(`${this.basePath}/api/adminpanel/account-activities`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * List all adminpanel accounts
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAccountsRoute(observe?: 'body', reportProgress?: boolean): Observable<GetAdminPanelAccount>;
+    public getAccountsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetAdminPanelAccount>>;
+    public getAccountsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetAdminPanelAccount>>;
+    public getAccountsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<GetAdminPanelAccount>(`${this.basePath}/api/adminpanel/accounts`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -271,80 +269,6 @@ export class AdminpanelService {
         return this.httpClient.get<Array<GetClientActivity>>(`${this.basePath}/api/adminpanel/client-activities`,
             {
                 params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get closed beta expert list
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getClosedBetaExpertListRoute(observe?: 'body', reportProgress?: boolean): Observable<GetClosedBetaExperts>;
-    public getClosedBetaExpertListRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClosedBetaExperts>>;
-    public getClosedBetaExpertListRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClosedBetaExperts>>;
-    public getClosedBetaExpertListRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<GetClosedBetaExperts>(`${this.basePath}/api/adminpanel/closed-beta-experts`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Check if expert is registered for closed beta
-     * 
-     * @param msisdn msisdn
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getClosedBetaExpertRoute(msisdn: string, observe?: 'body', reportProgress?: boolean): Observable<GetClosedBetaExpert>;
-    public getClosedBetaExpertRoute(msisdn: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClosedBetaExpert>>;
-    public getClosedBetaExpertRoute(msisdn: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClosedBetaExpert>>;
-    public getClosedBetaExpertRoute(msisdn: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (msisdn === null || msisdn === undefined) {
-            throw new Error('Required parameter msisdn was null or undefined when calling getClosedBetaExpertRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<GetClosedBetaExpert>(`${this.basePath}/api/adminpanel/closed-beta-experts/${encodeURIComponent(String(msisdn))}`,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -482,9 +406,9 @@ export class AdminpanelService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProfileBalanceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<MoneyDto>;
-    public getProfileBalanceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MoneyDto>>;
-    public getProfileBalanceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MoneyDto>>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<GetProfileBalance>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfileBalance>>;
+    public getProfileBalanceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfileBalance>>;
     public getProfileBalanceRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (accountId === null || accountId === undefined) {
             throw new Error('Required parameter accountId was null or undefined when calling getProfileBalanceRoute.');
@@ -504,7 +428,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
+        return this.httpClient.get<GetProfileBalance>(`${this.basePath}/api/adminpanel/profile-balance/${encodeURIComponent(String(accountId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -785,8 +709,52 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/block`,
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/am-accounts/${encodeURIComponent(String(accountId))}/block`,
             null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Add adminpanel account
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postAccountRoute(body: PostAdminPanelAccount, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAccountRoute(body: PostAdminPanelAccount, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAccountRoute(body: PostAdminPanelAccount, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postAccountRoute(body: PostAdminPanelAccount, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling postAccountRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/accounts`,
+            body,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -825,7 +793,7 @@ export class AdminpanelService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/accounts/${encodeURIComponent(String(accountId))}/unblock`,
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/am-accounts/${encodeURIComponent(String(accountId))}/unblock`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -1093,18 +1061,18 @@ export class AdminpanelService {
     }
 
     /**
-     * Put closed beta expert list
+     * Update account&#39;s password
      * 
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe?: 'body', reportProgress?: boolean): Observable<GetClosedBetaExperts>;
-    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClosedBetaExperts>>;
-    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClosedBetaExperts>>;
-    public putClosedBetaExpertListRoute(body: GetClosedBetaExperts, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public putPasswordRoute(body: PutPassword, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public putPasswordRoute(body: PutPassword, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public putPasswordRoute(body: PutPassword, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public putPasswordRoute(body: PutPassword, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling putClosedBetaExpertListRoute.');
+            throw new Error('Required parameter body was null or undefined when calling putPasswordRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -1125,7 +1093,51 @@ export class AdminpanelService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.put<GetClosedBetaExperts>(`${this.basePath}/api/adminpanel/closed-beta-experts`,
+        return this.httpClient.put<any>(`${this.basePath}/api/adminpanel/accounts/password`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Update account&#39;s role
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public putRoleRoute(body: PutRole, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public putRoleRoute(body: PutRole, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public putRoleRoute(body: PutRole, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public putRoleRoute(body: PutRole, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putRoleRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<any>(`${this.basePath}/api/adminpanel/accounts/role`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

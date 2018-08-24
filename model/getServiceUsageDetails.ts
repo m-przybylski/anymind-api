@@ -19,5 +19,6 @@ export interface GetServiceUsageDetails {
     answeredAt: Date;
     ratePerMinute: MoneyDto;
     financialOperation?: MoneyDto;
+    promoCodeOperation?: MoneyDto;
     callDuration: number;
 }

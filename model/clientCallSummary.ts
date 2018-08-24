@@ -19,7 +19,8 @@ export interface ClientCallSummary {
     sueId: string;
     service: GetService;
     serviceTags: Array<GetTag>;
-    cost: MoneyDto;
+    accountCost: MoneyDto;
+    promoCodeCost: MoneyDto;
     callDuration: number;
     isRecommendable: boolean;
     expertProfile: GetProfile;

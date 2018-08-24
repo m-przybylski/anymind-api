@@ -18,8 +18,9 @@ export interface GetServiceUsageEvent {
     ratelRoomId?: string;
     sueTransactionRequestId?: string;
     clientId: string;
-    clientFinancialOperationId?: string;
     expertId: string;
+    clientFinancialOperationId?: string;
+    promoCodeOperationId?: string;
     expertFinancialOperationId?: string;
     profileFinancialOperationId?: string;
     clientInvoiceId?: string;

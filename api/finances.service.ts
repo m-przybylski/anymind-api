@@ -19,7 +19,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { ClientFinancialOperation } from '../model/clientFinancialOperation';
-import { MoneyDto } from '../model/moneyDto';
+import { GetClientBalance } from '../model/getClientBalance';
+import { GetProfileBalance } from '../model/getProfileBalance';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -63,9 +64,9 @@ export class FinancesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getClientBalanceRoute(observe?: 'body', reportProgress?: boolean): Observable<MoneyDto>;
-    public getClientBalanceRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MoneyDto>>;
-    public getClientBalanceRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MoneyDto>>;
+    public getClientBalanceRoute(observe?: 'body', reportProgress?: boolean): Observable<GetClientBalance>;
+    public getClientBalanceRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetClientBalance>>;
+    public getClientBalanceRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetClientBalance>>;
     public getClientBalanceRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -82,7 +83,7 @@ export class FinancesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/finances/client/balance`,
+        return this.httpClient.get<GetClientBalance>(`${this.basePath}/api/finances/client/balance`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -133,9 +134,9 @@ export class FinancesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProfileBalanceRoute1(observe?: 'body', reportProgress?: boolean): Observable<MoneyDto>;
-    public getProfileBalanceRoute1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MoneyDto>>;
-    public getProfileBalanceRoute1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MoneyDto>>;
+    public getProfileBalanceRoute1(observe?: 'body', reportProgress?: boolean): Observable<GetProfileBalance>;
+    public getProfileBalanceRoute1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProfileBalance>>;
+    public getProfileBalanceRoute1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProfileBalance>>;
     public getProfileBalanceRoute1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -152,7 +153,7 @@ export class FinancesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<MoneyDto>(`${this.basePath}/api/finances/profile/balance`,
+        return this.httpClient.get<GetProfileBalance>(`${this.basePath}/api/finances/profile/balance`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

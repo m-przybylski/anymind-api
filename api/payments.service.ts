@@ -22,7 +22,6 @@ import { ChangeDefaultCreditCard } from '../model/changeDefaultCreditCard';
 import { CreatePayment } from '../model/createPayment';
 import { DefaultCreditCard } from '../model/defaultCreditCard';
 import { ExecutePayment } from '../model/executePayment';
-import { Function1RequestContextFutureRouteResult } from '../model/function1RequestContextFutureRouteResult';
 import { GetCreditCard } from '../model/getCreditCard';
 import { GetOrder } from '../model/getOrder';
 import { GetPayment } from '../model/getPayment';
@@ -210,9 +209,9 @@ export class PaymentsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteCreditCardRoute(creditCardId: string, observe?: 'body', reportProgress?: boolean): Observable<Function1RequestContextFutureRouteResult>;
-    public deleteCreditCardRoute(creditCardId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Function1RequestContextFutureRouteResult>>;
-    public deleteCreditCardRoute(creditCardId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Function1RequestContextFutureRouteResult>>;
+    public deleteCreditCardRoute(creditCardId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteCreditCardRoute(creditCardId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteCreditCardRoute(creditCardId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public deleteCreditCardRoute(creditCardId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (creditCardId === null || creditCardId === undefined) {
             throw new Error('Required parameter creditCardId was null or undefined when calling deleteCreditCardRoute.');
@@ -232,7 +231,7 @@ export class PaymentsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<Function1RequestContextFutureRouteResult>(`${this.basePath}/api/payments/tpay/credit-card/${encodeURIComponent(String(creditCardId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/api/payments/tpay/credit-card/${encodeURIComponent(String(creditCardId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

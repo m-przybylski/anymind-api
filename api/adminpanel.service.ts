@@ -681,6 +681,46 @@ export class AdminpanelService {
     }
 
     /**
+     * Accept comment report
+     * 
+     * @param commentId commentId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postAcceptCommentReportRoute(commentId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAcceptCommentReportRoute(commentId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAcceptCommentReportRoute(commentId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postAcceptCommentReportRoute(commentId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (commentId === null || commentId === undefined) {
+            throw new Error('Required parameter commentId was null or undefined when calling postAcceptCommentReportRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/comments-report/${encodeURIComponent(String(commentId))}/accept`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Block account
      * 
      * @param accountId Account ID
@@ -929,6 +969,86 @@ export class AdminpanelService {
     }
 
     /**
+     * Disable creating free services
+     * 
+     * @param accountId Account ID
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postDisableCreateFreeServiceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postDisableCreateFreeServiceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postDisableCreateFreeServiceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postDisableCreateFreeServiceRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling postDisableCreateFreeServiceRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/am-accounts/${encodeURIComponent(String(accountId))}/disable-free-service`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Enable creating free services
+     * 
+     * @param accountId Account ID
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postEnableCreateFreeServiceRoute(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postEnableCreateFreeServiceRoute(accountId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postEnableCreateFreeServiceRoute(accountId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postEnableCreateFreeServiceRoute(accountId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling postEnableCreateFreeServiceRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/am-accounts/${encodeURIComponent(String(accountId))}/enable-free-service`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Generate payout for given profile
      * 
      * @param body 
@@ -1051,6 +1171,46 @@ export class AdminpanelService {
 
         return this.httpClient.post<Array<GetPromoCode>>(`${this.basePath}/api/adminpanel/promo-codes`,
             body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Reject comment report
+     * 
+     * @param commentId commentId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postRejectCommentReportRoute(commentId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postRejectCommentReportRoute(commentId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postRejectCommentReportRoute(commentId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postRejectCommentReportRoute(commentId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (commentId === null || commentId === undefined) {
+            throw new Error('Required parameter commentId was null or undefined when calling postRejectCommentReportRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/adminpanel/comments-report/${encodeURIComponent(String(commentId))}/reject`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

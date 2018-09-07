@@ -15,6 +15,7 @@ import { SimpleProfileFinancialOperation } from './simpleProfileFinancialOperati
 
 
 export interface GetProfileActivity {
+    id: string;
     accountId: string;
     payoutId?: string;
     activityType: GetProfileActivity.ActivityTypeEnum;

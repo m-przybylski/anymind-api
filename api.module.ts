@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './configuration';
 
 import { AccountService } from './api/account.service';
+import { ActivitiesService } from './api/activities.service';
 import { AdminpanelService } from './api/adminpanel.service';
 import { ConfigService } from './api/config.service';
 import { EmploymentService } from './api/employment.service';
@@ -34,6 +35,7 @@ import { WsService } from './api/ws.service';
   exports:      [],
   providers: [
     AccountService,
+    ActivitiesService,
     AdminpanelService,
     ConfigService,
     EmploymentService,

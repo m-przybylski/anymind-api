@@ -11,10 +11,7 @@
  */
 
 
-export interface PartialExpertDetails {
-    name?: string;
-    avatar?: string;
-    description?: string;
-    files: Array<string>;
-    links: Array<string>;
+export interface GetImportantActivitiesCounters {
+    clientActivitiesCount: number;
+    profileActivitiesCount: number;
 }

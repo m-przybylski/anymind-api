@@ -12,5 +12,5 @@
 
 
 export interface PostServicesIds {
-    serviceIds?: Array<string>;
+    serviceIds: Array<string>;
 }

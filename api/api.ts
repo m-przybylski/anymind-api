@@ -1,5 +1,7 @@
 export * from './account.service';
 import { AccountService } from './account.service';
+export * from './activities.service';
+import { ActivitiesService } from './activities.service';
 export * from './adminpanel.service';
 import { AdminpanelService } from './adminpanel.service';
 export * from './config.service';
@@ -46,4 +48,4 @@ export * from './wizard.service';
 import { WizardService } from './wizard.service';
 export * from './ws.service';
 import { WsService } from './ws.service';
-export const APIS = [AccountService, AdminpanelService, ConfigService, EmploymentService, FilesService, FinancesService, InvitationService, PaymentsService, PayoutsService, PresenceService, ProfileService, PromoCodesService, RatelService, RecoverPasswordService, RegistrationService, SearchService, ServiceService, ServiceUsageEventService, SessionService, VersionService, ViewsService, WidgetService, WizardService, WsService];
+export const APIS = [AccountService, ActivitiesService, AdminpanelService, ConfigService, EmploymentService, FilesService, FinancesService, InvitationService, PaymentsService, PayoutsService, PresenceService, ProfileService, PromoCodesService, RatelService, RecoverPasswordService, RegistrationService, SearchService, ServiceService, ServiceUsageEventService, SessionService, VersionService, ViewsService, WidgetService, WizardService, WsService];

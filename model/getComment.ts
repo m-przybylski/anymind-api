@@ -11,13 +11,16 @@
  */
 import { GetAccountDetails } from './getAccountDetails';
 import { GetAnswer } from './getAnswer';
+import { GetReport } from './getReport';
 
 
 export interface GetComment {
     commentId: string;
     content: string;
     expertId: string;
+    sueId: string;
     answer?: GetAnswer;
+    report?: GetReport;
     callDurationInSeconds: number;
     isRecommended: boolean;
     clientDetails: GetAccountDetails;

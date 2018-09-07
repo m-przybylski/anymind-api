@@ -15,6 +15,7 @@ import { SimplePromoCodeOperation } from './simplePromoCodeOperation';
 
 
 export interface GetClientActivity {
+    id: string;
     accountId: string;
     activityType: GetClientActivity.ActivityTypeEnum;
     serviceId?: string;

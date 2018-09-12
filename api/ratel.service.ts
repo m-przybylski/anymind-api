@@ -20,11 +20,8 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { CreateCallHook } from '../model/createCallHook';
 import { GetSUERatelCall } from '../model/getSUERatelCall';
-import { PostBriefcaseUserConfig } from '../model/postBriefcaseUserConfig';
 import { PostStartRatelCall } from '../model/postStartRatelCall';
-import { RatelCallDetails } from '../model/ratelCallDetails';
 import { RatelRoomDetails } from '../model/ratelRoomDetails';
-import { SignedAgent } from '../model/signedAgent';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -61,85 +58,6 @@ export class RatelService {
         return false;
     }
 
-
-    /**
-     * Get config for ratel authentication
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getRatelAuthConfigRoute(observe?: 'body', reportProgress?: boolean): Observable<SignedAgent>;
-    public getRatelAuthConfigRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SignedAgent>>;
-    public getRatelAuthConfigRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SignedAgent>>;
-    public getRatelAuthConfigRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<SignedAgent>(`${this.basePath}/api/ratel/config`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Store briefcase user id for ratel authentication
-     * 
-     * @param body body
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postBriefcaseUserConfigRoute(body: PostBriefcaseUserConfig, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postBriefcaseUserConfigRoute(body: PostBriefcaseUserConfig, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postBriefcaseUserConfigRoute(body: PostBriefcaseUserConfig, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postBriefcaseUserConfigRoute(body: PostBriefcaseUserConfig, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postBriefcaseUserConfigRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/api/ratel/config/user`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
 
     /**
      * Create call
@@ -262,46 +180,6 @@ export class RatelService {
         ];
 
         return this.httpClient.post<RatelRoomDetails>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/room/create`,
-            null,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Hook on call stop
-     * 
-     * @param sueId ServiceUsageEventId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public postRatelStopCallRoute(sueId: string, observe?: 'body', reportProgress?: boolean): Observable<RatelCallDetails>;
-    public postRatelStopCallRoute(sueId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RatelCallDetails>>;
-    public postRatelStopCallRoute(sueId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RatelCallDetails>>;
-    public postRatelStopCallRoute(sueId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (sueId === null || sueId === undefined) {
-            throw new Error('Required parameter sueId was null or undefined when calling postRatelStopCallRoute.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.post<RatelCallDetails>(`${this.basePath}/api/ratel/call/${encodeURIComponent(String(sueId))}/stop`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

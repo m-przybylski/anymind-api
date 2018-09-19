@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import { GetPayoutMethod } from './getPayoutMethod';
-import { ServiceName } from './serviceName';
 import { ServiceUsageDetails } from './serviceUsageDetails';
 import { SimpleProfileFinancialOperation } from './simpleProfileFinancialOperation';
 
@@ -22,7 +21,7 @@ export interface GetProfileActivity {
     activityType: GetProfileActivity.ActivityTypeEnum;
     serviceId?: string;
     expertId?: string;
-    serviceName?: ServiceName;
+    serviceName?: string;
     serviceOwnerId?: string;
     isFreelanceService?: boolean;
     serviceUsageDetails?: ServiceUsageDetails;

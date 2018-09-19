@@ -11,7 +11,6 @@
  */
 
 
-export interface PostMobileViewsPermissions {
-    mobilePin: string;
-    protectedViews?: Array<string>;
+export interface ProfileName {
+    value: string;
 }

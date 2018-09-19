@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { GetCompanyInvoiceDetails } from './getCompanyInvoiceDetails';
-import { GetPayoutMethodDto } from './getPayoutMethodDto';
+import { GetPayoutMethod } from './getPayoutMethod';
 import { MoneyDto } from './moneyDto';
 
 
@@ -19,7 +19,7 @@ export interface GetPayoutDetails {
     requestedAmount: MoneyDto;
     tax: string;
     payoutAmount: MoneyDto;
-    payoutMethod: GetPayoutMethodDto;
+    payoutMethod: GetPayoutMethod;
     companyInvoiceDetails: GetCompanyInvoiceDetails;
     createdAt: Date;
 }

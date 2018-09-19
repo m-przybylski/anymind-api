@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetWizardService } from './getWizardService';
 import { PartialExpertDetails } from './partialExpertDetails';
 import { PartialOrganizationDetails } from './partialOrganizationDetails';
+import { PostService } from './postService';
 
 
 export interface PutWizardProfile {
@@ -20,5 +20,5 @@ export interface PutWizardProfile {
     isSummary: boolean;
     organizationDetailsOption?: PartialOrganizationDetails;
     expertDetailsOption?: PartialExpertDetails;
-    services: Array<GetWizardService>;
+    services: Array<PostService>;
 }

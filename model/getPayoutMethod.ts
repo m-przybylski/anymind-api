@@ -9,9 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetClosedBetaExpert } from './getClosedBetaExpert';
+import { BankAccountDto } from './bankAccountDto';
+import { PayPalAccountDto } from './payPalAccountDto';
 
 
-export interface GetClosedBetaExperts {
-    closedBetaExperts: Array<GetClosedBetaExpert>;
+export interface GetPayoutMethod {
+    payPalAccount?: PayPalAccountDto;
+    bankAccount?: BankAccountDto;
 }

@@ -9,7 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetPayoutMethodDto } from './getPayoutMethodDto';
+import { GetPayoutMethod } from './getPayoutMethod';
+import { ServiceName } from './serviceName';
 import { ServiceUsageDetails } from './serviceUsageDetails';
 import { SimpleProfileFinancialOperation } from './simpleProfileFinancialOperation';
 
@@ -21,12 +22,12 @@ export interface GetProfileActivity {
     activityType: GetProfileActivity.ActivityTypeEnum;
     serviceId?: string;
     expertId?: string;
-    serviceName?: string;
+    serviceName?: ServiceName;
     serviceOwnerId?: string;
     isFreelanceService?: boolean;
     serviceUsageDetails?: ServiceUsageDetails;
     financialOperation?: SimpleProfileFinancialOperation;
-    payoutMethod?: GetPayoutMethodDto;
+    payoutMethod?: GetPayoutMethod;
     initializedAt: Date;
 }
 export namespace GetProfileActivity {

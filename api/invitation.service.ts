@@ -16,7 +16,7 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
-import { Observable }                                        from 'rxjs/Observable';
+import { Observable }                                        from 'rxjs';
 
 import { DeleteInvitations } from '../model/deleteInvitations';
 import { GetInvitation } from '../model/getInvitation';
@@ -290,6 +290,46 @@ export class InvitationService {
 
         return this.httpClient.post<any>(`${this.basePath}/api/invitations`,
             body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Mark invitation as displayed
+     * 
+     * @param invitationId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postInvitationsDisplayedRoute(invitationId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postInvitationsDisplayedRoute(invitationId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postInvitationsDisplayedRoute(invitationId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postInvitationsDisplayedRoute(invitationId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (invitationId === null || invitationId === undefined) {
+            throw new Error('Required parameter invitationId was null or undefined when calling postInvitationsDisplayedRoute.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/invitations/${encodeURIComponent(String(invitationId))}/displayed`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

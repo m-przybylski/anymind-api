@@ -12,5 +12,13 @@
 
 
 export interface PostCommentReport {
-    cause: string;
+    cause: PostCommentReport.CauseEnum;
+}
+export namespace PostCommentReport {
+    export type CauseEnum = 'FALSE_COMMENT' | 'OFFENSIVE_COMMENT' | 'SPAM_COMMENT';
+    export const CauseEnum = {
+        FALSECOMMENT: 'FALSE_COMMENT' as CauseEnum,
+        OFFENSIVECOMMENT: 'OFFENSIVE_COMMENT' as CauseEnum,
+        SPAMCOMMENT: 'SPAM_COMMENT' as CauseEnum
+    }
 }

@@ -9,14 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ProfileDescription } from './profileDescription';
-import { ProfileName } from './profileName';
 
 
 export interface PutExpertDetails {
-    name: ProfileName;
+    name: string;
     avatar: string;
-    description: ProfileDescription;
+    description: string;
     files: Array<string>;
     links: Array<string>;
 }

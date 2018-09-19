@@ -16,10 +16,10 @@ import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
-import { Observable }                                        from 'rxjs/Observable';
+import { Observable }                                        from 'rxjs';
 
-import { GetPayoutMethodDto } from '../model/getPayoutMethodDto';
-import { PutPayoutMethodDto } from '../model/putPayoutMethodDto';
+import { GetPayoutMethod } from '../model/getPayoutMethod';
+import { PutPayoutMethod } from '../model/putPayoutMethod';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -63,9 +63,9 @@ export class PayoutsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getPayoutMethodsRoute(observe?: 'body', reportProgress?: boolean): Observable<GetPayoutMethodDto>;
-    public getPayoutMethodsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayoutMethodDto>>;
-    public getPayoutMethodsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayoutMethodDto>>;
+    public getPayoutMethodsRoute(observe?: 'body', reportProgress?: boolean): Observable<GetPayoutMethod>;
+    public getPayoutMethodsRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetPayoutMethod>>;
+    public getPayoutMethodsRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetPayoutMethod>>;
     public getPayoutMethodsRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -82,7 +82,7 @@ export class PayoutsService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<GetPayoutMethodDto>(`${this.basePath}/api/payouts/payout-method`,
+        return this.httpClient.get<GetPayoutMethod>(`${this.basePath}/api/payouts/payout-method`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -99,10 +99,10 @@ export class PayoutsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public putPayoutMethodRoute(body: PutPayoutMethodDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public putPayoutMethodRoute(body: PutPayoutMethod, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public putPayoutMethodRoute(body: PutPayoutMethod, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public putPayoutMethodRoute(body: PutPayoutMethod, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public putPayoutMethodRoute(body: PutPayoutMethod, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling putPayoutMethodRoute.');
         }

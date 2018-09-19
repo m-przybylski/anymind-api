@@ -6,7 +6,6 @@ import { Configuration } from './configuration';
 import { AccountService } from './api/account.service';
 import { ActivitiesService } from './api/activities.service';
 import { AdminpanelService } from './api/adminpanel.service';
-import { ConfigService } from './api/config.service';
 import { EmploymentService } from './api/employment.service';
 import { FilesService } from './api/files.service';
 import { FinancesService } from './api/finances.service';
@@ -37,7 +36,6 @@ import { WsService } from './api/ws.service';
     AccountService,
     ActivitiesService,
     AdminpanelService,
-    ConfigService,
     EmploymentService,
     FilesService,
     FinancesService,

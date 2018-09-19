@@ -11,6 +11,6 @@
  */
 
 
-export interface GetMobileProtectedViews {
-    protectedViews: Array<string>;
+export interface ServiceName {
+    value: string;
 }

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { GetCompanyInvoiceDetails } from './getCompanyInvoiceDetails';
-import { GetPayoutMethodDto } from './getPayoutMethodDto';
+import { GetPayoutMethod } from './getPayoutMethod';
 import { GetProfile } from './getProfile';
 import { MoneyDto } from './moneyDto';
 
@@ -20,6 +20,6 @@ export interface GetProfileWithPayoutDetails {
     msisdn: string;
     email?: string;
     invoiceDetails?: GetCompanyInvoiceDetails;
-    payoutMethod?: GetPayoutMethodDto;
+    payoutMethod?: GetPayoutMethod;
     payoutAmount: MoneyDto;
 }

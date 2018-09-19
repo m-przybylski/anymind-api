@@ -11,6 +11,6 @@
  */
 
 
-export interface SignedAgent {
-    signature: string;
+export interface ProfileDescription {
+    value: string;
 }

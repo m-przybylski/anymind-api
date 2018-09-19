@@ -9,10 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { BankAccountDto } from './bankAccountDto';
+import { PayPalAccountDto } from './payPalAccountDto';
 
 
-export interface Language {
-    shortcut: string;
-    name: string;
-    nativeName: string;
+export interface PutPayoutMethod {
+    payPalAccount?: PayPalAccountDto;
+    bankAccount?: BankAccountDto;
 }

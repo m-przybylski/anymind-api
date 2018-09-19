@@ -8,7 +8,8 @@
 This starter allows you to create a library for **Angular v5** apps written in _TypeScript_, _ES6_ or _ES5_.
 The project is based on the official _Angular_ packages.
 
-Get the [Changelog](https://git.contactis.pl/itelo/anymind-ng-api/blob/master/CHANGELOG.md).
+Get the [Changelog]
+(https://git.contactis.pl/itelo/anymind-ng-api/blob/develop/CHANGELOG.md).
 
 ## Install dependencies
 * `npm i -g ng-packagr@2.0.0-rc.11`

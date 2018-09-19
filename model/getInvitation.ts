@@ -20,6 +20,7 @@ export interface GetInvitation {
     msisdn?: string;
     employeeId?: string;
     status: GetInvitation.StatusEnum;
+    displayedAt?: Date;
     createdAt: Date;
     updatedAt: Date;
 }

@@ -11,10 +11,6 @@
  */
 
 
-export interface PutOrganizationDetails {
-    name: string;
-    logo: string;
-    description: string;
-    files: Array<string>;
-    links: Array<string>;
+export interface PutMarketingSettings {
+    isMarketingAllowed: boolean;
 }

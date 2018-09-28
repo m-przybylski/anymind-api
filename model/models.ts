@@ -164,6 +164,7 @@ export * from './putAccount';
 export * from './putAnonymitySettings';
 export * from './putExpertDetails';
 export * from './putGeneralSettings';
+export * from './putMarketingSettings';
 export * from './putOrganizationDetails';
 export * from './putPassword';
 export * from './putPayoutMethod';

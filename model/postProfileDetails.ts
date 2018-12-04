@@ -9,18 +9,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MoneyDto } from './moneyDto';
-import { PostServiceInvitation } from './postServiceInvitation';
-import { PostServiceTag } from './postServiceTag';
 
 
-export interface PostService {
-    invitations: Array<PostServiceInvitation>;
-    isOwnerEmployee: boolean;
-    isFreelance: boolean;
+export interface PostProfileDetails {
+    profileType: PostProfileDetails.ProfileTypeEnum;
     name: string;
+    avatar: string;
     description: string;
-    price: MoneyDto;
-    tags: Array<PostServiceTag>;
-    language: string;
+    files: Array<string>;
+    links: Array<string>;
+}
+export namespace PostProfileDetails {
+    export type ProfileTypeEnum = 'EXP' | 'ORG';
+    export const ProfileTypeEnum = {
+        EXP: 'EXP' as ProfileTypeEnum,
+        ORG: 'ORG' as ProfileTypeEnum
+    }
 }

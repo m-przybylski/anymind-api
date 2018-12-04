@@ -11,7 +11,13 @@
  */
 
 
-export interface OrganizationDetailsSearchResponse {
-    name: string;
-    logo: string;
+export interface PostPayout {
+    payoutType: PostPayout.PayoutTypeEnum;
+}
+export namespace PostPayout {
+    export type PayoutTypeEnum = 'PROFILE' | 'PARTNER';
+    export const PayoutTypeEnum = {
+        PROFILE: 'PROFILE' as PayoutTypeEnum,
+        PARTNER: 'PARTNER' as PayoutTypeEnum
+    }
 }

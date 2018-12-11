@@ -25,7 +25,6 @@ import { SessionService } from './api/session.service';
 import { VersionService } from './api/version.service';
 import { ViewsService } from './api/views.service';
 import { WidgetService } from './api/widget.service';
-import { WizardService } from './api/wizard.service';
 import { WsService } from './api/ws.service';
 
 @NgModule({
@@ -55,7 +54,6 @@ import { WsService } from './api/ws.service';
     VersionService,
     ViewsService,
     WidgetService,
-    WizardService,
     WsService ]
 })
 export class ApiModule {

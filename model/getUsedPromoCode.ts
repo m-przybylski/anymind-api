@@ -9,11 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetProfile } from './getProfile';
-import { GetService } from './getService';
+import { MoneyDto } from './moneyDto';
 
 
-export interface GetProfileWithServices {
-    profile: GetProfile;
-    services: Array<GetService>;
+export interface GetUsedPromoCode {
+    id: string;
+    token: string;
+    accountId: string;
+    fullAmount: MoneyDto;
+    usedAmount: MoneyDto;
+    issuer: string;
+    createdAt: Date;
+    updatedAt?: Date;
 }

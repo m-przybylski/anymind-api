@@ -93,6 +93,7 @@ export * from './getSuggestedQueries';
 export * from './getSuggestedTags';
 export * from './getTag';
 export * from './getTechnicalProblem';
+export * from './getUsedPromoCode';
 export * from './getWidget';
 export * from './jValue';
 export * from './loginCredentials';

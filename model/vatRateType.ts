@@ -11,9 +11,5 @@
  */
 
 
-export interface ProfileDocument {
-    name?: string;
-    token: string;
-    previews: Array<string>;
-    contentType: string;
+export interface VatRateType {
 }

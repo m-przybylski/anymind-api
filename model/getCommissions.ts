@@ -9,11 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { MoneyDto } from './moneyDto';
 
 
-export interface ProfileDocument {
-    name?: string;
-    token: string;
-    previews: Array<string>;
-    contentType: string;
+export interface GetCommissions {
+    profileAmount: MoneyDto;
+    partnerAmount?: MoneyDto;
 }

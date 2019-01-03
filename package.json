@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@anymind-ng/api",
-  "version": "0.1.42",
+  "version": "0.1.44",
   "description": "swagger client for anymind",
   "author": "AnyMind",
   "keywords": [
@@ -45,6 +45,6 @@
     "rimraf": "^2.6.2"
   },
   "publishConfig": {
-    "registry": "https://nexus.contactis.pl/repository/npm-internal"
+    "registry": "https://nexus.anymind.com/repository/npm-private"
   }
 }

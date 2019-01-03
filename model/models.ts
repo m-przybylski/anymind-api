@@ -169,6 +169,5 @@ export * from './serviceWithOwnerProfile';
 export * from './simpleExpertProfileView';
 export * from './simpleOrganizationProfileView';
 export * from './threeDSecureUrl';
-export * from './vatRateType';
 export * from './verificationConfirmation';
 export * from './verificationRequest';

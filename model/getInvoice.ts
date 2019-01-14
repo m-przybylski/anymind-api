@@ -11,30 +11,25 @@
  */
 
 
-export interface GetFileInfo {
+export interface GetInvoice {
     id: string;
-    token: string;
     accountId: string;
-    name?: string;
-    size?: number;
-    isUploaded: boolean;
-    status: GetFileInfo.StatusEnum;
-    fileType: GetFileInfo.FileTypeEnum;
+    email: string;
+    invoiceType: GetInvoice.InvoiceTypeEnum;
+    status: GetInvoice.StatusEnum;
     downloadUrl?: string;
-    previews: Array<string>;
-    contentType: string;
-    createdAt: Date;
 }
-export namespace GetFileInfo {
-    export type StatusEnum = 'NEW' | 'ACCEPTED' | 'REJECTED';
+export namespace GetInvoice {
+    export type InvoiceTypeEnum = 'PROFILE' | 'PARTNER';
+    export const InvoiceTypeEnum = {
+        PROFILE: 'PROFILE' as InvoiceTypeEnum,
+        PARTNER: 'PARTNER' as InvoiceTypeEnum
+    }
+    export type StatusEnum = 'NEW' | 'AUTO_ACCEPTED' | 'ACCEPTED' | 'REJECTED';
     export const StatusEnum = {
         NEW: 'NEW' as StatusEnum,
+        AUTOACCEPTED: 'AUTO_ACCEPTED' as StatusEnum,
         ACCEPTED: 'ACCEPTED' as StatusEnum,
         REJECTED: 'REJECTED' as StatusEnum
-    }
-    export type FileTypeEnum = 'PROFILE' | 'CHAT';
-    export const FileTypeEnum = {
-        PROFILE: 'PROFILE' as FileTypeEnum,
-        CHAT: 'CHAT' as FileTypeEnum
     }
 }

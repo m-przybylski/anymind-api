@@ -10,6 +10,7 @@ import { EmploymentService } from './api/employment.service';
 import { FilesService } from './api/files.service';
 import { FinancesService } from './api/finances.service';
 import { InvitationService } from './api/invitation.service';
+import { InvoicesService } from './api/invoices.service';
 import { PaymentsService } from './api/payments.service';
 import { PayoutsService } from './api/payouts.service';
 import { PresenceService } from './api/presence.service';
@@ -39,6 +40,7 @@ import { WsService } from './api/ws.service';
     FilesService,
     FinancesService,
     InvitationService,
+    InvoicesService,
     PaymentsService,
     PayoutsService,
     PresenceService,

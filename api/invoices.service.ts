@@ -18,15 +18,14 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { GetPromoCode } from '../model/getPromoCode';
-import { PostRedeemPromoCode } from '../model/postRedeemPromoCode';
+import { GetInvoice } from '../model/getInvoice';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class PromoCodesService {
+export class InvoicesService {
 
     protected basePath = 'https://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -58,15 +57,19 @@ export class PromoCodesService {
 
 
     /**
-     * GET active promo codes
+     * Get invoice
      * 
+     * @param invoiceId invoiceId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getActivePromoCodesRoute(observe?: 'body', reportProgress?: boolean): Observable<Array<GetPromoCode>>;
-    public getActivePromoCodesRoute(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GetPromoCode>>>;
-    public getActivePromoCodesRoute(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GetPromoCode>>>;
-    public getActivePromoCodesRoute(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getInvoiceRoute(invoiceId: string, observe?: 'body', reportProgress?: boolean): Observable<GetInvoice>;
+    public getInvoiceRoute(invoiceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetInvoice>>;
+    public getInvoiceRoute(invoiceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetInvoice>>;
+    public getInvoiceRoute(invoiceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (invoiceId === null || invoiceId === undefined) {
+            throw new Error('Required parameter invoiceId was null or undefined when calling getInvoiceRoute.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -82,7 +85,7 @@ export class PromoCodesService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<GetPromoCode>>(`${this.basePath}/api/promo-codes`,
+        return this.httpClient.get<GetInvoice>(`${this.basePath}/api/invoices/${encodeURIComponent(String(invoiceId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -93,18 +96,18 @@ export class PromoCodesService {
     }
 
     /**
-     * Redeem promo code
+     * Accept partner invoice
      * 
-     * @param body body
+     * @param invoiceId invoiceId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postRedeemPromoCodeRoute(body: PostRedeemPromoCode, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public postRedeemPromoCodeRoute(body: PostRedeemPromoCode, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public postRedeemPromoCodeRoute(body: PostRedeemPromoCode, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public postRedeemPromoCodeRoute(body: PostRedeemPromoCode, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling postRedeemPromoCodeRoute.');
+    public postAcceptInvoiceRoute(invoiceId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postAcceptInvoiceRoute(invoiceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postAcceptInvoiceRoute(invoiceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postAcceptInvoiceRoute(invoiceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (invoiceId === null || invoiceId === undefined) {
+            throw new Error('Required parameter invoiceId was null or undefined when calling postAcceptInvoiceRoute.');
         }
 
         let headers = this.defaultHeaders;
@@ -120,13 +123,49 @@ export class PromoCodesService {
         // to determine the Content-Type header
         let consumes: string[] = [
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+
+        return this.httpClient.post<any>(`${this.basePath}/api/invoices/${encodeURIComponent(String(invoiceId))}/accept`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Reject partner invoice
+     * 
+     * @param invoiceId invoiceId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public postRejectInvoiceRoute(invoiceId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public postRejectInvoiceRoute(invoiceId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public postRejectInvoiceRoute(invoiceId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public postRejectInvoiceRoute(invoiceId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (invoiceId === null || invoiceId === undefined) {
+            throw new Error('Required parameter invoiceId was null or undefined when calling postRejectInvoiceRoute.');
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/api/promo-codes/redeem`,
-            body,
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.post<any>(`${this.basePath}/api/invoices/${encodeURIComponent(String(invoiceId))}/reject`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

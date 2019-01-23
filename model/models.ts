@@ -125,6 +125,7 @@ export * from './postProfileDetails';
 export * from './postProfileWithInvoiceDetails';
 export * from './postPromoCodes';
 export * from './postRecoverPassword';
+export * from './postRecoverPasswordMsisdnVerify';
 export * from './postRedeemPromoCode';
 export * from './postRegisterForWidgetAvailability';
 export * from './postRetrainSearchEngine';

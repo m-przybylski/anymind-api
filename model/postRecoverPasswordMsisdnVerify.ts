@@ -9,13 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Account } from './account';
-import { GetSession } from './getSession';
 
 
-export interface GetSessionWithAccount {
-    session: GetSession;
-    account: Account;
-    isExpert: boolean;
-    isCompany: boolean;
+export interface PostRecoverPasswordMsisdnVerify {
+    token: string;
+    msisdn: string;
 }

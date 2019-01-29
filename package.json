@@ -50,6 +50,7 @@
     "node-fetch": "^2.3.0",
     "prettier": "^1.16.1",
     "protractor": "~5.4.0",
+    "rimraf": "^2.6.3",
     "rxjs": "^6.3.3",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.34.0",

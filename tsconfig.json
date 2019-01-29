@@ -1,25 +1,21 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "suppressImplicitAnyIndexErrors": true,
+    "importHelpers": true,
     "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "removeComments": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "noLib": false,
-    "declaration": true,
-    "lib": [ "es2017" ]
-  },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
-  "filesGlob": [
-    "./model/*.ts",
-    "./api/*.ts"
-  ]
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "api": ["dist/api"],
+      "api/*": ["dist/api/*"]
+    }
+  }
 }

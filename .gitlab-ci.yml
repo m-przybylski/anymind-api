@@ -1,5 +1,6 @@
 stages:
   - prepare-container
+  - install
   - build
   - push-npm
   - cleanup_build
@@ -8,26 +9,29 @@ variables:
   # Update from $CI_COMMIT_SHA to $CI_PIPELINE_IID when gitlab > v.11
   CONTAINER_TEST_NAME: anymind-ng-api:test-$CI_COMMIT_SHA
 
-test-prepare-job:
+prepare-job-contianer-job:
   stage: prepare-container
   script:
     - docker build --no-cache -t $CONTAINER_TEST_NAME -f Dockerfile.test .
   tags:
     - shell
 
-test-run-job:
+build-job:
   stage: build
+  expect: 
+    -develop
   script:
     - docker run -i $CONTAINER_TEST_NAME /bin/sh -c 'npm install && npm run build'
   tags:
     - shell
+
 
 push-npm-job:
   stage: push-npm
   only:
     - develop
   script:
-    - docker run -i $CONTAINER_TEST_NAME /bin/sh -c 'npm run publish'
+    - docker run -i $CONTAINER_TEST_NAME /bin/sh -c 'npm install && npm run publish'
   tags:
     - shell
 

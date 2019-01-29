@@ -1,6 +1,6 @@
 {
   "name": "@anymind-ng/api",
-  "version": "0.2.56",
+  "version": "0.2.62",
   "description": "swagger client for anymind",
   "author": "AnyMind",
   "peerDependencies": {

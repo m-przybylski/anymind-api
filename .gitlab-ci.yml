@@ -10,8 +10,6 @@ variables:
 
 test-prepare-job:
   stage: prepare-container
-  except:
-    - develop
   script:
     - docker build --no-cache -t $CONTAINER_TEST_NAME -f Dockerfile.test .
   tags:
@@ -19,8 +17,6 @@ test-prepare-job:
 
 test-run-job:
   stage: build
-  except:
-    - develop
   script:
     - docker run -i $CONTAINER_TEST_NAME /bin/sh -c 'npm install && npm run build'
   tags:

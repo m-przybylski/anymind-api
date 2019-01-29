@@ -1,0 +1,7 @@
+{{#operations}}
+import { {{ classname }} } from './{{ classFilename }}';
+{{/operations}}
+
+export { {{#operations}}
+  {{ classname }}{{^-last}}, {{/-last}}{{/operations}}
+};

@@ -1,5 +1,8 @@
-wwwroot/*.js
 node_modules
-typings
 dist
+
 .idea
+.vscode
+
+/projects/api/src/api/*
+/projects/api/src/model/*

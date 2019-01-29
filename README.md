@@ -1,21 +1,19 @@
 # AnyMind Angular API library
 >AnyMind Angular API library  compatible with AoT compilation &amp; Tree shaking.
 
-## Requirements
-* [Swagger Codegen 2.3.0](https://github.com/swagger-api/swagger-codegen)
-* [ng-packagr 2.0.0-rc.11](https://github.com/dherges/ng-packagr)
-
-This starter allows you to create a library for **Angular v5** apps written in _TypeScript_, _ES6_ or _ES5_.
-The project is based on the official _Angular_ packages.
-
-Get the [Changelog]
-(https://git.contactis.pl/itelo/anymind-ng-api/blob/develop/CHANGELOG.md).
-
 ## Install dependencies
-* `npm i -g ng-packagr@2.0.0-rc.11`
-* `brew install swagger-codegen`
+* `npm i`
 
-## How to build
-* `npm run gen`
-* `npm run build`
-* `npm run publish:lib`
+## Usage Description
+>Build command grabs _swagger.json_ file from specific location and creates Angular models and services. It also updates _package.json_ file to align it with api version extracted from _swagger.json_
+
+## How to use
+* `npm run version`
+
+### Custom usage
+
+Script provides flexibility to get _swagger.json_ file from either web or local system file. Default values takes value from stage environment if none provided.
+To provide new url execute index.js with --url='your_url' parameter.
+To provide new file name execute index.js with --file='your_path_to_file' parameter.
+
+It is not possible to provide both url and file. Script will overwrite file with url, because this is default method if retrieving _swagger.json_ schema.

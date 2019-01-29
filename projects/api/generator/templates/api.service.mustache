@@ -1,0 +1,83 @@
+{{>licenseInfo}}
+
+import { Inject, Injectable, Optional } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
+import { CustomHttpUrlEncodingCodec } from '../encoder';
+import { Observable } from 'rxjs';
+
+{{#imports}}
+import { {{{classname}}} } from '../model/model';
+{{/imports}}
+
+import { BASE_PATH } from '../variables';
+import { Configuration } from '../configuration';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class {{classname}} {
+    protected basePath = '{{{basePath}}}';
+    public configuration = new Configuration();
+
+    constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+        if (basePath) {
+            this.basePath = basePath;
+        }
+        if (configuration) {
+            this.configuration = configuration;
+            this.basePath = basePath || configuration.basePath || this.basePath;
+        }
+    }
+
+{{#operations}}
+    /**
+     * {{summary}}
+     * {{notes}}
+     {{#allParams}}* @param {{paramName}} {{description}}
+     {{/allParams}}* @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}observe?: 'body', reportProgress?: boolean): Observable<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}undefined{{/returnType}}>;
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}undefined{{/returnType}}>>;
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}undefined{{/returnType}}>>;
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+{{#allParams}}
+{{#required}}
+        if ({{paramName}} === null || {{paramName}} === undefined) {
+            throw new Error('Required parameter {{paramName}} was null or undefined when calling {{nickname}}.');
+        }
+{{/required}}
+{{/allParams}}
+
+{{#hasQueryParams}}
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+{{#queryParams}}
+        if ({{paramName}} !== undefined && {{paramName}} !== null) {
+            queryParameters = queryParameters.set('{{baseName}}', <any>{{paramName}});
+        }
+{{/queryParams}}
+{{/hasQueryParams}}
+        let headers = new HttpHeaders();
+{{#headerParams}}
+        if ({{paramName}} !== undefined && {{paramName}} !== null) {
+            headers = headers.set('{{baseName}}', String({{paramName}}));
+        }
+{{/headerParams}}
+
+        return this.httpClient.{{httpMethod}}<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}undefined{{/returnType}}>(`${this.basePath}{{{path}}}`,{{#isBodyAllowed}}
+            {{#bodyParam}}{{paramName}}{{/bodyParam}},{{/isBodyAllowed}}
+            {
+{{#hasQueryParams}}
+                params: queryParameters,
+{{/hasQueryParams}}
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+{{/operations}}
+}

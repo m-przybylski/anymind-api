@@ -6,3 +6,5 @@ dist
 
 /projects/api/src/api/*
 /projects/api/src/model/*
+
+.DS_Store

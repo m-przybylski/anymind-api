@@ -21,10 +21,14 @@ if (swaggerUrl == undefined && swaggerFile == undefined) {
 }
 const sth = [templateLoader.init('templates'), loadJSON.loadSwaggerJSON(swaggerUrl, swaggerFile)];
 
-Promise.all(sth).then(([templates, data]) => {
-  const version = data.version;
-  const viewWithVersion = { ...view, version };
-  writeModels(data.models, viewWithVersion, templates);
-  writeApiServices(data.apis, viewWithVersion, templates);
-  updatePackageJson({ version });
-});
+Promise.all(sth)
+  .then(([templates, data]) => {
+    const version = data.version;
+    const viewWithVersion = { ...view, version };
+    writeModels(data.models, viewWithVersion, templates);
+    writeApiServices(data.apis, viewWithVersion, templates);
+    updatePackageJson({ version });
+  })
+  .catch(err => {
+    console.log(err);
+  });
